@@ -1,0 +1,232 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  client
+  attendant
+  admin
+}
+
+enum VehicleStatus {
+  avaliable
+  rented
+  under_maintenance
+}
+
+enum RentalStatus {
+  reserved
+  rented
+  canceled
+  finalized
+  ended
+  no_show
+}
+
+enum PaymentStatus {
+  paid
+  pending
+}
+
+enum PaymentMethod {
+  pix
+  credit
+  debit
+}
+
+enum PaymentType {
+  prepayment
+  final
+  security_deposit
+  adjust
+}
+
+enum Brand {
+  FIAT
+  VOLKSWAGEN
+  CHEVROLET
+  FORD
+  RENAULT
+  HYUNDAI
+  TOYOTA
+  HONDA
+  NISSAN
+  PEUGEOT
+  CITROEN
+  KIA
+  MITSUBISHI
+  JEEP
+  BMW
+  MERCEDES_BENZ
+  AUDI
+  VOLVO
+  CHERY
+  BYD
+  TESLA
+  LAND_ROVER
+  PORSCHE
+  FERRARI
+  LAMBORGHINI
+  ALFA_ROMEO
+  JAGUAR
+  RAM
+  GWM
+  JAC
+  TROLLER
+}
+
+enum Model {
+  MARGO
+  MCRONOS
+  MMOBI
+  MPULSE
+  MFASTBACK
+  MSTRADA
+  MTORO
+  MUNO
+  MPALIO
+  MSIENA
+  M147
+  M147_PICKUP
+  MPUNTO
+
+  MONIX
+  MTRACKER
+  MSPIN
+  MPRISMA
+  MCOBALT
+  MCRUZE
+  MJOYC
+  MONTANA
+  MZAFIRA
+  MBLAZER
+
+  MKA
+  MKA_PLUS
+  MFIESTA
+  MFIESTA_SEDAN
+  MECOSPORT
+  MFUSION
+  MFOCUS
+  MRANGER
+  MESCAPE
+
+  MGOL
+  MSAVEIRO
+  MVOYAGE
+  MFOX
+  MPCROSS
+  MUP
+  MJETTA
+  MGOLF
+  MPASSAT
+  MAMAROK
+  MTIGUAN
+
+  M207
+  M208
+  M2008
+  M3008
+  M5008
+  MPARTNER
+  MEXPERT
+
+  MLOGAN
+  MSANDERO
+  MSTEPWAY
+  MDUSTER
+  MKWID
+  MCAPTUR
+  MFLUENCE
+  MSYMBOL
+
+  MHB20
+  MHB20S
+  MHB20X
+  MCRETA
+  MTUCSON
+  MSANT
+}
+
+model users {
+  id            String    @id @default(uuid()) @db.Uuid
+  name          String    @db.VarChar(255)
+  email         String    @unique @db.VarChar(255)
+  cpf           String    @db.VarChar(11)
+  birthdate     DateTime
+  password_hash String    @db.VarChar(255)
+  phone         String?   @db.VarChar(255)
+  role          Role      @default(client)
+  rentals       rentals[]
+  updated_at    DateTime  @updatedAt
+  created_at    DateTime  @default(now())
+}
+
+model categories {
+  id          Int        @id @default(autoincrement())
+  name        String     @db.VarChar(255)
+  description String     @db.VarChar(255)
+  vehicles    vehicles[]
+  updated_at  DateTime   @updatedAt
+  created_at  DateTime   @default(now())
+}
+
+model vehicles {
+  id               Int           @id @default(autoincrement())
+  brand            Brand
+  model            Model
+  category_id      Int
+  manufacture_year DateTime
+  color            String        @db.VarChar(255)
+  diary_value      Decimal
+  status           VehicleStatus
+  rentals          rentals[]
+  kilometers       Decimal
+  updated_at       DateTime      @updatedAt
+  created_at       DateTime      @default(now())
+  category         categories    @relation(fields: [category_id], references: [id])
+}
+
+model payments {
+  id                   Int           @id @default(autoincrement())
+  amount               Decimal
+  payment_date         DateTime?
+  refund_date          DateTime?
+  method_type          PaymentMethod
+  status               PaymentStatus
+  payment_type         PaymentType
+  proof_of_payment_url String?       @db.VarChar(255)
+  updated_at           DateTime      @updatedAt
+  created_at           DateTime      @default(now())
+}
+
+model rentals {
+  id                 String       @id @db.Uuid
+  vehicle_id         Int
+  user_id            String       @db.Uuid
+  check_in_date      DateTime
+  check_out_date     DateTime?
+  start_mileage      Decimal
+  end_mileage        Decimal?
+  status             RentalStatus
+  daily_rate         Decimal
+  additional_charges Decimal?
+  penalties          Decimal?
+  notes              String?      @db.VarChar(255)
+  updated_at         DateTime     @updatedAt
+  created_at         DateTime     @default(now())
+  vehicle            vehicles     @relation(fields: [vehicle_id], references: [id])
+  user               users        @relation(fields: [user_id], references: [id])
+}

@@ -32,7 +32,7 @@ Lista de entidades que devem estar no DER e quais atributos elas devem ter com b
 - Id do cliente (fk)
 - Id do veículo (fk)
 - ID pagamento (fk)
-- Status ("Reservado" | "Alugado" | "Canelado" | "Finalizado")
+- Status ("Reservado" | "Alugado" | "Cancelado" | "Finalizado", "Não comparecimento)
 - Km de saída
 - Km de retorno
 - Data do checkin
@@ -54,7 +54,7 @@ Lista de entidades que devem estar no DER e quais atributos elas devem ter com b
 - Valor pago
 - Data de pagamento
 - Data estorno
-- Método de pagamento
+- Método de pagamento ("PIX", "Débito", "Crédito")
 - Url do comprovate
 - UpdatedAt
 - CreatedAt
