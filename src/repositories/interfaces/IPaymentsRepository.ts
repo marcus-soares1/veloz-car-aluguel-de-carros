@@ -1,4 +1,5 @@
 import Decimal from "decimal.js"
+import { IRental } from "./IRentalsRepository"
 
 export enum PaymentStatus {
     paid = "paid",
@@ -18,7 +19,8 @@ export enum PaymentType {
     adjust = "adjust"
 }
 
-export interface IPayment {
+export interface ICreatePayment {
+    rental_id: string
     amount: Decimal
     payment_date: Date
     refund_date: Date
@@ -30,6 +32,7 @@ export interface IPayment {
 
 export interface IPayment {
     id: string
+    rental_id: string
     amount: Decimal
     payment_date: Date
     refund_date: Date
@@ -37,6 +40,15 @@ export interface IPayment {
     status: PaymentStatus
     payment_type: PaymentType
     proof_of_payment_url: string
+    rental: IRental
     updated_at: Date
     created_at: Date
+}
+
+export interface IPaymentRepository {
+    getAll(): Promise<IPayment[]>
+    getById(categoryId: string): Promise<IPayment | null>
+    create(categoryAttributes: ICreatePayment): Promise<IPayment>
+    update(categoryId: string, categoryAttributes: Partial<ICreatePayment>): Promise<IPayment | null>
+    delete(categoryId: string): Promise<IPayment | null>
 }

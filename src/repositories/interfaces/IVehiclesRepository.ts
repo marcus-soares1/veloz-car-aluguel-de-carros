@@ -122,7 +122,7 @@ export interface ICreateVehicle {
     color: string
     diary_value: Decimal
     status: VehicleStatus
-    kilometers: Decimal
+    kilometers: number
     category?: string
 }
 
@@ -139,4 +139,12 @@ export interface IVehicle {
     updated_at: Date
     created_at: Date
     category: ICategory
+}
+
+export interface IVehicleRepository {
+    getAll(): Promise<IVehicle[]>
+    getById(categoryId: string): Promise<IVehicle | null>
+    create(categoryAttributes: ICreateVehicle): Promise<IVehicle>
+    update(categoryId: string, categoryAttributes: Partial<ICreateVehicle>): Promise<IVehicle | null>
+    delete(categoryId: string): Promise<IVehicle | null>
 }

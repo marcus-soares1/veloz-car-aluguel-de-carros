@@ -202,6 +202,7 @@
 
   model payments {
     id Int @id @default(autoincrement())
+    rental_id String @db.Uuid
     amount Decimal
     payment_date DateTime?
     refund_date DateTime?
@@ -211,6 +212,7 @@
     proof_of_payment_url String? @db.VarChar(255)
     updated_at DateTime @updatedAt
     created_at DateTime @default(now())
+    rental rentals @relation(fields: [rental_id], references: [id])
   }
 
   model rentals {
@@ -225,6 +227,7 @@
     daily_rate Decimal
     additional_charges Decimal?
     penalties Decimal?
+    payments payments[]
     notes String? @db.VarChar(255)
     updated_at DateTime @updatedAt
     created_at DateTime @default(now())
