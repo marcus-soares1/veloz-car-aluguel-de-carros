@@ -2,6 +2,7 @@
 # 🚗 API de Aluguel de Carros
 
 Esta é uma API RESTful para gerenciamento de aluguel de carros. O projeto foi desenvolvido com Node.js, TypeScript e Prisma ORM.
+Obs.: Readme sendo atualizado conforme progressao do projeto
 
 ## ✨ Funcionalidades
 
@@ -31,31 +32,6 @@ npm run test
 # Compilar o TypeScript
 npm run build
 ```
-
-## 🗂️ Organização
-
-- `src/interfaces/`: Interfaces e Enums utilizados no sistema
-- `src/modules/`: Módulos separados por responsabilidade
-- `src/database/`: Configuração do banco de dados via Prisma
-
-## 📦 DTO
-
-O projeto utiliza DTOs (Data Transfer Objects) para transportar dados entre camadas, garantindo a validação e tipagem correta das informações.
-
-## 💸 Decimal.js
-
-Para lidar com valores monetários com precisão, a biblioteca `decimal.js` é utilizada:
-
-```ts
-import { Decimal } from 'decimal.js'
-
-const price = new Decimal(49.99)
-const total = price.mul(3)
-```
-s
-## 🧪 Testes
-
-Os testes estão localizados na pasta `__tests__`. Eles utilizam o ambiente `node` com Jest.
 
 ## 📋 Requisitos
 
@@ -119,36 +95,11 @@ export interface ICreateVehiclesDTO {
 
 ## 🚪 Testes
 
-Caso esteja utilizando testes (recomendado), mantenha-os na pasta __tests__/ com cobertura para:
-
 - Serviços de criação de veículos
 
 - Cálculos financeiros com decimal.js
 
 - Regras de negócio (ex: não alugar veículo indisponível)
-
-## 🚀 Como Executar
-
-Clone o repositório:
-``` bash
-git clone https://github.com/seu-usuario/vehicle-rental-api.git
-```
-
-Instale as dependências:
-``` bash
-npm install
-```
-
-Rode o projeto (modo dev):
-``` bash
-npm run dev
-```
-
-(Opcional) Configure seu banco de dados no .env e rode o Prisma:
-
-``` bash
-npx prisma migrate dev
-```
 
 ## 📄 Licença
 
