@@ -1,6 +1,5 @@
-import { prisma } from "../database/prismaDatabase";
-import { UUID } from "crypto";
-import { ICreateUser, IUser, IUsersRepository } from "./interfaces/IUsersRepository";
+import { prisma } from "../database/prismaDatabase"
+import { ICreateUser, IUser, IUsersRepository } from "./interfaces/IUsersRepository"
 
 
 export class PrismaUsersRepository implements IUsersRepository{
