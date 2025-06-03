@@ -1,29 +1,16 @@
 import Decimal from "decimal.js"
 import { IRental } from "./IRentalsRepository"
 
-export enum PaymentStatus {
-    paid = "paid",
-    pending = "pending"
-}
+export type PaymentStatus = "paid" | "pending";
 
-export enum PaymentMethod {
-    pix = "pix",
-    credit = "credit",
-    debit = "debit"
-}
+export type PaymentMethod = "pix" | "credit" | "debit";
 
-export enum PaymentType {
-    prepayment = "prepayment",
-    final = "final",
-    security_deposit = "security deposit",
-    adjust = "adjust"
-}
+export type PaymentType = "prepayment" | "final" | "security_deposit" | "adjust";
 
 export interface ICreatePayment {
     rental_id: string
     amount: Decimal
     payment_date: Date
-    refund_date: Date
     method_type: PaymentMethod
     status: PaymentStatus
     payment_type: PaymentType
@@ -34,21 +21,21 @@ export interface IPayment {
     id: string
     rental_id: string
     amount: Decimal
-    payment_date: Date
-    refund_date: Date
+    payment_date: Date | null
+    refund_date: Date | null
     method_type: PaymentMethod
     status: PaymentStatus
     payment_type: PaymentType
-    proof_of_payment_url: string
-    rental: IRental
+    proof_of_payment_url: string | null
+    rental?: IRental
     updated_at: Date
     created_at: Date
 }
 
 export interface IPaymentRepository {
     getAll(): Promise<IPayment[]>
-    getById(categoryId: string): Promise<IPayment | null>
-    create(categoryAttributes: ICreatePayment): Promise<IPayment>
-    update(categoryId: string, categoryAttributes: Partial<ICreatePayment>): Promise<IPayment | null>
-    delete(categoryId: string): Promise<IPayment | null>
+    getById(paymentId: string): Promise<IPayment | null>
+    create(paymentAttributes: ICreatePayment): Promise<IPayment>
+    update(paymentId: string, categoryAttributes: Partial<ICreatePayment>): Promise<IPayment | null>
+    delete(paymentId: string): Promise<IPayment | null>
 }

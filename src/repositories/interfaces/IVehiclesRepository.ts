@@ -1,133 +1,23 @@
 import { Decimal } from 'decimal.js'
 import { ICategory } from './ICategoriesRepository'
 
-export enum VehicleStatus {
-    avaliable = "avaliable",
-    rented = "rented",
-    under_maintenance = "under_maintenance"
-}
-
-export enum Brand {
-    FIAT = "FIAT",
-    VOLKSWAGEN = "VOLKSWAGEN",
-    CHEVROLET = "CHEVROLET",
-    FORD = "FORD",
-    RENAULT = "RENAULT",
-    HYUNDAI = "HYUNDAI",
-    TOYOTA = "TOYOTA",
-    HONDA = "HONDA",
-    NISSAN = "NISSAN",
-    PEUGEOT = "PEUGEOT",
-    CITROEN = "CITROEN",
-    KIA = "KIA",
-    MITSUBISHI = "MITSUBISHI",
-    JEEP = "JEEP",
-    BMW = "BMW",
-    MERCEDES_BENZ = "MERCEDES_BENZ",
-    AUDI = "AUDI",
-    VOLVO = "VOLVO",
-    CHERY = "CHERY",
-    BYD = "BYD",
-    TESLA = "TESLA",
-    LAND_ROVER = "LAND_ROVER",
-    PORSCHE = "PORSCHE",
-    FERRARI = "FERRARI",
-    LAMBORGHINI = "LAMBORGHINI",
-    ALFA_ROMEO = "ALFA_ROMEO",
-    JAGUAR = "JAGUAR",
-    RAM = "RAM",
-    GWM = "GWM",
-    JAC = "JAC",
-    TROLLER = "TROLLER"
-}
-
-export enum Model {
-    ARGO = "ARGO",
-    CRONOS = "CRONOS",
-    MOBI = "MOBI",
-    PULSE = "PULSE",
-    FASTBACK = "FASTBACK",
-    STRADA = "STRADA",
-    TORO = "TORO",
-    UNO = "UNO",
-    PALIO = "PALIO",
-    SIENA = "SIENA",
-    M147 = "M147",
-    M147_PICKUP = "M147_PICKUP",
-    PUNTO = "PUNTO",
-
-    ONIX = "ONIX",
-    TRACKER = "TRACKER",
-    SPIN = "SPIN",
-    PRISMA = "PRISMA",
-    COBALT = "COBALT",
-    CRUZE = "CRUZE",
-    JOYC = "JOYC",
-    MONTANA = "MONTANA",
-    ZAFIRA = "ZAFIRA",
-    BLAZER = "BLAZER",
-
-    KA = "KA",
-    KA_PLUS = "KA_PLUS",
-    FIESTA = "FIESTA",
-    FIESTA_SEDAN = "FIESTA_SEDAN",
-    ECOSPORT = "ECOSPORT",
-    FUSION = "FUSION",
-    FOCUS = "FOCUS",
-    RANGER = "RANGER",
-    ESCAPE = "ESCAPE",
-
-    GOL = "GOL",
-    SAVEIRO = "SAVEIRO",
-    VOYAGE = "VOYAGE",
-    FOX = "FOX",
-    PCROSS = "PCROSS",
-    UP = "UP",
-    JETTA = "JETTA",
-    GOLF = "GOLF",
-    PASSAT = "PASSAT",
-    AMAROK = "AMAROK",
-    TIGUAN = "TIGUAN",
-
-    M207 = "207",
-    M208 = "208",
-    M2008 = "2008",
-    M3008 = "3008",
-    M5008 = "5008",
-    PARTNER = "PARTNER",
-    EXPERT = "EXPERT",
-
-    LOGAN = "LOGAN",
-    SANDERO = "SANDERO",
-    STEPWAY = "STEPWAY",
-    DUSTER = "DUSTER",
-    KWID = "KWID",
-    CAPTUR = "CAPTUR",
-    FLUENCE = "FLUENCE",
-    SYMBOL = "SYMBOL",
-
-    HB20 = "HB20",
-    HB20S = "HB20S",
-    HB20X = "HB20X",
-    CRETA = "CRETA",
-    TUCSON = "TUCSON",
-    SANT = "SANT"
-}
+export type VehicleStatus = "avaliable" | "rented" | "under_maintenance";
+export type Brand = "FIAT" | "VOLKSWAGEN" | "CHEVROLET" | "FORD" | "RENAULT" | "HYUNDAI" | "TOYOTA" | "HONDA" | "NISSAN" | "PEUGEOT" | "CITROEN" | "KIA" | "MITSUBISHI" | "JEEP" | "BMW" | "MERCEDES_BENZ" | "AUDI" | "VOLVO" | "CHERY" | "BYD" | "TESLA" | "LAND_ROVER" | "PORSCHE" | "FERRARI" | "LAMBORGHINI" | "ALFA_ROMEO" | "JAGUAR" | "RAM" | "GWM" | "JAC" | "TROLLER";
+export type Model = "ARGO" | "CRONOS" | "MOBI" | "PULSE" | "FASTBACK" | "STRADA" | "TORO" | "UNO" | "PALIO" | "SIENA" | "M147" | "M147_PICKUP" | "PUNTO" | "ONIX" | "TRACKER" | "SPIN" | "PRISMA" | "COBALT" | "CRUZE" | "JOY" | "MONTANA" | "ZAFIRA" | "BLAZER" | "KA" | "KA_PLUS" | "FIESTA" | "FIESTA_SEDAN" | "ECOSPORT" | "FUSION" | "FOCUS" | "RANGER" | "ESCAPE" | "GOL" | "SAVEIRO" | "VOYAGE" | "FOX" | "PCROSS" | "UP" | "JETTA" | "GOLF" | "PASSAT" | "AMAROK" | "TIGUAN" | "M207" | "M208" | "M2008" | "M3008" | "M5008" | "PARTNER" | "EXPERT" | "LOGAN" | "SANDERO" | "STEPWAY" | "DUSTER" | "KWID" | "CAPTUR" | "FLUENCE" | "SYMBOL" | "HB20" | "HB20S" | "HB20X" | "CRETA" | "TUCSON" | "SANT";
 
 export interface ICreateVehicle {
     brand: Brand
     model: Model
-    category_id?: number
+    category_id: number
     manufacture_year: Date
     color: string
     diary_value: Decimal
     status: VehicleStatus
-    kilometers: number
-    category?: string
+    kilometers: Decimal
 }
 
 export interface IVehicle {
-    id: string
+    id: number
     brand: Brand
     model: Model
     category_id: number
@@ -138,13 +28,13 @@ export interface IVehicle {
     kilometers: Decimal
     updated_at: Date
     created_at: Date
-    category: ICategory
+    category?: ICategory
 }
 
 export interface IVehicleRepository {
     getAll(): Promise<IVehicle[]>
-    getById(categoryId: string): Promise<IVehicle | null>
+    getById(vehicleId: number): Promise<IVehicle | null>
     create(categoryAttributes: ICreateVehicle): Promise<IVehicle>
-    update(categoryId: string, categoryAttributes: Partial<ICreateVehicle>): Promise<IVehicle | null>
-    delete(categoryId: string): Promise<IVehicle | null>
+    update(vehicleId: number, categoryAttributes: Partial<ICreateVehicle>): Promise<IVehicle | null>
+    delete(vehicleId: number): Promise<IVehicle | null>
 }

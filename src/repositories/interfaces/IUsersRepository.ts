@@ -1,3 +1,5 @@
+import { IRental } from "./IRentalsRepository"
+
 export type Role = "client" | "attendant" | "admin"
 
 export interface IUser {
@@ -11,6 +13,7 @@ export interface IUser {
     role: Role
     updated_at: Date
     created_at: Date
+    rentals?: IRental[]
 }
 
 export interface ICreateUser {
