@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for PrismaUsersRepository.ts</title>
+    <title>Code coverage report for PrismaCategoriesRepository.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="prettify.css" />
     <link rel="stylesheet" href="base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> PrismaUsersRepository.ts</h1>
+        <h1><a href="index.html">All files</a> PrismaCategoriesRepository.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -102,14 +102,22 @@
 <a name='L37'></a><a href='#L37'>37</a>
 <a name='L38'></a><a href='#L38'>38</a>
 <a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -119,67 +127,62 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { prisma } from "../database/prismaDatabase"
-import { ICreateUser, IUser, IUsersRepository } from "./interfaces/IUsersRepository"
+import { ICategoriesRepository, ICategory, ICreateCategory } from "./interfaces/ICategoriesRepository";
 &nbsp;
-&nbsp;
-export class PrismaUsersRepository implements IUsersRepository{
-    async getAll(): Promise&lt;IUser[]&gt; {
-        const users: IUser[] = await prisma.users.findMany()
-        return users
+export class PrismaCategoriesRepository implements ICategoriesRepository {
+    async getAll(): Promise&lt;ICategory[]&gt; {
+        const categories: ICategory[] = await prisma.categories.findMany()
+        return categories
     }
-    async getById(userId: string): Promise&lt;IUser | null&gt; {
-        const user: IUser | null = await prisma.users.findUnique({
-            where: { id: userId }
+&nbsp;
+    async getById(categoryId: number): Promise&lt;ICategory | null&gt; {
+        const category: ICategory | null = await prisma.categories.findUnique({
+            where: { id: categoryId }
+        })
+        return category
+    }
+&nbsp;
+    async create(categoryAttributes: ICreateCategory): Promise&lt;ICategory&gt; {
+        const createdCategory: ICategory = await prisma.categories.create({
+            data: categoryAttributes
         })
 &nbsp;
-        return user
+        return createdCategory        
     }
-    async create(userAttributes: ICreateUser): Promise&lt;IUser&gt; {
-        const newUser: IUser = await prisma.users.create({
-            data: userAttributes
+&nbsp;
+    async update(categoryId: number, categoryAttributes: Partial&lt;ICreateCategory&gt;): Promise&lt;ICategory | null&gt; {
+        const updatedCategory: ICategory | null =  await prisma.categories.update({
+            where: { id: categoryId },
+            data: categoryAttributes
         })
 &nbsp;
-        return newUser
+        return updatedCategory
     }
-    async update(userId: string, userAttributes: Partial&lt;ICreateUser&gt;): Promise&lt;IUser | null&gt; {
-        const updatedUser: IUser | null = await prisma.users.update({
-            where: { id: userId },
-            data: userAttributes
+&nbsp;
+    async delete(categoryId: number): Promise&lt;ICategory | null&gt; {
+        const deletedCategory: ICategory | null = await prisma.categories.delete({
+            where: { id: categoryId }
         })
 &nbsp;
-        return updatedUser
+        return deletedCategory
     }
-    async delete(userId: string): Promise&lt;IUser | null&gt; {
-        const deletedUser: IUser | null = await prisma.users.delete({
-            where: { id: userId }
-        })
-&nbsp;
-        return deletedUser
-    }
-&nbsp;
 }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

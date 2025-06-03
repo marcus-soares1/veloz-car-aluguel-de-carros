@@ -88,76 +88,76 @@ enum Brand {
 }
 
 enum Model {
-  MARGO
-  MCRONOS
-  MMOBI
-  MPULSE
-  MFASTBACK
-  MSTRADA
-  MTORO
-  MUNO
-  MPALIO
-  MSIENA
+  ARGO
+  CRONOS
+  MOBI
+  PULSE
+  FASTBACK
+  STRADA
+  TORO
+  UNO
+  PALIO
+  SIENA
   M147
   M147_PICKUP
-  MPUNTO
+  PUNTO
 
-  MONIX
-  MTRACKER
-  MSPIN
-  MPRISMA
-  MCOBALT
-  MCRUZE
-  MJOYC
+  ONIX
+  TRACKER
+  SPIN
+  PRISMA
+  COBALT
+  CRUZE
+  JOY
   MONTANA
-  MZAFIRA
-  MBLAZER
+  ZAFIRA
+  BLAZER
 
-  MKA
-  MKA_PLUS
-  MFIESTA
-  MFIESTA_SEDAN
-  MECOSPORT
-  MFUSION
-  MFOCUS
-  MRANGER
-  MESCAPE
+  KA
+  KA_PLUS
+  FIESTA
+  FIESTA_SEDAN
+  ECOSPORT
+  FUSION
+  FOCUS
+  RANGER
+  ESCAPE
 
-  MGOL
-  MSAVEIRO
-  MVOYAGE
-  MFOX
-  MPCROSS
-  MUP
-  MJETTA
-  MGOLF
-  MPASSAT
-  MAMAROK
-  MTIGUAN
+  GOL
+  SAVEIRO
+  VOYAGE
+  FOX
+  PCROSS
+  UP
+  JETTA
+  GOLF
+  PASSAT
+  AMAROK
+  TIGUAN
 
   M207
   M208
   M2008
   M3008
   M5008
-  MPARTNER
-  MEXPERT
+  PARTNER
+  EXPERT
 
-  MLOGAN
-  MSANDERO
-  MSTEPWAY
-  MDUSTER
-  MKWID
-  MCAPTUR
-  MFLUENCE
-  MSYMBOL
+  LOGAN
+  SANDERO
+  STEPWAY
+  DUSTER
+  KWID
+  CAPTUR
+  FLUENCE
+  SYMBOL
 
-  MHB20
-  MHB20S
-  MHB20X
-  MCRETA
-  MTUCSON
-  MSANT
+  HB20
+  HB20S
+  HB20X
+  CRETA
+  TUCSON
+  SANT
 }
 
 model users {
@@ -200,7 +200,8 @@ model vehicles {
 }
 
 model payments {
-  id                   Int           @id @default(autoincrement())
+  id                   String        @id @default(uuid()) @db.Uuid
+  rental_id            String        @db.Uuid
   amount               Decimal
   payment_date         DateTime?
   refund_date          DateTime?
@@ -210,23 +211,26 @@ model payments {
   proof_of_payment_url String?       @db.VarChar(255)
   updated_at           DateTime      @updatedAt
   created_at           DateTime      @default(now())
+  rental               rentals       @relation(fields: [rental_id], references: [id])
 }
 
 model rentals {
-  id                 String       @id @db.Uuid
-  vehicle_id         Int
-  user_id            String       @db.Uuid
-  check_in_date      DateTime
-  check_out_date     DateTime?
-  start_mileage      Decimal
-  end_mileage        Decimal?
-  status             RentalStatus
-  daily_rate         Decimal
-  additional_charges Decimal?
-  penalties          Decimal?
-  notes              String?      @db.VarChar(255)
-  updated_at         DateTime     @updatedAt
-  created_at         DateTime     @default(now())
-  vehicle            vehicles     @relation(fields: [vehicle_id], references: [id])
-  user               users        @relation(fields: [user_id], references: [id])
+  id                     String       @id @default(uuid()) @db.Uuid
+  vehicle_id             Int
+  user_id                String       @db.Uuid
+  check_out_date         DateTime
+  expected_check_in_date DateTime
+  check_in_date          DateTime?
+  start_mileage          Decimal
+  end_mileage            Decimal?
+  status                 RentalStatus @default(reserved)
+  daily_rate             Decimal
+  additional_charges     Decimal      @default(0)
+  penalties              Decimal      @default(0)
+  payments               payments[]
+  notes                  String?      @db.VarChar(255)
+  updated_at             DateTime     @updatedAt
+  created_at             DateTime     @default(now())
+  vehicle                vehicles     @relation(fields: [vehicle_id], references: [id])
+  user                   users        @relation(fields: [user_id], references: [id])
 }

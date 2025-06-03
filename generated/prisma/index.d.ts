@@ -138,70 +138,70 @@ export type Brand = (typeof Brand)[keyof typeof Brand]
 
 
 export const Model: {
-  MARGO: 'MARGO',
-  MCRONOS: 'MCRONOS',
-  MMOBI: 'MMOBI',
-  MPULSE: 'MPULSE',
-  MFASTBACK: 'MFASTBACK',
-  MSTRADA: 'MSTRADA',
-  MTORO: 'MTORO',
-  MUNO: 'MUNO',
-  MPALIO: 'MPALIO',
-  MSIENA: 'MSIENA',
+  ARGO: 'ARGO',
+  CRONOS: 'CRONOS',
+  MOBI: 'MOBI',
+  PULSE: 'PULSE',
+  FASTBACK: 'FASTBACK',
+  STRADA: 'STRADA',
+  TORO: 'TORO',
+  UNO: 'UNO',
+  PALIO: 'PALIO',
+  SIENA: 'SIENA',
   M147: 'M147',
   M147_PICKUP: 'M147_PICKUP',
-  MPUNTO: 'MPUNTO',
-  MONIX: 'MONIX',
-  MTRACKER: 'MTRACKER',
-  MSPIN: 'MSPIN',
-  MPRISMA: 'MPRISMA',
-  MCOBALT: 'MCOBALT',
-  MCRUZE: 'MCRUZE',
-  MJOYC: 'MJOYC',
+  PUNTO: 'PUNTO',
+  ONIX: 'ONIX',
+  TRACKER: 'TRACKER',
+  SPIN: 'SPIN',
+  PRISMA: 'PRISMA',
+  COBALT: 'COBALT',
+  CRUZE: 'CRUZE',
+  JOY: 'JOY',
   MONTANA: 'MONTANA',
-  MZAFIRA: 'MZAFIRA',
-  MBLAZER: 'MBLAZER',
-  MKA: 'MKA',
-  MKA_PLUS: 'MKA_PLUS',
-  MFIESTA: 'MFIESTA',
-  MFIESTA_SEDAN: 'MFIESTA_SEDAN',
-  MECOSPORT: 'MECOSPORT',
-  MFUSION: 'MFUSION',
-  MFOCUS: 'MFOCUS',
-  MRANGER: 'MRANGER',
-  MESCAPE: 'MESCAPE',
-  MGOL: 'MGOL',
-  MSAVEIRO: 'MSAVEIRO',
-  MVOYAGE: 'MVOYAGE',
-  MFOX: 'MFOX',
-  MPCROSS: 'MPCROSS',
-  MUP: 'MUP',
-  MJETTA: 'MJETTA',
-  MGOLF: 'MGOLF',
-  MPASSAT: 'MPASSAT',
-  MAMAROK: 'MAMAROK',
-  MTIGUAN: 'MTIGUAN',
+  ZAFIRA: 'ZAFIRA',
+  BLAZER: 'BLAZER',
+  KA: 'KA',
+  KA_PLUS: 'KA_PLUS',
+  FIESTA: 'FIESTA',
+  FIESTA_SEDAN: 'FIESTA_SEDAN',
+  ECOSPORT: 'ECOSPORT',
+  FUSION: 'FUSION',
+  FOCUS: 'FOCUS',
+  RANGER: 'RANGER',
+  ESCAPE: 'ESCAPE',
+  GOL: 'GOL',
+  SAVEIRO: 'SAVEIRO',
+  VOYAGE: 'VOYAGE',
+  FOX: 'FOX',
+  PCROSS: 'PCROSS',
+  UP: 'UP',
+  JETTA: 'JETTA',
+  GOLF: 'GOLF',
+  PASSAT: 'PASSAT',
+  AMAROK: 'AMAROK',
+  TIGUAN: 'TIGUAN',
   M207: 'M207',
   M208: 'M208',
   M2008: 'M2008',
   M3008: 'M3008',
   M5008: 'M5008',
-  MPARTNER: 'MPARTNER',
-  MEXPERT: 'MEXPERT',
-  MLOGAN: 'MLOGAN',
-  MSANDERO: 'MSANDERO',
-  MSTEPWAY: 'MSTEPWAY',
-  MDUSTER: 'MDUSTER',
-  MKWID: 'MKWID',
-  MCAPTUR: 'MCAPTUR',
-  MFLUENCE: 'MFLUENCE',
-  MSYMBOL: 'MSYMBOL',
-  MHB20: 'MHB20',
-  MHB20S: 'MHB20S',
-  MHB20X: 'MHB20X',
-  MCRETA: 'MCRETA',
-  MTUCSON: 'MTUCSON',
-  MSANT: 'MSANT'
+  PARTNER: 'PARTNER',
+  EXPERT: 'EXPERT',
+  LOGAN: 'LOGAN',
+  SANDERO: 'SANDERO',
+  STEPWAY: 'STEPWAY',
+  DUSTER: 'DUSTER',
+  KWID: 'KWID',
+  CAPTUR: 'CAPTUR',
+  FLUENCE: 'FLUENCE',
+  SYMBOL: 'SYMBOL',
+  HB20: 'HB20',
+  HB20S: 'HB20S',
+  HB20X: 'HB20X',
+  CRETA: 'CRETA',
+  TUCSON: 'TUCSON',
+  SANT: 'SANT'
 };
 
 export type Model = (typeof Model)[keyof typeof Model]
@@ -1519,6 +1519,37 @@ export namespace Prisma {
    */
   export type VehiclesCountOutputTypeCountRentalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: rentalsWhereInput
+  }
+
+
+  /**
+   * Count Type RentalsCountOutputType
+   */
+
+  export type RentalsCountOutputType = {
+    payments: number
+  }
+
+  export type RentalsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    payments?: boolean | RentalsCountOutputTypeCountPaymentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * RentalsCountOutputType without action
+   */
+  export type RentalsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RentalsCountOutputType
+     */
+    select?: RentalsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * RentalsCountOutputType without action
+   */
+  export type RentalsCountOutputTypeCountPaymentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: paymentsWhereInput
   }
 
 
@@ -4990,17 +5021,16 @@ export namespace Prisma {
   }
 
   export type PaymentsAvgAggregateOutputType = {
-    id: number | null
     amount: Decimal | null
   }
 
   export type PaymentsSumAggregateOutputType = {
-    id: number | null
     amount: Decimal | null
   }
 
   export type PaymentsMinAggregateOutputType = {
-    id: number | null
+    id: string | null
+    rental_id: string | null
     amount: Decimal | null
     payment_date: Date | null
     refund_date: Date | null
@@ -5013,7 +5043,8 @@ export namespace Prisma {
   }
 
   export type PaymentsMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
+    rental_id: string | null
     amount: Decimal | null
     payment_date: Date | null
     refund_date: Date | null
@@ -5027,6 +5058,7 @@ export namespace Prisma {
 
   export type PaymentsCountAggregateOutputType = {
     id: number
+    rental_id: number
     amount: number
     payment_date: number
     refund_date: number
@@ -5041,17 +5073,16 @@ export namespace Prisma {
 
 
   export type PaymentsAvgAggregateInputType = {
-    id?: true
     amount?: true
   }
 
   export type PaymentsSumAggregateInputType = {
-    id?: true
     amount?: true
   }
 
   export type PaymentsMinAggregateInputType = {
     id?: true
+    rental_id?: true
     amount?: true
     payment_date?: true
     refund_date?: true
@@ -5065,6 +5096,7 @@ export namespace Prisma {
 
   export type PaymentsMaxAggregateInputType = {
     id?: true
+    rental_id?: true
     amount?: true
     payment_date?: true
     refund_date?: true
@@ -5078,6 +5110,7 @@ export namespace Prisma {
 
   export type PaymentsCountAggregateInputType = {
     id?: true
+    rental_id?: true
     amount?: true
     payment_date?: true
     refund_date?: true
@@ -5177,7 +5210,8 @@ export namespace Prisma {
   }
 
   export type PaymentsGroupByOutputType = {
-    id: number
+    id: string
+    rental_id: string
     amount: Decimal
     payment_date: Date | null
     refund_date: Date | null
@@ -5210,6 +5244,7 @@ export namespace Prisma {
 
   export type paymentsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    rental_id?: boolean
     amount?: boolean
     payment_date?: boolean
     refund_date?: boolean
@@ -5219,10 +5254,12 @@ export namespace Prisma {
     proof_of_payment_url?: boolean
     updated_at?: boolean
     created_at?: boolean
+    rental?: boolean | rentalsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["payments"]>
 
   export type paymentsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    rental_id?: boolean
     amount?: boolean
     payment_date?: boolean
     refund_date?: boolean
@@ -5232,10 +5269,12 @@ export namespace Prisma {
     proof_of_payment_url?: boolean
     updated_at?: boolean
     created_at?: boolean
+    rental?: boolean | rentalsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["payments"]>
 
   export type paymentsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    rental_id?: boolean
     amount?: boolean
     payment_date?: boolean
     refund_date?: boolean
@@ -5245,10 +5284,12 @@ export namespace Prisma {
     proof_of_payment_url?: boolean
     updated_at?: boolean
     created_at?: boolean
+    rental?: boolean | rentalsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["payments"]>
 
   export type paymentsSelectScalar = {
     id?: boolean
+    rental_id?: boolean
     amount?: boolean
     payment_date?: boolean
     refund_date?: boolean
@@ -5260,13 +5301,25 @@ export namespace Prisma {
     created_at?: boolean
   }
 
-  export type paymentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "amount" | "payment_date" | "refund_date" | "method_type" | "status" | "payment_type" | "proof_of_payment_url" | "updated_at" | "created_at", ExtArgs["result"]["payments"]>
+  export type paymentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "rental_id" | "amount" | "payment_date" | "refund_date" | "method_type" | "status" | "payment_type" | "proof_of_payment_url" | "updated_at" | "created_at", ExtArgs["result"]["payments"]>
+  export type paymentsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    rental?: boolean | rentalsDefaultArgs<ExtArgs>
+  }
+  export type paymentsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    rental?: boolean | rentalsDefaultArgs<ExtArgs>
+  }
+  export type paymentsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    rental?: boolean | rentalsDefaultArgs<ExtArgs>
+  }
 
   export type $paymentsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "payments"
-    objects: {}
+    objects: {
+      rental: Prisma.$rentalsPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
+      rental_id: string
       amount: Prisma.Decimal
       payment_date: Date | null
       refund_date: Date | null
@@ -5670,6 +5723,7 @@ export namespace Prisma {
    */
   export interface Prisma__paymentsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    rental<T extends rentalsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, rentalsDefaultArgs<ExtArgs>>): Prisma__rentalsClient<$Result.GetResult<Prisma.$rentalsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5699,7 +5753,8 @@ export namespace Prisma {
    * Fields of the payments model
    */
   interface paymentsFieldRefs {
-    readonly id: FieldRef<"payments", 'Int'>
+    readonly id: FieldRef<"payments", 'String'>
+    readonly rental_id: FieldRef<"payments", 'String'>
     readonly amount: FieldRef<"payments", 'Decimal'>
     readonly payment_date: FieldRef<"payments", 'DateTime'>
     readonly refund_date: FieldRef<"payments", 'DateTime'>
@@ -5726,6 +5781,10 @@ export namespace Prisma {
      */
     omit?: paymentsOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentsInclude<ExtArgs> | null
+    /**
      * Filter, which payments to fetch.
      */
     where: paymentsWhereUniqueInput
@@ -5744,6 +5803,10 @@ export namespace Prisma {
      */
     omit?: paymentsOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentsInclude<ExtArgs> | null
+    /**
      * Filter, which payments to fetch.
      */
     where: paymentsWhereUniqueInput
@@ -5761,6 +5824,10 @@ export namespace Prisma {
      * Omit specific fields from the payments
      */
     omit?: paymentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentsInclude<ExtArgs> | null
     /**
      * Filter, which payments to fetch.
      */
@@ -5810,6 +5877,10 @@ export namespace Prisma {
      */
     omit?: paymentsOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentsInclude<ExtArgs> | null
+    /**
      * Filter, which payments to fetch.
      */
     where?: paymentsWhereInput
@@ -5858,6 +5929,10 @@ export namespace Prisma {
      */
     omit?: paymentsOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentsInclude<ExtArgs> | null
+    /**
      * Filter, which payments to fetch.
      */
     where?: paymentsWhereInput
@@ -5901,6 +5976,10 @@ export namespace Prisma {
      */
     omit?: paymentsOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentsInclude<ExtArgs> | null
+    /**
      * The data needed to create a payments.
      */
     data: XOR<paymentsCreateInput, paymentsUncheckedCreateInput>
@@ -5934,6 +6013,10 @@ export namespace Prisma {
      */
     data: paymentsCreateManyInput | paymentsCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentsIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -5948,6 +6031,10 @@ export namespace Prisma {
      * Omit specific fields from the payments
      */
     omit?: paymentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentsInclude<ExtArgs> | null
     /**
      * The data needed to update a payments.
      */
@@ -6000,6 +6087,10 @@ export namespace Prisma {
      * Limit how many payments to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentsIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -6014,6 +6105,10 @@ export namespace Prisma {
      * Omit specific fields from the payments
      */
     omit?: paymentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentsInclude<ExtArgs> | null
     /**
      * The filter to search for the payments to update in case it exists.
      */
@@ -6040,6 +6135,10 @@ export namespace Prisma {
      * Omit specific fields from the payments
      */
     omit?: paymentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentsInclude<ExtArgs> | null
     /**
      * Filter which payments to delete.
      */
@@ -6072,6 +6171,10 @@ export namespace Prisma {
      * Omit specific fields from the payments
      */
     omit?: paymentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentsInclude<ExtArgs> | null
   }
 
 
@@ -6109,8 +6212,9 @@ export namespace Prisma {
     id: string | null
     vehicle_id: number | null
     user_id: string | null
-    check_in_date: Date | null
     check_out_date: Date | null
+    expected_check_in_date: Date | null
+    check_in_date: Date | null
     start_mileage: Decimal | null
     end_mileage: Decimal | null
     status: $Enums.RentalStatus | null
@@ -6126,8 +6230,9 @@ export namespace Prisma {
     id: string | null
     vehicle_id: number | null
     user_id: string | null
-    check_in_date: Date | null
     check_out_date: Date | null
+    expected_check_in_date: Date | null
+    check_in_date: Date | null
     start_mileage: Decimal | null
     end_mileage: Decimal | null
     status: $Enums.RentalStatus | null
@@ -6143,8 +6248,9 @@ export namespace Prisma {
     id: number
     vehicle_id: number
     user_id: number
-    check_in_date: number
     check_out_date: number
+    expected_check_in_date: number
+    check_in_date: number
     start_mileage: number
     end_mileage: number
     status: number
@@ -6180,8 +6286,9 @@ export namespace Prisma {
     id?: true
     vehicle_id?: true
     user_id?: true
-    check_in_date?: true
     check_out_date?: true
+    expected_check_in_date?: true
+    check_in_date?: true
     start_mileage?: true
     end_mileage?: true
     status?: true
@@ -6197,8 +6304,9 @@ export namespace Prisma {
     id?: true
     vehicle_id?: true
     user_id?: true
-    check_in_date?: true
     check_out_date?: true
+    expected_check_in_date?: true
+    check_in_date?: true
     start_mileage?: true
     end_mileage?: true
     status?: true
@@ -6214,8 +6322,9 @@ export namespace Prisma {
     id?: true
     vehicle_id?: true
     user_id?: true
-    check_in_date?: true
     check_out_date?: true
+    expected_check_in_date?: true
+    check_in_date?: true
     start_mileage?: true
     end_mileage?: true
     status?: true
@@ -6318,14 +6427,15 @@ export namespace Prisma {
     id: string
     vehicle_id: number
     user_id: string
-    check_in_date: Date
-    check_out_date: Date | null
+    check_out_date: Date
+    expected_check_in_date: Date
+    check_in_date: Date | null
     start_mileage: Decimal
     end_mileage: Decimal | null
     status: $Enums.RentalStatus
     daily_rate: Decimal
-    additional_charges: Decimal | null
-    penalties: Decimal | null
+    additional_charges: Decimal
+    penalties: Decimal
     notes: string | null
     updated_at: Date
     created_at: Date
@@ -6354,8 +6464,9 @@ export namespace Prisma {
     id?: boolean
     vehicle_id?: boolean
     user_id?: boolean
-    check_in_date?: boolean
     check_out_date?: boolean
+    expected_check_in_date?: boolean
+    check_in_date?: boolean
     start_mileage?: boolean
     end_mileage?: boolean
     status?: boolean
@@ -6365,16 +6476,19 @@ export namespace Prisma {
     notes?: boolean
     updated_at?: boolean
     created_at?: boolean
+    payments?: boolean | rentals$paymentsArgs<ExtArgs>
     vehicle?: boolean | vehiclesDefaultArgs<ExtArgs>
     user?: boolean | usersDefaultArgs<ExtArgs>
+    _count?: boolean | RentalsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["rentals"]>
 
   export type rentalsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     vehicle_id?: boolean
     user_id?: boolean
-    check_in_date?: boolean
     check_out_date?: boolean
+    expected_check_in_date?: boolean
+    check_in_date?: boolean
     start_mileage?: boolean
     end_mileage?: boolean
     status?: boolean
@@ -6392,8 +6506,9 @@ export namespace Prisma {
     id?: boolean
     vehicle_id?: boolean
     user_id?: boolean
-    check_in_date?: boolean
     check_out_date?: boolean
+    expected_check_in_date?: boolean
+    check_in_date?: boolean
     start_mileage?: boolean
     end_mileage?: boolean
     status?: boolean
@@ -6411,8 +6526,9 @@ export namespace Prisma {
     id?: boolean
     vehicle_id?: boolean
     user_id?: boolean
-    check_in_date?: boolean
     check_out_date?: boolean
+    expected_check_in_date?: boolean
+    check_in_date?: boolean
     start_mileage?: boolean
     end_mileage?: boolean
     status?: boolean
@@ -6424,10 +6540,12 @@ export namespace Prisma {
     created_at?: boolean
   }
 
-  export type rentalsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vehicle_id" | "user_id" | "check_in_date" | "check_out_date" | "start_mileage" | "end_mileage" | "status" | "daily_rate" | "additional_charges" | "penalties" | "notes" | "updated_at" | "created_at", ExtArgs["result"]["rentals"]>
+  export type rentalsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vehicle_id" | "user_id" | "check_out_date" | "expected_check_in_date" | "check_in_date" | "start_mileage" | "end_mileage" | "status" | "daily_rate" | "additional_charges" | "penalties" | "notes" | "updated_at" | "created_at", ExtArgs["result"]["rentals"]>
   export type rentalsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    payments?: boolean | rentals$paymentsArgs<ExtArgs>
     vehicle?: boolean | vehiclesDefaultArgs<ExtArgs>
     user?: boolean | usersDefaultArgs<ExtArgs>
+    _count?: boolean | RentalsCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type rentalsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     vehicle?: boolean | vehiclesDefaultArgs<ExtArgs>
@@ -6441,6 +6559,7 @@ export namespace Prisma {
   export type $rentalsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "rentals"
     objects: {
+      payments: Prisma.$paymentsPayload<ExtArgs>[]
       vehicle: Prisma.$vehiclesPayload<ExtArgs>
       user: Prisma.$usersPayload<ExtArgs>
     }
@@ -6448,14 +6567,15 @@ export namespace Prisma {
       id: string
       vehicle_id: number
       user_id: string
-      check_in_date: Date
-      check_out_date: Date | null
+      check_out_date: Date
+      expected_check_in_date: Date
+      check_in_date: Date | null
       start_mileage: Prisma.Decimal
       end_mileage: Prisma.Decimal | null
       status: $Enums.RentalStatus
       daily_rate: Prisma.Decimal
-      additional_charges: Prisma.Decimal | null
-      penalties: Prisma.Decimal | null
+      additional_charges: Prisma.Decimal
+      penalties: Prisma.Decimal
       notes: string | null
       updated_at: Date
       created_at: Date
@@ -6853,6 +6973,7 @@ export namespace Prisma {
    */
   export interface Prisma__rentalsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    payments<T extends rentals$paymentsArgs<ExtArgs> = {}>(args?: Subset<T, rentals$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$paymentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     vehicle<T extends vehiclesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, vehiclesDefaultArgs<ExtArgs>>): Prisma__vehiclesClient<$Result.GetResult<Prisma.$vehiclesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     user<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
@@ -6887,8 +7008,9 @@ export namespace Prisma {
     readonly id: FieldRef<"rentals", 'String'>
     readonly vehicle_id: FieldRef<"rentals", 'Int'>
     readonly user_id: FieldRef<"rentals", 'String'>
-    readonly check_in_date: FieldRef<"rentals", 'DateTime'>
     readonly check_out_date: FieldRef<"rentals", 'DateTime'>
+    readonly expected_check_in_date: FieldRef<"rentals", 'DateTime'>
+    readonly check_in_date: FieldRef<"rentals", 'DateTime'>
     readonly start_mileage: FieldRef<"rentals", 'Decimal'>
     readonly end_mileage: FieldRef<"rentals", 'Decimal'>
     readonly status: FieldRef<"rentals", 'RentalStatus'>
@@ -7294,6 +7416,30 @@ export namespace Prisma {
   }
 
   /**
+   * rentals.payments
+   */
+  export type rentals$paymentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the payments
+     */
+    select?: paymentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the payments
+     */
+    omit?: paymentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: paymentsInclude<ExtArgs> | null
+    where?: paymentsWhereInput
+    orderBy?: paymentsOrderByWithRelationInput | paymentsOrderByWithRelationInput[]
+    cursor?: paymentsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PaymentsScalarFieldEnum | PaymentsScalarFieldEnum[]
+  }
+
+  /**
    * rentals without action
    */
   export type rentalsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7372,6 +7518,7 @@ export namespace Prisma {
 
   export const PaymentsScalarFieldEnum: {
     id: 'id',
+    rental_id: 'rental_id',
     amount: 'amount',
     payment_date: 'payment_date',
     refund_date: 'refund_date',
@@ -7390,8 +7537,9 @@ export namespace Prisma {
     id: 'id',
     vehicle_id: 'vehicle_id',
     user_id: 'user_id',
-    check_in_date: 'check_in_date',
     check_out_date: 'check_out_date',
+    expected_check_in_date: 'expected_check_in_date',
+    check_in_date: 'check_in_date',
     start_mileage: 'start_mileage',
     end_mileage: 'end_mileage',
     status: 'status',
@@ -7851,7 +7999,8 @@ export namespace Prisma {
     AND?: paymentsWhereInput | paymentsWhereInput[]
     OR?: paymentsWhereInput[]
     NOT?: paymentsWhereInput | paymentsWhereInput[]
-    id?: IntFilter<"payments"> | number
+    id?: UuidFilter<"payments"> | string
+    rental_id?: UuidFilter<"payments"> | string
     amount?: DecimalFilter<"payments"> | Decimal | DecimalJsLike | number | string
     payment_date?: DateTimeNullableFilter<"payments"> | Date | string | null
     refund_date?: DateTimeNullableFilter<"payments"> | Date | string | null
@@ -7861,10 +8010,12 @@ export namespace Prisma {
     proof_of_payment_url?: StringNullableFilter<"payments"> | string | null
     updated_at?: DateTimeFilter<"payments"> | Date | string
     created_at?: DateTimeFilter<"payments"> | Date | string
+    rental?: XOR<RentalsScalarRelationFilter, rentalsWhereInput>
   }
 
   export type paymentsOrderByWithRelationInput = {
     id?: SortOrder
+    rental_id?: SortOrder
     amount?: SortOrder
     payment_date?: SortOrderInput | SortOrder
     refund_date?: SortOrderInput | SortOrder
@@ -7874,13 +8025,15 @@ export namespace Prisma {
     proof_of_payment_url?: SortOrderInput | SortOrder
     updated_at?: SortOrder
     created_at?: SortOrder
+    rental?: rentalsOrderByWithRelationInput
   }
 
   export type paymentsWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     AND?: paymentsWhereInput | paymentsWhereInput[]
     OR?: paymentsWhereInput[]
     NOT?: paymentsWhereInput | paymentsWhereInput[]
+    rental_id?: UuidFilter<"payments"> | string
     amount?: DecimalFilter<"payments"> | Decimal | DecimalJsLike | number | string
     payment_date?: DateTimeNullableFilter<"payments"> | Date | string | null
     refund_date?: DateTimeNullableFilter<"payments"> | Date | string | null
@@ -7890,10 +8043,12 @@ export namespace Prisma {
     proof_of_payment_url?: StringNullableFilter<"payments"> | string | null
     updated_at?: DateTimeFilter<"payments"> | Date | string
     created_at?: DateTimeFilter<"payments"> | Date | string
+    rental?: XOR<RentalsScalarRelationFilter, rentalsWhereInput>
   }, "id">
 
   export type paymentsOrderByWithAggregationInput = {
     id?: SortOrder
+    rental_id?: SortOrder
     amount?: SortOrder
     payment_date?: SortOrderInput | SortOrder
     refund_date?: SortOrderInput | SortOrder
@@ -7914,7 +8069,8 @@ export namespace Prisma {
     AND?: paymentsScalarWhereWithAggregatesInput | paymentsScalarWhereWithAggregatesInput[]
     OR?: paymentsScalarWhereWithAggregatesInput[]
     NOT?: paymentsScalarWhereWithAggregatesInput | paymentsScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"payments"> | number
+    id?: UuidWithAggregatesFilter<"payments"> | string
+    rental_id?: UuidWithAggregatesFilter<"payments"> | string
     amount?: DecimalWithAggregatesFilter<"payments"> | Decimal | DecimalJsLike | number | string
     payment_date?: DateTimeNullableWithAggregatesFilter<"payments"> | Date | string | null
     refund_date?: DateTimeNullableWithAggregatesFilter<"payments"> | Date | string | null
@@ -7933,17 +8089,19 @@ export namespace Prisma {
     id?: UuidFilter<"rentals"> | string
     vehicle_id?: IntFilter<"rentals"> | number
     user_id?: UuidFilter<"rentals"> | string
-    check_in_date?: DateTimeFilter<"rentals"> | Date | string
-    check_out_date?: DateTimeNullableFilter<"rentals"> | Date | string | null
+    check_out_date?: DateTimeFilter<"rentals"> | Date | string
+    expected_check_in_date?: DateTimeFilter<"rentals"> | Date | string
+    check_in_date?: DateTimeNullableFilter<"rentals"> | Date | string | null
     start_mileage?: DecimalFilter<"rentals"> | Decimal | DecimalJsLike | number | string
     end_mileage?: DecimalNullableFilter<"rentals"> | Decimal | DecimalJsLike | number | string | null
     status?: EnumRentalStatusFilter<"rentals"> | $Enums.RentalStatus
     daily_rate?: DecimalFilter<"rentals"> | Decimal | DecimalJsLike | number | string
-    additional_charges?: DecimalNullableFilter<"rentals"> | Decimal | DecimalJsLike | number | string | null
-    penalties?: DecimalNullableFilter<"rentals"> | Decimal | DecimalJsLike | number | string | null
+    additional_charges?: DecimalFilter<"rentals"> | Decimal | DecimalJsLike | number | string
+    penalties?: DecimalFilter<"rentals"> | Decimal | DecimalJsLike | number | string
     notes?: StringNullableFilter<"rentals"> | string | null
     updated_at?: DateTimeFilter<"rentals"> | Date | string
     created_at?: DateTimeFilter<"rentals"> | Date | string
+    payments?: PaymentsListRelationFilter
     vehicle?: XOR<VehiclesScalarRelationFilter, vehiclesWhereInput>
     user?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }
@@ -7952,17 +8110,19 @@ export namespace Prisma {
     id?: SortOrder
     vehicle_id?: SortOrder
     user_id?: SortOrder
-    check_in_date?: SortOrder
-    check_out_date?: SortOrderInput | SortOrder
+    check_out_date?: SortOrder
+    expected_check_in_date?: SortOrder
+    check_in_date?: SortOrderInput | SortOrder
     start_mileage?: SortOrder
     end_mileage?: SortOrderInput | SortOrder
     status?: SortOrder
     daily_rate?: SortOrder
-    additional_charges?: SortOrderInput | SortOrder
-    penalties?: SortOrderInput | SortOrder
+    additional_charges?: SortOrder
+    penalties?: SortOrder
     notes?: SortOrderInput | SortOrder
     updated_at?: SortOrder
     created_at?: SortOrder
+    payments?: paymentsOrderByRelationAggregateInput
     vehicle?: vehiclesOrderByWithRelationInput
     user?: usersOrderByWithRelationInput
   }
@@ -7974,17 +8134,19 @@ export namespace Prisma {
     NOT?: rentalsWhereInput | rentalsWhereInput[]
     vehicle_id?: IntFilter<"rentals"> | number
     user_id?: UuidFilter<"rentals"> | string
-    check_in_date?: DateTimeFilter<"rentals"> | Date | string
-    check_out_date?: DateTimeNullableFilter<"rentals"> | Date | string | null
+    check_out_date?: DateTimeFilter<"rentals"> | Date | string
+    expected_check_in_date?: DateTimeFilter<"rentals"> | Date | string
+    check_in_date?: DateTimeNullableFilter<"rentals"> | Date | string | null
     start_mileage?: DecimalFilter<"rentals"> | Decimal | DecimalJsLike | number | string
     end_mileage?: DecimalNullableFilter<"rentals"> | Decimal | DecimalJsLike | number | string | null
     status?: EnumRentalStatusFilter<"rentals"> | $Enums.RentalStatus
     daily_rate?: DecimalFilter<"rentals"> | Decimal | DecimalJsLike | number | string
-    additional_charges?: DecimalNullableFilter<"rentals"> | Decimal | DecimalJsLike | number | string | null
-    penalties?: DecimalNullableFilter<"rentals"> | Decimal | DecimalJsLike | number | string | null
+    additional_charges?: DecimalFilter<"rentals"> | Decimal | DecimalJsLike | number | string
+    penalties?: DecimalFilter<"rentals"> | Decimal | DecimalJsLike | number | string
     notes?: StringNullableFilter<"rentals"> | string | null
     updated_at?: DateTimeFilter<"rentals"> | Date | string
     created_at?: DateTimeFilter<"rentals"> | Date | string
+    payments?: PaymentsListRelationFilter
     vehicle?: XOR<VehiclesScalarRelationFilter, vehiclesWhereInput>
     user?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }, "id">
@@ -7993,14 +8155,15 @@ export namespace Prisma {
     id?: SortOrder
     vehicle_id?: SortOrder
     user_id?: SortOrder
-    check_in_date?: SortOrder
-    check_out_date?: SortOrderInput | SortOrder
+    check_out_date?: SortOrder
+    expected_check_in_date?: SortOrder
+    check_in_date?: SortOrderInput | SortOrder
     start_mileage?: SortOrder
     end_mileage?: SortOrderInput | SortOrder
     status?: SortOrder
     daily_rate?: SortOrder
-    additional_charges?: SortOrderInput | SortOrder
-    penalties?: SortOrderInput | SortOrder
+    additional_charges?: SortOrder
+    penalties?: SortOrder
     notes?: SortOrderInput | SortOrder
     updated_at?: SortOrder
     created_at?: SortOrder
@@ -8018,14 +8181,15 @@ export namespace Prisma {
     id?: UuidWithAggregatesFilter<"rentals"> | string
     vehicle_id?: IntWithAggregatesFilter<"rentals"> | number
     user_id?: UuidWithAggregatesFilter<"rentals"> | string
-    check_in_date?: DateTimeWithAggregatesFilter<"rentals"> | Date | string
-    check_out_date?: DateTimeNullableWithAggregatesFilter<"rentals"> | Date | string | null
+    check_out_date?: DateTimeWithAggregatesFilter<"rentals"> | Date | string
+    expected_check_in_date?: DateTimeWithAggregatesFilter<"rentals"> | Date | string
+    check_in_date?: DateTimeNullableWithAggregatesFilter<"rentals"> | Date | string | null
     start_mileage?: DecimalWithAggregatesFilter<"rentals"> | Decimal | DecimalJsLike | number | string
     end_mileage?: DecimalNullableWithAggregatesFilter<"rentals"> | Decimal | DecimalJsLike | number | string | null
     status?: EnumRentalStatusWithAggregatesFilter<"rentals"> | $Enums.RentalStatus
     daily_rate?: DecimalWithAggregatesFilter<"rentals"> | Decimal | DecimalJsLike | number | string
-    additional_charges?: DecimalNullableWithAggregatesFilter<"rentals"> | Decimal | DecimalJsLike | number | string | null
-    penalties?: DecimalNullableWithAggregatesFilter<"rentals"> | Decimal | DecimalJsLike | number | string | null
+    additional_charges?: DecimalWithAggregatesFilter<"rentals"> | Decimal | DecimalJsLike | number | string
+    penalties?: DecimalWithAggregatesFilter<"rentals"> | Decimal | DecimalJsLike | number | string
     notes?: StringNullableWithAggregatesFilter<"rentals"> | string | null
     updated_at?: DateTimeWithAggregatesFilter<"rentals"> | Date | string
     created_at?: DateTimeWithAggregatesFilter<"rentals"> | Date | string
@@ -8282,6 +8446,7 @@ export namespace Prisma {
   }
 
   export type paymentsCreateInput = {
+    id?: string
     amount: Decimal | DecimalJsLike | number | string
     payment_date?: Date | string | null
     refund_date?: Date | string | null
@@ -8291,10 +8456,12 @@ export namespace Prisma {
     proof_of_payment_url?: string | null
     updated_at?: Date | string
     created_at?: Date | string
+    rental: rentalsCreateNestedOneWithoutPaymentsInput
   }
 
   export type paymentsUncheckedCreateInput = {
-    id?: number
+    id?: string
+    rental_id: string
     amount: Decimal | DecimalJsLike | number | string
     payment_date?: Date | string | null
     refund_date?: Date | string | null
@@ -8307,6 +8474,7 @@ export namespace Prisma {
   }
 
   export type paymentsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     refund_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8316,10 +8484,12 @@ export namespace Prisma {
     proof_of_payment_url?: NullableStringFieldUpdateOperationsInput | string | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    rental?: rentalsUpdateOneRequiredWithoutPaymentsNestedInput
   }
 
   export type paymentsUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    rental_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     refund_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8332,7 +8502,8 @@ export namespace Prisma {
   }
 
   export type paymentsCreateManyInput = {
-    id?: number
+    id?: string
+    rental_id: string
     amount: Decimal | DecimalJsLike | number | string
     payment_date?: Date | string | null
     refund_date?: Date | string | null
@@ -8345,6 +8516,7 @@ export namespace Prisma {
   }
 
   export type paymentsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     refund_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8357,7 +8529,8 @@ export namespace Prisma {
   }
 
   export type paymentsUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    rental_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     refund_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8370,52 +8543,58 @@ export namespace Prisma {
   }
 
   export type rentalsCreateInput = {
-    id: string
-    check_in_date: Date | string
-    check_out_date?: Date | string | null
+    id?: string
+    check_out_date: Date | string
+    expected_check_in_date: Date | string
+    check_in_date?: Date | string | null
     start_mileage: Decimal | DecimalJsLike | number | string
     end_mileage?: Decimal | DecimalJsLike | number | string | null
-    status: $Enums.RentalStatus
+    status?: $Enums.RentalStatus
     daily_rate: Decimal | DecimalJsLike | number | string
-    additional_charges?: Decimal | DecimalJsLike | number | string | null
-    penalties?: Decimal | DecimalJsLike | number | string | null
+    additional_charges?: Decimal | DecimalJsLike | number | string
+    penalties?: Decimal | DecimalJsLike | number | string
     notes?: string | null
     updated_at?: Date | string
     created_at?: Date | string
+    payments?: paymentsCreateNestedManyWithoutRentalInput
     vehicle: vehiclesCreateNestedOneWithoutRentalsInput
     user: usersCreateNestedOneWithoutRentalsInput
   }
 
   export type rentalsUncheckedCreateInput = {
-    id: string
+    id?: string
     vehicle_id: number
     user_id: string
-    check_in_date: Date | string
-    check_out_date?: Date | string | null
+    check_out_date: Date | string
+    expected_check_in_date: Date | string
+    check_in_date?: Date | string | null
     start_mileage: Decimal | DecimalJsLike | number | string
     end_mileage?: Decimal | DecimalJsLike | number | string | null
-    status: $Enums.RentalStatus
+    status?: $Enums.RentalStatus
     daily_rate: Decimal | DecimalJsLike | number | string
-    additional_charges?: Decimal | DecimalJsLike | number | string | null
-    penalties?: Decimal | DecimalJsLike | number | string | null
+    additional_charges?: Decimal | DecimalJsLike | number | string
+    penalties?: Decimal | DecimalJsLike | number | string
     notes?: string | null
     updated_at?: Date | string
     created_at?: Date | string
+    payments?: paymentsUncheckedCreateNestedManyWithoutRentalInput
   }
 
   export type rentalsUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    check_out_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    check_out_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    expected_check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    check_in_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_mileage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     end_mileage?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumRentalStatusFieldUpdateOperationsInput | $Enums.RentalStatus
     daily_rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    additional_charges?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    penalties?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    additional_charges?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    penalties?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    payments?: paymentsUpdateManyWithoutRentalNestedInput
     vehicle?: vehiclesUpdateOneRequiredWithoutRentalsNestedInput
     user?: usersUpdateOneRequiredWithoutRentalsNestedInput
   }
@@ -8424,31 +8603,34 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     vehicle_id?: IntFieldUpdateOperationsInput | number
     user_id?: StringFieldUpdateOperationsInput | string
-    check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    check_out_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    check_out_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    expected_check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    check_in_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_mileage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     end_mileage?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumRentalStatusFieldUpdateOperationsInput | $Enums.RentalStatus
     daily_rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    additional_charges?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    penalties?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    additional_charges?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    penalties?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    payments?: paymentsUncheckedUpdateManyWithoutRentalNestedInput
   }
 
   export type rentalsCreateManyInput = {
-    id: string
+    id?: string
     vehicle_id: number
     user_id: string
-    check_in_date: Date | string
-    check_out_date?: Date | string | null
+    check_out_date: Date | string
+    expected_check_in_date: Date | string
+    check_in_date?: Date | string | null
     start_mileage: Decimal | DecimalJsLike | number | string
     end_mileage?: Decimal | DecimalJsLike | number | string | null
-    status: $Enums.RentalStatus
+    status?: $Enums.RentalStatus
     daily_rate: Decimal | DecimalJsLike | number | string
-    additional_charges?: Decimal | DecimalJsLike | number | string | null
-    penalties?: Decimal | DecimalJsLike | number | string | null
+    additional_charges?: Decimal | DecimalJsLike | number | string
+    penalties?: Decimal | DecimalJsLike | number | string
     notes?: string | null
     updated_at?: Date | string
     created_at?: Date | string
@@ -8456,14 +8638,15 @@ export namespace Prisma {
 
   export type rentalsUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    check_out_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    check_out_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    expected_check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    check_in_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_mileage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     end_mileage?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumRentalStatusFieldUpdateOperationsInput | $Enums.RentalStatus
     daily_rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    additional_charges?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    penalties?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    additional_charges?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    penalties?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8473,14 +8656,15 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     vehicle_id?: IntFieldUpdateOperationsInput | number
     user_id?: StringFieldUpdateOperationsInput | string
-    check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    check_out_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    check_out_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    expected_check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    check_in_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_mileage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     end_mileage?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumRentalStatusFieldUpdateOperationsInput | $Enums.RentalStatus
     daily_rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    additional_charges?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    penalties?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    additional_charges?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    penalties?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8915,8 +9099,14 @@ export namespace Prisma {
     not?: NestedEnumPaymentTypeFilter<$PrismaModel> | $Enums.PaymentType
   }
 
+  export type RentalsScalarRelationFilter = {
+    is?: rentalsWhereInput
+    isNot?: rentalsWhereInput
+  }
+
   export type paymentsCountOrderByAggregateInput = {
     id?: SortOrder
+    rental_id?: SortOrder
     amount?: SortOrder
     payment_date?: SortOrder
     refund_date?: SortOrder
@@ -8929,12 +9119,12 @@ export namespace Prisma {
   }
 
   export type paymentsAvgOrderByAggregateInput = {
-    id?: SortOrder
     amount?: SortOrder
   }
 
   export type paymentsMaxOrderByAggregateInput = {
     id?: SortOrder
+    rental_id?: SortOrder
     amount?: SortOrder
     payment_date?: SortOrder
     refund_date?: SortOrder
@@ -8948,6 +9138,7 @@ export namespace Prisma {
 
   export type paymentsMinOrderByAggregateInput = {
     id?: SortOrder
+    rental_id?: SortOrder
     amount?: SortOrder
     payment_date?: SortOrder
     refund_date?: SortOrder
@@ -8960,7 +9151,6 @@ export namespace Prisma {
   }
 
   export type paymentsSumOrderByAggregateInput = {
-    id?: SortOrder
     amount?: SortOrder
   }
 
@@ -9026,6 +9216,12 @@ export namespace Prisma {
     not?: NestedEnumRentalStatusFilter<$PrismaModel> | $Enums.RentalStatus
   }
 
+  export type PaymentsListRelationFilter = {
+    every?: paymentsWhereInput
+    some?: paymentsWhereInput
+    none?: paymentsWhereInput
+  }
+
   export type VehiclesScalarRelationFilter = {
     is?: vehiclesWhereInput
     isNot?: vehiclesWhereInput
@@ -9036,12 +9232,17 @@ export namespace Prisma {
     isNot?: usersWhereInput
   }
 
+  export type paymentsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type rentalsCountOrderByAggregateInput = {
     id?: SortOrder
     vehicle_id?: SortOrder
     user_id?: SortOrder
-    check_in_date?: SortOrder
     check_out_date?: SortOrder
+    expected_check_in_date?: SortOrder
+    check_in_date?: SortOrder
     start_mileage?: SortOrder
     end_mileage?: SortOrder
     status?: SortOrder
@@ -9066,8 +9267,9 @@ export namespace Prisma {
     id?: SortOrder
     vehicle_id?: SortOrder
     user_id?: SortOrder
-    check_in_date?: SortOrder
     check_out_date?: SortOrder
+    expected_check_in_date?: SortOrder
+    check_in_date?: SortOrder
     start_mileage?: SortOrder
     end_mileage?: SortOrder
     status?: SortOrder
@@ -9083,8 +9285,9 @@ export namespace Prisma {
     id?: SortOrder
     vehicle_id?: SortOrder
     user_id?: SortOrder
-    check_in_date?: SortOrder
     check_out_date?: SortOrder
+    expected_check_in_date?: SortOrder
+    check_in_date?: SortOrder
     start_mileage?: SortOrder
     end_mileage?: SortOrder
     status?: SortOrder
@@ -9315,6 +9518,12 @@ export namespace Prisma {
     deleteMany?: rentalsScalarWhereInput | rentalsScalarWhereInput[]
   }
 
+  export type rentalsCreateNestedOneWithoutPaymentsInput = {
+    create?: XOR<rentalsCreateWithoutPaymentsInput, rentalsUncheckedCreateWithoutPaymentsInput>
+    connectOrCreate?: rentalsCreateOrConnectWithoutPaymentsInput
+    connect?: rentalsWhereUniqueInput
+  }
+
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
   }
@@ -9331,6 +9540,21 @@ export namespace Prisma {
     set?: $Enums.PaymentType
   }
 
+  export type rentalsUpdateOneRequiredWithoutPaymentsNestedInput = {
+    create?: XOR<rentalsCreateWithoutPaymentsInput, rentalsUncheckedCreateWithoutPaymentsInput>
+    connectOrCreate?: rentalsCreateOrConnectWithoutPaymentsInput
+    upsert?: rentalsUpsertWithoutPaymentsInput
+    connect?: rentalsWhereUniqueInput
+    update?: XOR<XOR<rentalsUpdateToOneWithWhereWithoutPaymentsInput, rentalsUpdateWithoutPaymentsInput>, rentalsUncheckedUpdateWithoutPaymentsInput>
+  }
+
+  export type paymentsCreateNestedManyWithoutRentalInput = {
+    create?: XOR<paymentsCreateWithoutRentalInput, paymentsUncheckedCreateWithoutRentalInput> | paymentsCreateWithoutRentalInput[] | paymentsUncheckedCreateWithoutRentalInput[]
+    connectOrCreate?: paymentsCreateOrConnectWithoutRentalInput | paymentsCreateOrConnectWithoutRentalInput[]
+    createMany?: paymentsCreateManyRentalInputEnvelope
+    connect?: paymentsWhereUniqueInput | paymentsWhereUniqueInput[]
+  }
+
   export type vehiclesCreateNestedOneWithoutRentalsInput = {
     create?: XOR<vehiclesCreateWithoutRentalsInput, vehiclesUncheckedCreateWithoutRentalsInput>
     connectOrCreate?: vehiclesCreateOrConnectWithoutRentalsInput
@@ -9343,6 +9567,13 @@ export namespace Prisma {
     connect?: usersWhereUniqueInput
   }
 
+  export type paymentsUncheckedCreateNestedManyWithoutRentalInput = {
+    create?: XOR<paymentsCreateWithoutRentalInput, paymentsUncheckedCreateWithoutRentalInput> | paymentsCreateWithoutRentalInput[] | paymentsUncheckedCreateWithoutRentalInput[]
+    connectOrCreate?: paymentsCreateOrConnectWithoutRentalInput | paymentsCreateOrConnectWithoutRentalInput[]
+    createMany?: paymentsCreateManyRentalInputEnvelope
+    connect?: paymentsWhereUniqueInput | paymentsWhereUniqueInput[]
+  }
+
   export type NullableDecimalFieldUpdateOperationsInput = {
     set?: Decimal | DecimalJsLike | number | string | null
     increment?: Decimal | DecimalJsLike | number | string
@@ -9353,6 +9584,20 @@ export namespace Prisma {
 
   export type EnumRentalStatusFieldUpdateOperationsInput = {
     set?: $Enums.RentalStatus
+  }
+
+  export type paymentsUpdateManyWithoutRentalNestedInput = {
+    create?: XOR<paymentsCreateWithoutRentalInput, paymentsUncheckedCreateWithoutRentalInput> | paymentsCreateWithoutRentalInput[] | paymentsUncheckedCreateWithoutRentalInput[]
+    connectOrCreate?: paymentsCreateOrConnectWithoutRentalInput | paymentsCreateOrConnectWithoutRentalInput[]
+    upsert?: paymentsUpsertWithWhereUniqueWithoutRentalInput | paymentsUpsertWithWhereUniqueWithoutRentalInput[]
+    createMany?: paymentsCreateManyRentalInputEnvelope
+    set?: paymentsWhereUniqueInput | paymentsWhereUniqueInput[]
+    disconnect?: paymentsWhereUniqueInput | paymentsWhereUniqueInput[]
+    delete?: paymentsWhereUniqueInput | paymentsWhereUniqueInput[]
+    connect?: paymentsWhereUniqueInput | paymentsWhereUniqueInput[]
+    update?: paymentsUpdateWithWhereUniqueWithoutRentalInput | paymentsUpdateWithWhereUniqueWithoutRentalInput[]
+    updateMany?: paymentsUpdateManyWithWhereWithoutRentalInput | paymentsUpdateManyWithWhereWithoutRentalInput[]
+    deleteMany?: paymentsScalarWhereInput | paymentsScalarWhereInput[]
   }
 
   export type vehiclesUpdateOneRequiredWithoutRentalsNestedInput = {
@@ -9369,6 +9614,20 @@ export namespace Prisma {
     upsert?: usersUpsertWithoutRentalsInput
     connect?: usersWhereUniqueInput
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutRentalsInput, usersUpdateWithoutRentalsInput>, usersUncheckedUpdateWithoutRentalsInput>
+  }
+
+  export type paymentsUncheckedUpdateManyWithoutRentalNestedInput = {
+    create?: XOR<paymentsCreateWithoutRentalInput, paymentsUncheckedCreateWithoutRentalInput> | paymentsCreateWithoutRentalInput[] | paymentsUncheckedCreateWithoutRentalInput[]
+    connectOrCreate?: paymentsCreateOrConnectWithoutRentalInput | paymentsCreateOrConnectWithoutRentalInput[]
+    upsert?: paymentsUpsertWithWhereUniqueWithoutRentalInput | paymentsUpsertWithWhereUniqueWithoutRentalInput[]
+    createMany?: paymentsCreateManyRentalInputEnvelope
+    set?: paymentsWhereUniqueInput | paymentsWhereUniqueInput[]
+    disconnect?: paymentsWhereUniqueInput | paymentsWhereUniqueInput[]
+    delete?: paymentsWhereUniqueInput | paymentsWhereUniqueInput[]
+    connect?: paymentsWhereUniqueInput | paymentsWhereUniqueInput[]
+    update?: paymentsUpdateWithWhereUniqueWithoutRentalInput | paymentsUpdateWithWhereUniqueWithoutRentalInput[]
+    updateMany?: paymentsUpdateManyWithWhereWithoutRentalInput | paymentsUpdateManyWithWhereWithoutRentalInput[]
+    deleteMany?: paymentsScalarWhereInput | paymentsScalarWhereInput[]
   }
 
   export type NestedUuidFilter<$PrismaModel = never> = {
@@ -9748,35 +10007,39 @@ export namespace Prisma {
   }
 
   export type rentalsCreateWithoutUserInput = {
-    id: string
-    check_in_date: Date | string
-    check_out_date?: Date | string | null
+    id?: string
+    check_out_date: Date | string
+    expected_check_in_date: Date | string
+    check_in_date?: Date | string | null
     start_mileage: Decimal | DecimalJsLike | number | string
     end_mileage?: Decimal | DecimalJsLike | number | string | null
-    status: $Enums.RentalStatus
+    status?: $Enums.RentalStatus
     daily_rate: Decimal | DecimalJsLike | number | string
-    additional_charges?: Decimal | DecimalJsLike | number | string | null
-    penalties?: Decimal | DecimalJsLike | number | string | null
+    additional_charges?: Decimal | DecimalJsLike | number | string
+    penalties?: Decimal | DecimalJsLike | number | string
     notes?: string | null
     updated_at?: Date | string
     created_at?: Date | string
+    payments?: paymentsCreateNestedManyWithoutRentalInput
     vehicle: vehiclesCreateNestedOneWithoutRentalsInput
   }
 
   export type rentalsUncheckedCreateWithoutUserInput = {
-    id: string
+    id?: string
     vehicle_id: number
-    check_in_date: Date | string
-    check_out_date?: Date | string | null
+    check_out_date: Date | string
+    expected_check_in_date: Date | string
+    check_in_date?: Date | string | null
     start_mileage: Decimal | DecimalJsLike | number | string
     end_mileage?: Decimal | DecimalJsLike | number | string | null
-    status: $Enums.RentalStatus
+    status?: $Enums.RentalStatus
     daily_rate: Decimal | DecimalJsLike | number | string
-    additional_charges?: Decimal | DecimalJsLike | number | string | null
-    penalties?: Decimal | DecimalJsLike | number | string | null
+    additional_charges?: Decimal | DecimalJsLike | number | string
+    penalties?: Decimal | DecimalJsLike | number | string
     notes?: string | null
     updated_at?: Date | string
     created_at?: Date | string
+    payments?: paymentsUncheckedCreateNestedManyWithoutRentalInput
   }
 
   export type rentalsCreateOrConnectWithoutUserInput = {
@@ -9812,14 +10075,15 @@ export namespace Prisma {
     id?: UuidFilter<"rentals"> | string
     vehicle_id?: IntFilter<"rentals"> | number
     user_id?: UuidFilter<"rentals"> | string
-    check_in_date?: DateTimeFilter<"rentals"> | Date | string
-    check_out_date?: DateTimeNullableFilter<"rentals"> | Date | string | null
+    check_out_date?: DateTimeFilter<"rentals"> | Date | string
+    expected_check_in_date?: DateTimeFilter<"rentals"> | Date | string
+    check_in_date?: DateTimeNullableFilter<"rentals"> | Date | string | null
     start_mileage?: DecimalFilter<"rentals"> | Decimal | DecimalJsLike | number | string
     end_mileage?: DecimalNullableFilter<"rentals"> | Decimal | DecimalJsLike | number | string | null
     status?: EnumRentalStatusFilter<"rentals"> | $Enums.RentalStatus
     daily_rate?: DecimalFilter<"rentals"> | Decimal | DecimalJsLike | number | string
-    additional_charges?: DecimalNullableFilter<"rentals"> | Decimal | DecimalJsLike | number | string | null
-    penalties?: DecimalNullableFilter<"rentals"> | Decimal | DecimalJsLike | number | string | null
+    additional_charges?: DecimalFilter<"rentals"> | Decimal | DecimalJsLike | number | string
+    penalties?: DecimalFilter<"rentals"> | Decimal | DecimalJsLike | number | string
     notes?: StringNullableFilter<"rentals"> | string | null
     updated_at?: DateTimeFilter<"rentals"> | Date | string
     created_at?: DateTimeFilter<"rentals"> | Date | string
@@ -9896,35 +10160,39 @@ export namespace Prisma {
   }
 
   export type rentalsCreateWithoutVehicleInput = {
-    id: string
-    check_in_date: Date | string
-    check_out_date?: Date | string | null
+    id?: string
+    check_out_date: Date | string
+    expected_check_in_date: Date | string
+    check_in_date?: Date | string | null
     start_mileage: Decimal | DecimalJsLike | number | string
     end_mileage?: Decimal | DecimalJsLike | number | string | null
-    status: $Enums.RentalStatus
+    status?: $Enums.RentalStatus
     daily_rate: Decimal | DecimalJsLike | number | string
-    additional_charges?: Decimal | DecimalJsLike | number | string | null
-    penalties?: Decimal | DecimalJsLike | number | string | null
+    additional_charges?: Decimal | DecimalJsLike | number | string
+    penalties?: Decimal | DecimalJsLike | number | string
     notes?: string | null
     updated_at?: Date | string
     created_at?: Date | string
+    payments?: paymentsCreateNestedManyWithoutRentalInput
     user: usersCreateNestedOneWithoutRentalsInput
   }
 
   export type rentalsUncheckedCreateWithoutVehicleInput = {
-    id: string
+    id?: string
     user_id: string
-    check_in_date: Date | string
-    check_out_date?: Date | string | null
+    check_out_date: Date | string
+    expected_check_in_date: Date | string
+    check_in_date?: Date | string | null
     start_mileage: Decimal | DecimalJsLike | number | string
     end_mileage?: Decimal | DecimalJsLike | number | string | null
-    status: $Enums.RentalStatus
+    status?: $Enums.RentalStatus
     daily_rate: Decimal | DecimalJsLike | number | string
-    additional_charges?: Decimal | DecimalJsLike | number | string | null
-    penalties?: Decimal | DecimalJsLike | number | string | null
+    additional_charges?: Decimal | DecimalJsLike | number | string
+    penalties?: Decimal | DecimalJsLike | number | string
     notes?: string | null
     updated_at?: Date | string
     created_at?: Date | string
+    payments?: paymentsUncheckedCreateNestedManyWithoutRentalInput
   }
 
   export type rentalsCreateOrConnectWithoutVehicleInput = {
@@ -9999,6 +10267,130 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type rentalsCreateWithoutPaymentsInput = {
+    id?: string
+    check_out_date: Date | string
+    expected_check_in_date: Date | string
+    check_in_date?: Date | string | null
+    start_mileage: Decimal | DecimalJsLike | number | string
+    end_mileage?: Decimal | DecimalJsLike | number | string | null
+    status?: $Enums.RentalStatus
+    daily_rate: Decimal | DecimalJsLike | number | string
+    additional_charges?: Decimal | DecimalJsLike | number | string
+    penalties?: Decimal | DecimalJsLike | number | string
+    notes?: string | null
+    updated_at?: Date | string
+    created_at?: Date | string
+    vehicle: vehiclesCreateNestedOneWithoutRentalsInput
+    user: usersCreateNestedOneWithoutRentalsInput
+  }
+
+  export type rentalsUncheckedCreateWithoutPaymentsInput = {
+    id?: string
+    vehicle_id: number
+    user_id: string
+    check_out_date: Date | string
+    expected_check_in_date: Date | string
+    check_in_date?: Date | string | null
+    start_mileage: Decimal | DecimalJsLike | number | string
+    end_mileage?: Decimal | DecimalJsLike | number | string | null
+    status?: $Enums.RentalStatus
+    daily_rate: Decimal | DecimalJsLike | number | string
+    additional_charges?: Decimal | DecimalJsLike | number | string
+    penalties?: Decimal | DecimalJsLike | number | string
+    notes?: string | null
+    updated_at?: Date | string
+    created_at?: Date | string
+  }
+
+  export type rentalsCreateOrConnectWithoutPaymentsInput = {
+    where: rentalsWhereUniqueInput
+    create: XOR<rentalsCreateWithoutPaymentsInput, rentalsUncheckedCreateWithoutPaymentsInput>
+  }
+
+  export type rentalsUpsertWithoutPaymentsInput = {
+    update: XOR<rentalsUpdateWithoutPaymentsInput, rentalsUncheckedUpdateWithoutPaymentsInput>
+    create: XOR<rentalsCreateWithoutPaymentsInput, rentalsUncheckedCreateWithoutPaymentsInput>
+    where?: rentalsWhereInput
+  }
+
+  export type rentalsUpdateToOneWithWhereWithoutPaymentsInput = {
+    where?: rentalsWhereInput
+    data: XOR<rentalsUpdateWithoutPaymentsInput, rentalsUncheckedUpdateWithoutPaymentsInput>
+  }
+
+  export type rentalsUpdateWithoutPaymentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    check_out_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    expected_check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    check_in_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    start_mileage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    end_mileage?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    status?: EnumRentalStatusFieldUpdateOperationsInput | $Enums.RentalStatus
+    daily_rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    additional_charges?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    penalties?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    vehicle?: vehiclesUpdateOneRequiredWithoutRentalsNestedInput
+    user?: usersUpdateOneRequiredWithoutRentalsNestedInput
+  }
+
+  export type rentalsUncheckedUpdateWithoutPaymentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    vehicle_id?: IntFieldUpdateOperationsInput | number
+    user_id?: StringFieldUpdateOperationsInput | string
+    check_out_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    expected_check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    check_in_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    start_mileage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    end_mileage?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    status?: EnumRentalStatusFieldUpdateOperationsInput | $Enums.RentalStatus
+    daily_rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    additional_charges?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    penalties?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type paymentsCreateWithoutRentalInput = {
+    id?: string
+    amount: Decimal | DecimalJsLike | number | string
+    payment_date?: Date | string | null
+    refund_date?: Date | string | null
+    method_type: $Enums.PaymentMethod
+    status: $Enums.PaymentStatus
+    payment_type: $Enums.PaymentType
+    proof_of_payment_url?: string | null
+    updated_at?: Date | string
+    created_at?: Date | string
+  }
+
+  export type paymentsUncheckedCreateWithoutRentalInput = {
+    id?: string
+    amount: Decimal | DecimalJsLike | number | string
+    payment_date?: Date | string | null
+    refund_date?: Date | string | null
+    method_type: $Enums.PaymentMethod
+    status: $Enums.PaymentStatus
+    payment_type: $Enums.PaymentType
+    proof_of_payment_url?: string | null
+    updated_at?: Date | string
+    created_at?: Date | string
+  }
+
+  export type paymentsCreateOrConnectWithoutRentalInput = {
+    where: paymentsWhereUniqueInput
+    create: XOR<paymentsCreateWithoutRentalInput, paymentsUncheckedCreateWithoutRentalInput>
+  }
+
+  export type paymentsCreateManyRentalInputEnvelope = {
+    data: paymentsCreateManyRentalInput | paymentsCreateManyRentalInput[]
+    skipDuplicates?: boolean
+  }
+
   export type vehiclesCreateWithoutRentalsInput = {
     brand: $Enums.Brand
     model: $Enums.Model
@@ -10060,6 +10452,39 @@ export namespace Prisma {
   export type usersCreateOrConnectWithoutRentalsInput = {
     where: usersWhereUniqueInput
     create: XOR<usersCreateWithoutRentalsInput, usersUncheckedCreateWithoutRentalsInput>
+  }
+
+  export type paymentsUpsertWithWhereUniqueWithoutRentalInput = {
+    where: paymentsWhereUniqueInput
+    update: XOR<paymentsUpdateWithoutRentalInput, paymentsUncheckedUpdateWithoutRentalInput>
+    create: XOR<paymentsCreateWithoutRentalInput, paymentsUncheckedCreateWithoutRentalInput>
+  }
+
+  export type paymentsUpdateWithWhereUniqueWithoutRentalInput = {
+    where: paymentsWhereUniqueInput
+    data: XOR<paymentsUpdateWithoutRentalInput, paymentsUncheckedUpdateWithoutRentalInput>
+  }
+
+  export type paymentsUpdateManyWithWhereWithoutRentalInput = {
+    where: paymentsScalarWhereInput
+    data: XOR<paymentsUpdateManyMutationInput, paymentsUncheckedUpdateManyWithoutRentalInput>
+  }
+
+  export type paymentsScalarWhereInput = {
+    AND?: paymentsScalarWhereInput | paymentsScalarWhereInput[]
+    OR?: paymentsScalarWhereInput[]
+    NOT?: paymentsScalarWhereInput | paymentsScalarWhereInput[]
+    id?: UuidFilter<"payments"> | string
+    rental_id?: UuidFilter<"payments"> | string
+    amount?: DecimalFilter<"payments"> | Decimal | DecimalJsLike | number | string
+    payment_date?: DateTimeNullableFilter<"payments"> | Date | string | null
+    refund_date?: DateTimeNullableFilter<"payments"> | Date | string | null
+    method_type?: EnumPaymentMethodFilter<"payments"> | $Enums.PaymentMethod
+    status?: EnumPaymentStatusFilter<"payments"> | $Enums.PaymentStatus
+    payment_type?: EnumPaymentTypeFilter<"payments"> | $Enums.PaymentType
+    proof_of_payment_url?: StringNullableFilter<"payments"> | string | null
+    updated_at?: DateTimeFilter<"payments"> | Date | string
+    created_at?: DateTimeFilter<"payments"> | Date | string
   }
 
   export type vehiclesUpsertWithoutRentalsInput = {
@@ -10138,16 +10563,17 @@ export namespace Prisma {
   }
 
   export type rentalsCreateManyUserInput = {
-    id: string
+    id?: string
     vehicle_id: number
-    check_in_date: Date | string
-    check_out_date?: Date | string | null
+    check_out_date: Date | string
+    expected_check_in_date: Date | string
+    check_in_date?: Date | string | null
     start_mileage: Decimal | DecimalJsLike | number | string
     end_mileage?: Decimal | DecimalJsLike | number | string | null
-    status: $Enums.RentalStatus
+    status?: $Enums.RentalStatus
     daily_rate: Decimal | DecimalJsLike | number | string
-    additional_charges?: Decimal | DecimalJsLike | number | string | null
-    penalties?: Decimal | DecimalJsLike | number | string | null
+    additional_charges?: Decimal | DecimalJsLike | number | string
+    penalties?: Decimal | DecimalJsLike | number | string
     notes?: string | null
     updated_at?: Date | string
     created_at?: Date | string
@@ -10155,47 +10581,52 @@ export namespace Prisma {
 
   export type rentalsUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    check_out_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    check_out_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    expected_check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    check_in_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_mileage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     end_mileage?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumRentalStatusFieldUpdateOperationsInput | $Enums.RentalStatus
     daily_rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    additional_charges?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    penalties?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    additional_charges?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    penalties?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    payments?: paymentsUpdateManyWithoutRentalNestedInput
     vehicle?: vehiclesUpdateOneRequiredWithoutRentalsNestedInput
   }
 
   export type rentalsUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     vehicle_id?: IntFieldUpdateOperationsInput | number
-    check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    check_out_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    check_out_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    expected_check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    check_in_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_mileage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     end_mileage?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumRentalStatusFieldUpdateOperationsInput | $Enums.RentalStatus
     daily_rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    additional_charges?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    penalties?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    additional_charges?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    penalties?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    payments?: paymentsUncheckedUpdateManyWithoutRentalNestedInput
   }
 
   export type rentalsUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     vehicle_id?: IntFieldUpdateOperationsInput | number
-    check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    check_out_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    check_out_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    expected_check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    check_in_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_mileage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     end_mileage?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumRentalStatusFieldUpdateOperationsInput | $Enums.RentalStatus
     daily_rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    additional_charges?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    penalties?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    additional_charges?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    penalties?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10255,16 +10686,17 @@ export namespace Prisma {
   }
 
   export type rentalsCreateManyVehicleInput = {
-    id: string
+    id?: string
     user_id: string
-    check_in_date: Date | string
-    check_out_date?: Date | string | null
+    check_out_date: Date | string
+    expected_check_in_date: Date | string
+    check_in_date?: Date | string | null
     start_mileage: Decimal | DecimalJsLike | number | string
     end_mileage?: Decimal | DecimalJsLike | number | string | null
-    status: $Enums.RentalStatus
+    status?: $Enums.RentalStatus
     daily_rate: Decimal | DecimalJsLike | number | string
-    additional_charges?: Decimal | DecimalJsLike | number | string | null
-    penalties?: Decimal | DecimalJsLike | number | string | null
+    additional_charges?: Decimal | DecimalJsLike | number | string
+    penalties?: Decimal | DecimalJsLike | number | string
     notes?: string | null
     updated_at?: Date | string
     created_at?: Date | string
@@ -10272,48 +10704,105 @@ export namespace Prisma {
 
   export type rentalsUpdateWithoutVehicleInput = {
     id?: StringFieldUpdateOperationsInput | string
-    check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    check_out_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    check_out_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    expected_check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    check_in_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_mileage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     end_mileage?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumRentalStatusFieldUpdateOperationsInput | $Enums.RentalStatus
     daily_rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    additional_charges?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    penalties?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    additional_charges?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    penalties?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    payments?: paymentsUpdateManyWithoutRentalNestedInput
     user?: usersUpdateOneRequiredWithoutRentalsNestedInput
   }
 
   export type rentalsUncheckedUpdateWithoutVehicleInput = {
     id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
-    check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    check_out_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    check_out_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    expected_check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    check_in_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_mileage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     end_mileage?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumRentalStatusFieldUpdateOperationsInput | $Enums.RentalStatus
     daily_rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    additional_charges?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    penalties?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    additional_charges?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    penalties?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    payments?: paymentsUncheckedUpdateManyWithoutRentalNestedInput
   }
 
   export type rentalsUncheckedUpdateManyWithoutVehicleInput = {
     id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
-    check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    check_out_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    check_out_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    expected_check_in_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    check_in_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_mileage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     end_mileage?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumRentalStatusFieldUpdateOperationsInput | $Enums.RentalStatus
     daily_rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    additional_charges?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    penalties?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    additional_charges?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    penalties?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type paymentsCreateManyRentalInput = {
+    id?: string
+    amount: Decimal | DecimalJsLike | number | string
+    payment_date?: Date | string | null
+    refund_date?: Date | string | null
+    method_type: $Enums.PaymentMethod
+    status: $Enums.PaymentStatus
+    payment_type: $Enums.PaymentType
+    proof_of_payment_url?: string | null
+    updated_at?: Date | string
+    created_at?: Date | string
+  }
+
+  export type paymentsUpdateWithoutRentalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refund_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    method_type?: EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
+    status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    payment_type?: EnumPaymentTypeFieldUpdateOperationsInput | $Enums.PaymentType
+    proof_of_payment_url?: NullableStringFieldUpdateOperationsInput | string | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type paymentsUncheckedUpdateWithoutRentalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refund_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    method_type?: EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
+    status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    payment_type?: EnumPaymentTypeFieldUpdateOperationsInput | $Enums.PaymentType
+    proof_of_payment_url?: NullableStringFieldUpdateOperationsInput | string | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type paymentsUncheckedUpdateManyWithoutRentalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refund_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    method_type?: EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
+    status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    payment_type?: EnumPaymentTypeFieldUpdateOperationsInput | $Enums.PaymentType
+    proof_of_payment_url?: NullableStringFieldUpdateOperationsInput | string | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }

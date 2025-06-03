@@ -1,24 +1,23 @@
-jest.mock('../../database/prismaDatabase', ()=>({
-    prisma: {
-        users: {}
-    }
-}))
-
 import { prisma } from "../../database/prismaDatabase"
+import { IUsersRepository } from "../interfaces/IUsersRepository";
 import { PrismaUsersRepository as usersRepository } from "../PrismaUsersRepository"
 
-describe('usersRepository', () => {
-    let repository: usersRepository;
-
-    beforeEach(() => {
-        // Mock the users property and its methods for each test
-        (prisma as any).users = {
+jest.mock('../../database/prismaDatabase', ()=>({
+    prisma: {
+        users: {
             findMany: jest.fn(),
             findUnique: jest.fn(),
             create: jest.fn(),
             update: jest.fn(),
             delete: jest.fn(),
-        };
+        }
+    }
+}))
+
+describe('usersRepository', () => {
+    let repository: IUsersRepository;
+
+    beforeEach(() => {
         jest.clearAllMocks();
         repository = new usersRepository();
     })

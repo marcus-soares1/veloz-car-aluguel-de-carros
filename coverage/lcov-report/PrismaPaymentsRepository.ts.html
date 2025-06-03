@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for PrismaUsersRepository.ts</title>
+    <title>Code coverage report for PrismaPaymentsRepository.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="prettify.css" />
     <link rel="stylesheet" href="base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> PrismaUsersRepository.ts</h1>
+        <h1><a href="index.html">All files</a> PrismaPaymentsRepository.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -102,14 +102,24 @@
 <a name='L37'></a><a href='#L37'>37</a>
 <a name='L38'></a><a href='#L38'>38</a>
 <a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -119,67 +129,63 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { prisma } from "../database/prismaDatabase"
-import { ICreateUser, IUser, IUsersRepository } from "./interfaces/IUsersRepository"
+import { ICreatePayment, IPayment, IPaymentRepository } from "./interfaces/IPaymentsRepository";
 &nbsp;
-&nbsp;
-export class PrismaUsersRepository implements IUsersRepository{
-    async getAll(): Promise&lt;IUser[]&gt; {
-        const users: IUser[] = await prisma.users.findMany()
-        return users
+export class PrismaPaymentsRepository implements IPaymentRepository {
+    async getAll(): Promise&lt;IPayment[]&gt; {
+        const payments: IPayment[] = await prisma.payments.findMany()
+        return payments
     }
-    async getById(userId: string): Promise&lt;IUser | null&gt; {
-        const user: IUser | null = await prisma.users.findUnique({
-            where: { id: userId }
+&nbsp;
+    async getById(paymentId: string): Promise&lt;IPayment | null&gt; {
+        const payment: IPayment | null = await prisma.payments.findUnique({
+            where: { id: paymentId }
         })
 &nbsp;
-        return user
+        return payment
     }
-    async create(userAttributes: ICreateUser): Promise&lt;IUser&gt; {
-        const newUser: IUser = await prisma.users.create({
-            data: userAttributes
+&nbsp;
+    async create(paymentAttributes: ICreatePayment): Promise&lt;IPayment&gt; {
+        const createdPayment: IPayment = await prisma.payments.create({
+            data: paymentAttributes
         })
 &nbsp;
-        return newUser
+        return createdPayment
     }
-    async update(userId: string, userAttributes: Partial&lt;ICreateUser&gt;): Promise&lt;IUser | null&gt; {
-        const updatedUser: IUser | null = await prisma.users.update({
-            where: { id: userId },
-            data: userAttributes
+&nbsp;
+    async update(paymentId: string, paymentAttributes: Partial&lt;ICreatePayment&gt;): Promise&lt;IPayment | null&gt; {
+        const updatedPayment: IPayment | null = await prisma.payments.update({
+            where: { id: paymentId },
+            data: paymentAttributes
         })
 &nbsp;
-        return updatedUser
+        return updatedPayment
     }
-    async delete(userId: string): Promise&lt;IUser | null&gt; {
-        const deletedUser: IUser | null = await prisma.users.delete({
-            where: { id: userId }
+&nbsp;
+    async delete(paymentId: string): Promise&lt;IPayment | null&gt; {
+        const deletedPayment: IPayment | null = await prisma.payments.delete({
+            where: { id: paymentId }
         })
 &nbsp;
-        return deletedUser
+        return deletedPayment
     }
-&nbsp;
 }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
