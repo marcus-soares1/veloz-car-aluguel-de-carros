@@ -20,7 +20,7 @@ CREATE TYPE "PaymentType" AS ENUM ('prepayment', 'final', 'security_deposit', 'a
 CREATE TYPE "Brand" AS ENUM ('FIAT', 'VOLKSWAGEN', 'CHEVROLET', 'FORD', 'RENAULT', 'HYUNDAI', 'TOYOTA', 'HONDA', 'NISSAN', 'PEUGEOT', 'CITROEN', 'KIA', 'MITSUBISHI', 'JEEP', 'BMW', 'MERCEDES_BENZ', 'AUDI', 'VOLVO', 'CHERY', 'BYD', 'TESLA', 'LAND_ROVER', 'PORSCHE', 'FERRARI', 'LAMBORGHINI', 'ALFA_ROMEO', 'JAGUAR', 'RAM', 'GWM', 'JAC', 'TROLLER');
 
 -- CreateEnum
-CREATE TYPE "Model" AS ENUM ('MARGO', 'MCRONOS', 'MMOBI', 'MPULSE', 'MFASTBACK', 'MSTRADA', 'MTORO', 'MUNO', 'MPALIO', 'MSIENA', 'M147', 'M147_PICKUP', 'MPUNTO', 'MONIX', 'MTRACKER', 'MSPIN', 'MPRISMA', 'MCOBALT', 'MCRUZE', 'MJOYC', 'MONTANA', 'MZAFIRA', 'MBLAZER', 'MKA', 'MKA_PLUS', 'MFIESTA', 'MFIESTA_SEDAN', 'MECOSPORT', 'MFUSION', 'MFOCUS', 'MRANGER', 'MESCAPE', 'MGOL', 'MSAVEIRO', 'MVOYAGE', 'MFOX', 'MPCROSS', 'MUP', 'MJETTA', 'MGOLF', 'MPASSAT', 'MAMAROK', 'MTIGUAN', 'M207', 'M208', 'M2008', 'M3008', 'M5008', 'MPARTNER', 'MEXPERT', 'MLOGAN', 'MSANDERO', 'MSTEPWAY', 'MDUSTER', 'MKWID', 'MCAPTUR', 'MFLUENCE', 'MSYMBOL', 'MHB20', 'MHB20S', 'MHB20X', 'MCRETA', 'MTUCSON', 'MSANT');
+CREATE TYPE "Model" AS ENUM ('ARGO', 'CRONOS', 'MOBI', 'PULSE', 'FASTBACK', 'STRADA', 'TORO', 'UNO', 'PALIO', 'SIENA', 'M147', 'M147_PICKUP', 'PUNTO', 'ONIX', 'TRACKER', 'SPIN', 'PRISMA', 'COBALT', 'CRUZE', 'JOY', 'MONTANA', 'ZAFIRA', 'BLAZER', 'KA', 'KA_PLUS', 'FIESTA', 'FIESTA_SEDAN', 'ECOSPORT', 'FUSION', 'FOCUS', 'RANGER', 'ESCAPE', 'GOL', 'SAVEIRO', 'VOYAGE', 'FOX', 'PCROSS', 'UP', 'JETTA', 'GOLF', 'PASSAT', 'AMAROK', 'TIGUAN', 'M207', 'M208', 'M2008', 'M3008', 'M5008', 'PARTNER', 'EXPERT', 'LOGAN', 'SANDERO', 'STEPWAY', 'DUSTER', 'KWID', 'CAPTUR', 'FLUENCE', 'SYMBOL', 'HB20', 'HB20S', 'HB20X', 'CRETA', 'TUCSON', 'SANT');
 
 -- CreateTable
 CREATE TABLE "users" (
@@ -68,7 +68,8 @@ CREATE TABLE "vehicles" (
 
 -- CreateTable
 CREATE TABLE "payments" (
-    "id" SERIAL NOT NULL,
+    "id" UUID NOT NULL,
+    "rental_id" UUID NOT NULL,
     "amount" DECIMAL(65,30) NOT NULL,
     "payment_date" TIMESTAMP(3),
     "refund_date" TIMESTAMP(3),
@@ -87,14 +88,15 @@ CREATE TABLE "rentals" (
     "id" UUID NOT NULL,
     "vehicle_id" INTEGER NOT NULL,
     "user_id" UUID NOT NULL,
-    "check_in_date" TIMESTAMP(3) NOT NULL,
-    "check_out_date" TIMESTAMP(3),
+    "check_out_date" TIMESTAMP(3) NOT NULL,
+    "expected_check_in_date" TIMESTAMP(3) NOT NULL,
+    "check_in_date" TIMESTAMP(3),
     "start_mileage" DECIMAL(65,30) NOT NULL,
     "end_mileage" DECIMAL(65,30),
-    "status" "RentalStatus" NOT NULL,
+    "status" "RentalStatus" NOT NULL DEFAULT 'reserved',
     "daily_rate" DECIMAL(65,30) NOT NULL,
-    "additional_charges" DECIMAL(65,30),
-    "penalties" DECIMAL(65,30),
+    "additional_charges" DECIMAL(65,30) NOT NULL DEFAULT 0,
+    "penalties" DECIMAL(65,30) NOT NULL DEFAULT 0,
     "notes" VARCHAR(255),
     "updated_at" TIMESTAMP(3) NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -107,6 +109,9 @@ CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- AddForeignKey
 ALTER TABLE "vehicles" ADD CONSTRAINT "vehicles_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "payments" ADD CONSTRAINT "payments_rental_id_fkey" FOREIGN KEY ("rental_id") REFERENCES "rentals"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "rentals" ADD CONSTRAINT "rentals_vehicle_id_fkey" FOREIGN KEY ("vehicle_id") REFERENCES "vehicles"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

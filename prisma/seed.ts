@@ -45,31 +45,31 @@ async function main() {
   if (hatch && sedan && suv && pickup && eletrico && luxo) {
     const veiculosData = [
       // Hatch
-      { brand: Brand.FIAT, model: Model.MMOBI, category_id: hatch.id, manufacture_year: new Date('2023-01-01'), color: 'Branco', diary_value: 80.00, status: VehicleStatus.avaliable, kilometers: 10000 },
-      { brand: Brand.VOLKSWAGEN, model: Model.MGOL, category_id: hatch.id, manufacture_year: new Date('2022-05-15'), color: 'Prata', diary_value: 85.00, status: VehicleStatus.avaliable, kilometers: 15000 },
-      { brand: Brand.CHEVROLET, model: Model.MONIX, category_id: hatch.id, manufacture_year: new Date('2024-03-01'), color: 'Azul', diary_value: 90.00, status: VehicleStatus.avaliable, kilometers: 5000 },
-      { brand: Brand.RENAULT, model: Model.MKWID, category_id: hatch.id, manufacture_year: new Date('2023-11-10'), color: 'Vermelho', diary_value: 75.00, status: VehicleStatus.avaliable, kilometers: 12000 },
+      { brand: Brand.FIAT, model: Model.MOBI, category_id: hatch.id, manufacture_year: new Date('2023-01-01'), color: 'Branco', diary_value: 80.00, status: VehicleStatus.avaliable, kilometers: 10000 },
+      { brand: Brand.VOLKSWAGEN, model: Model.GOL, category_id: hatch.id, manufacture_year: new Date('2022-05-15'), color: 'Prata', diary_value: 85.00, status: VehicleStatus.avaliable, kilometers: 15000 },
+      { brand: Brand.CHEVROLET, model: Model.ONIX, category_id: hatch.id, manufacture_year: new Date('2024-03-01'), color: 'Azul', diary_value: 90.00, status: VehicleStatus.avaliable, kilometers: 5000 },
+      { brand: Brand.RENAULT, model: Model.KWID, category_id: hatch.id, manufacture_year: new Date('2023-11-10'), color: 'Vermelho', diary_value: 75.00, status: VehicleStatus.avaliable, kilometers: 12000 },
       // Sedan
-      { brand: Brand.CHEVROLET, model: Model.MCRONOS, category_id: sedan.id, manufacture_year: new Date('2024-02-20'), color: 'Preto', diary_value: 120.00, status: VehicleStatus.avaliable, kilometers: 5000 },
-      { brand: Brand.VOLKSWAGEN, model: Model.MVOYAGE, category_id: sedan.id, manufacture_year: new Date('2023-07-01'), color: 'Cinza', diary_value: 110.00, status: VehicleStatus.avaliable, kilometers: 9000 },
-      { brand: Brand.FIAT, model: Model.MSIENA, category_id: sedan.id, manufacture_year: new Date('2022-12-01'), color: 'Branco', diary_value: 105.00, status: VehicleStatus.avaliable, kilometers: 20000 },
+      { brand: Brand.CHEVROLET, model: Model.CRONOS, category_id: sedan.id, manufacture_year: new Date('2024-02-20'), color: 'Preto', diary_value: 120.00, status: VehicleStatus.avaliable, kilometers: 5000 },
+      { brand: Brand.VOLKSWAGEN, model: Model.VOYAGE, category_id: sedan.id, manufacture_year: new Date('2023-07-01'), color: 'Cinza', diary_value: 110.00, status: VehicleStatus.avaliable, kilometers: 9000 },
+      { brand: Brand.FIAT, model: Model.SIENA, category_id: sedan.id, manufacture_year: new Date('2022-12-01'), color: 'Branco', diary_value: 105.00, status: VehicleStatus.avaliable, kilometers: 20000 },
       // SUV
-      { brand: Brand.HYUNDAI, model: Model.MCRETA, category_id: suv.id, manufacture_year: new Date('2023-08-10'), color: 'Vermelho', diary_value: 150.00, status: VehicleStatus.avaliable, kilometers: 8000 },
-      { brand: Brand.JEEP, model: Model.MTRACKER, category_id: suv.id, manufacture_year: new Date('2024-01-15'), color: 'Verde', diary_value: 160.00, status: VehicleStatus.avaliable, kilometers: 3000 },
-      { brand: Brand.NISSAN, model: Model.MTUCSON, category_id: suv.id, manufacture_year: new Date('2022-10-01'), color: 'Prata', diary_value: 140.00, status: VehicleStatus.avaliable, kilometers: 18000 },
+      { brand: Brand.HYUNDAI, model: Model.CRETA, category_id: suv.id, manufacture_year: new Date('2023-08-10'), color: 'Vermelho', diary_value: 150.00, status: VehicleStatus.avaliable, kilometers: 8000 },
+      { brand: Brand.JEEP, model: Model.TRACKER, category_id: suv.id, manufacture_year: new Date('2024-01-15'), color: 'Verde', diary_value: 160.00, status: VehicleStatus.avaliable, kilometers: 3000 },
+      { brand: Brand.NISSAN, model: Model.TUCSON, category_id: suv.id, manufacture_year: new Date('2022-10-01'), color: 'Prata', diary_value: 140.00, status: VehicleStatus.avaliable, kilometers: 18000 },
       // Pickup
-      { brand: Brand.FIAT, model: Model.MSTRADA, category_id: pickup.id, manufacture_year: new Date('2023-05-20'), color: 'Vermelho', diary_value: 130.00, status: VehicleStatus.avaliable, kilometers: 11000 },
-      { brand: Brand.VOLKSWAGEN, model: Model.MSAVEIRO, category_id: pickup.id, manufacture_year: new Date('2022-09-01'), color: 'Branco', diary_value: 125.00, status: VehicleStatus.avaliable, kilometers: 22000 },
-      { brand: Brand.FORD, model: Model.MRANGER, category_id: pickup.id, manufacture_year: new Date('2024-04-01'), color: 'Azul', diary_value: 180.00, status: VehicleStatus.avaliable, kilometers: 2000 },
+      { brand: Brand.FIAT, model: Model.STRADA, category_id: pickup.id, manufacture_year: new Date('2023-05-20'), color: 'Vermelho', diary_value: 130.00, status: VehicleStatus.avaliable, kilometers: 11000 },
+      { brand: Brand.VOLKSWAGEN, model: Model.SAVEIRO, category_id: pickup.id, manufacture_year: new Date('2022-09-01'), color: 'Branco', diary_value: 125.00, status: VehicleStatus.avaliable, kilometers: 22000 },
+      { brand: Brand.FORD, model: Model.RANGER, category_id: pickup.id, manufacture_year: new Date('2024-04-01'), color: 'Azul', diary_value: 180.00, status: VehicleStatus.avaliable, kilometers: 2000 },
       // Elétrico
-      { brand: Brand.BYD, model: Model.MTORO, category_id: eletrico.id, manufacture_year: new Date('2024-01-01'), color: 'Cinza', diary_value: 200.00, status: VehicleStatus.avaliable, kilometers: 1500 },
-      { brand: Brand.TESLA, model: Model.MPULSE, category_id: eletrico.id, manufacture_year: new Date('2023-10-15'), color: 'Preto', diary_value: 250.00, status: VehicleStatus.avaliable, kilometers: 3000 },
+      { brand: Brand.BYD, model: Model.TORO, category_id: eletrico.id, manufacture_year: new Date('2024-01-01'), color: 'Cinza', diary_value: 200.00, status: VehicleStatus.avaliable, kilometers: 1500 },
+      { brand: Brand.TESLA, model: Model.PULSE, category_id: eletrico.id, manufacture_year: new Date('2023-10-15'), color: 'Preto', diary_value: 250.00, status: VehicleStatus.avaliable, kilometers: 3000 },
       // Luxo
-      { brand: Brand.BMW, model: Model.MPASSAT, category_id: luxo.id, manufacture_year: new Date('2023-06-01'), color: 'Prata', diary_value: 300.00, status: VehicleStatus.avaliable, kilometers: 6000 },
-      { brand: Brand.MERCEDES_BENZ, model: Model.MAMAROK, category_id: luxo.id, manufacture_year: new Date('2024-05-01'), color: 'Branco', diary_value: 350.00, status: VehicleStatus.avaliable, kilometers: 1000 },
-      { brand: Brand.AUDI, model: Model.MJETTA, category_id: luxo.id, manufacture_year: new Date('2022-11-01'), color: 'Preto', diary_value: 280.00, status: VehicleStatus.avaliable, kilometers: 12000 },
-      { brand: Brand.VOLVO, model: Model.MGOLF, category_id: luxo.id, manufacture_year: new Date('2023-03-15'), color: 'Azul', diary_value: 320.00, status: VehicleStatus.avaliable, kilometers: 9000 },
-      { brand: Brand.LAND_ROVER, model: Model.MFIESTA, category_id: suv.id, manufacture_year: new Date('2023-09-20'), color: 'Prata', diary_value: 220.00, status: VehicleStatus.avaliable, kilometers: 7000 },
+      { brand: Brand.BMW, model: Model.PASSAT, category_id: luxo.id, manufacture_year: new Date('2023-06-01'), color: 'Prata', diary_value: 300.00, status: VehicleStatus.avaliable, kilometers: 6000 },
+      { brand: Brand.MERCEDES_BENZ, model: Model.AMAROK, category_id: luxo.id, manufacture_year: new Date('2024-05-01'), color: 'Branco', diary_value: 350.00, status: VehicleStatus.avaliable, kilometers: 1000 },
+      { brand: Brand.AUDI, model: Model.JETTA, category_id: luxo.id, manufacture_year: new Date('2022-11-01'), color: 'Preto', diary_value: 280.00, status: VehicleStatus.avaliable, kilometers: 12000 },
+      { brand: Brand.VOLVO, model: Model.GOLF, category_id: luxo.id, manufacture_year: new Date('2023-03-15'), color: 'Azul', diary_value: 320.00, status: VehicleStatus.avaliable, kilometers: 9000 },
+      { brand: Brand.LAND_ROVER, model: Model.FIESTA, category_id: suv.id, manufacture_year: new Date('2023-09-20'), color: 'Prata', diary_value: 220.00, status: VehicleStatus.avaliable, kilometers: 7000 },
     ];
 
     for (const veiculo of veiculosData) {
