@@ -32,7 +32,7 @@ export interface IPayment {
     created_at: Date
 }
 
-export interface IPaymentRepository {
+export interface IPaymentsRepository {
     getAll(): Promise<IPayment[]>
     getById(paymentId: string): Promise<IPayment | null>
     create(paymentAttributes: ICreatePayment): Promise<IPayment>
