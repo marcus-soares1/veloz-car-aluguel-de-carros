@@ -24,6 +24,7 @@ enum VehicleStatus {
   avaliable
   rented
   under_maintenance
+  reserved
 }
 
 enum RentalStatus {
@@ -187,6 +188,7 @@ model vehicles {
   id               Int           @id @default(autoincrement())
   brand            Brand
   model            Model
+  license_plate    String        @unique @db.VarChar(7)
   category_id      Int
   manufacture_year DateTime
   color            String        @db.VarChar(255)

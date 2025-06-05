@@ -145,6 +145,7 @@ exports.Prisma.VehiclesScalarFieldEnum = {
   id: 'id',
   brand: 'brand',
   model: 'model',
+  license_plate: 'license_plate',
   category_id: 'category_id',
   manufacture_year: 'manufacture_year',
   color: 'color',
@@ -311,7 +312,8 @@ exports.Model = exports.$Enums.Model = {
 exports.VehicleStatus = exports.$Enums.VehicleStatus = {
   avaliable: 'avaliable',
   rented: 'rented',
-  under_maintenance: 'under_maintenance'
+  under_maintenance: 'under_maintenance',
+  reserved: 'reserved'
 };
 
 exports.PaymentMethod = exports.$Enums.PaymentMethod = {

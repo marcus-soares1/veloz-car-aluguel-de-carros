@@ -54,6 +54,7 @@ CREATE TABLE "vehicles" (
     "id" SERIAL NOT NULL,
     "brand" "Brand" NOT NULL,
     "model" "Model" NOT NULL,
+    "license_plate" VARCHAR(7) NOT NULL,
     "category_id" INTEGER NOT NULL,
     "manufacture_year" TIMESTAMP(3) NOT NULL,
     "color" VARCHAR(255) NOT NULL,
@@ -106,6 +107,9 @@ CREATE TABLE "rentals" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "vehicles_license_plate_key" ON "vehicles"("license_plate");
 
 -- AddForeignKey
 ALTER TABLE "vehicles" ADD CONSTRAINT "vehicles_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
