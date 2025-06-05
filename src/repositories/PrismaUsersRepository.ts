@@ -1,5 +1,5 @@
 import { prisma } from "../database/prismaDatabase"
-import { ICreateUser, IUser, IUsersRepository } from "./interfaces/IUsersRepository"
+import { ICreateUser, IUser, IUsersRepository, Role } from "./interfaces/IUsersRepository"
 
 
 export class PrismaUsersRepository implements IUsersRepository{
@@ -13,6 +13,14 @@ export class PrismaUsersRepository implements IUsersRepository{
         })
 
         return user
+    }
+    async searchUserId({id, email, cpf, role}: {id?: string, email?: string, cpf?: string, role?: Role}): Promise<string | null> {
+        const where = { id, email, cpf, role }
+        const user: { id: string } | null = await prisma.users.findUnique({
+            where,
+            select: { id: true }
+        })
+        return user? user.id : null
     }
     async create(userAttributes: ICreateUser): Promise<IUser> {
         const newUser: IUser = await prisma.users.create({

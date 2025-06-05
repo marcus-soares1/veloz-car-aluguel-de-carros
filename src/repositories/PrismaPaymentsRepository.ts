@@ -1,7 +1,7 @@
 import { prisma } from "../database/prismaDatabase"
-import { ICreatePayment, IPayment, IPaymentRepository } from "./interfaces/IPaymentsRepository";
+import { ICreatePayment, IPayment, IPaymentsRepository } from "./interfaces/IPaymentsRepository";
 
-export class PrismaPaymentsRepository implements IPaymentRepository {
+export class PrismaPaymentsRepository implements IPaymentsRepository {
     async getAll(): Promise<IPayment[]> {
         const payments: IPayment[] = await prisma.payments.findMany()
         return payments

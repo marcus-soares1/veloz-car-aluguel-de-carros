@@ -1,9 +1,10 @@
 import { prisma } from "../database/prismaDatabase"
-import { ICreateVehicle, IVehicle, IVehicleRepository } from "./interfaces/IVehiclesRepository";
+import { ICreateVehicle, IUpdateVehicle, IVehicle, IVehiclesRepository, IVehiclesWhere } from "./interfaces/IVehiclesRepository";
 
-export class PrismaVehiclesRepository implements IVehicleRepository {
-    async getAll(): Promise<IVehicle[]> {
-        const vehicles: IVehicle[] = await prisma.vehicles.findMany({include: {category: true}})
+export class PrismaVehiclesRepository implements IVehiclesRepository {
+    async getAll(where?: IVehiclesWhere): Promise<IVehicle[]> {
+        
+        const vehicles: IVehicle[] = await prisma.vehicles.findMany({where, include: {category: true}})
         return vehicles
     }
 
@@ -21,6 +22,7 @@ export class PrismaVehiclesRepository implements IVehicleRepository {
         const createdVehicle: IVehicle = await prisma.vehicles.create({
             data: {
                 ...vehicleAttributes,
+                status: 'avaliable'
             },
             include: {
                 category: true
@@ -29,7 +31,7 @@ export class PrismaVehiclesRepository implements IVehicleRepository {
         return createdVehicle
     }
 
-    async update(vehicleId: number, vehicleAttributes: Partial<ICreateVehicle>): Promise<IVehicle | null> {
+    async update(vehicleId: number, vehicleAttributes: IUpdateVehicle): Promise<IVehicle | null> {
         const updatedVehicle: IVehicle | null = await prisma.vehicles.update({
             where: { id: vehicleId },
             data: vehicleAttributes
