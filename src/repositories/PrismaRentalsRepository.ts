@@ -1,7 +1,7 @@
 import { prisma } from "../database/prismaDatabase"
-import { ICreateRental, IRental, IRentalRepository, IUpdateRental } from "./interfaces/IRentalsRepository";
+import { ICreateRental, IRental, IRentalsRepository, IUpdateRental } from "./interfaces/IRentalsRepository";
 
-export class PrismaRentalRepository implements IRentalRepository {
+export class PrismaRentalRepository implements IRentalsRepository {
     async getAll(): Promise<IRental[]> {
         const rentals: IRental[] = await prisma.rentals.findMany()
         return rentals
@@ -21,7 +21,7 @@ export class PrismaRentalRepository implements IRentalRepository {
         return createdRental
     }
 
-    async update(rentalId: string, rentalAttributes: Partial<IUpdateRental>): Promise<IRental | null> {
+    async update(rentalId: string, rentalAttributes: IUpdateRental): Promise<IRental | null> {
         const updatedRental: IRental | null = await prisma.rentals.update({
             where: { id: rentalId },
             data: rentalAttributes

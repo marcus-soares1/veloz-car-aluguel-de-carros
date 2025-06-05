@@ -1,6 +1,6 @@
-import { PrismaRentalRepository as rentalRepository } from "../PrismaRentalsRepository";
+import { PrismaRentalRepository as rentalsRepository } from "../PrismaRentalsRepository";
 import { prisma } from "../../database/prismaDatabase";
-import { ICreateRental, IRental, IRentalRepository } from "../interfaces/IRentalsRepository";
+import { ICreateRental, IRental, IRentalsRepository } from "../interfaces/IRentalsRepository";
 import Decimal from "decimal.js";
 
 jest.mock("../../database/prismaDatabase", () => ({
@@ -42,11 +42,11 @@ const mockCreateRental: ICreateRental = {
     daily_rate: new Decimal(100),
 }
 
-describe("rentalRepository", () => {
-    let repository: IRentalRepository;
+describe("rentalsRepository", () => {
+    let repository: IRentalsRepository;
 
     beforeEach(() => {
-        repository = new rentalRepository();
+        repository = new rentalsRepository();
         jest.clearAllMocks();
     });
     describe("getAll", () => {

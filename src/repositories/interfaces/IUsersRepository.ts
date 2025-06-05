@@ -29,6 +29,7 @@ export interface ICreateUser {
 export interface IUsersRepository {
     getAll(): Promise<IUser[]>
     getById(userId: string): Promise<IUser | null>
+    searchUserId({id, email, cpf, role}: { id?: string, email?: string; cpf?: string, role?: Role }): Promise<string | null>
     create(userAttributes: ICreateUser): Promise<IUser>
     update(userId: string, userAttributes: Partial<ICreateUser>): Promise<IUser | null>
     delete(userId: string): Promise<IUser | null>
