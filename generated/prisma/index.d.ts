@@ -55,7 +55,8 @@ export type Role = (typeof Role)[keyof typeof Role]
 export const VehicleStatus: {
   avaliable: 'avaliable',
   rented: 'rented',
-  under_maintenance: 'under_maintenance'
+  under_maintenance: 'under_maintenance',
+  reserved: 'reserved'
 };
 
 export type VehicleStatus = (typeof VehicleStatus)[keyof typeof VehicleStatus]
@@ -3826,6 +3827,7 @@ export namespace Prisma {
     id: number | null
     brand: $Enums.Brand | null
     model: $Enums.Model | null
+    license_plate: string | null
     category_id: number | null
     manufacture_year: Date | null
     color: string | null
@@ -3840,6 +3842,7 @@ export namespace Prisma {
     id: number | null
     brand: $Enums.Brand | null
     model: $Enums.Model | null
+    license_plate: string | null
     category_id: number | null
     manufacture_year: Date | null
     color: string | null
@@ -3854,6 +3857,7 @@ export namespace Prisma {
     id: number
     brand: number
     model: number
+    license_plate: number
     category_id: number
     manufacture_year: number
     color: number
@@ -3884,6 +3888,7 @@ export namespace Prisma {
     id?: true
     brand?: true
     model?: true
+    license_plate?: true
     category_id?: true
     manufacture_year?: true
     color?: true
@@ -3898,6 +3903,7 @@ export namespace Prisma {
     id?: true
     brand?: true
     model?: true
+    license_plate?: true
     category_id?: true
     manufacture_year?: true
     color?: true
@@ -3912,6 +3918,7 @@ export namespace Prisma {
     id?: true
     brand?: true
     model?: true
+    license_plate?: true
     category_id?: true
     manufacture_year?: true
     color?: true
@@ -4013,6 +4020,7 @@ export namespace Prisma {
     id: number
     brand: $Enums.Brand
     model: $Enums.Model
+    license_plate: string
     category_id: number
     manufacture_year: Date
     color: string
@@ -4046,6 +4054,7 @@ export namespace Prisma {
     id?: boolean
     brand?: boolean
     model?: boolean
+    license_plate?: boolean
     category_id?: boolean
     manufacture_year?: boolean
     color?: boolean
@@ -4063,6 +4072,7 @@ export namespace Prisma {
     id?: boolean
     brand?: boolean
     model?: boolean
+    license_plate?: boolean
     category_id?: boolean
     manufacture_year?: boolean
     color?: boolean
@@ -4078,6 +4088,7 @@ export namespace Prisma {
     id?: boolean
     brand?: boolean
     model?: boolean
+    license_plate?: boolean
     category_id?: boolean
     manufacture_year?: boolean
     color?: boolean
@@ -4093,6 +4104,7 @@ export namespace Prisma {
     id?: boolean
     brand?: boolean
     model?: boolean
+    license_plate?: boolean
     category_id?: boolean
     manufacture_year?: boolean
     color?: boolean
@@ -4103,7 +4115,7 @@ export namespace Prisma {
     created_at?: boolean
   }
 
-  export type vehiclesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "brand" | "model" | "category_id" | "manufacture_year" | "color" | "diary_value" | "status" | "kilometers" | "updated_at" | "created_at", ExtArgs["result"]["vehicles"]>
+  export type vehiclesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "brand" | "model" | "license_plate" | "category_id" | "manufacture_year" | "color" | "diary_value" | "status" | "kilometers" | "updated_at" | "created_at", ExtArgs["result"]["vehicles"]>
   export type vehiclesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     rentals?: boolean | vehicles$rentalsArgs<ExtArgs>
     category?: boolean | categoriesDefaultArgs<ExtArgs>
@@ -4126,6 +4138,7 @@ export namespace Prisma {
       id: number
       brand: $Enums.Brand
       model: $Enums.Model
+      license_plate: string
       category_id: number
       manufacture_year: Date
       color: string
@@ -4562,6 +4575,7 @@ export namespace Prisma {
     readonly id: FieldRef<"vehicles", 'Int'>
     readonly brand: FieldRef<"vehicles", 'Brand'>
     readonly model: FieldRef<"vehicles", 'Model'>
+    readonly license_plate: FieldRef<"vehicles", 'String'>
     readonly category_id: FieldRef<"vehicles", 'Int'>
     readonly manufacture_year: FieldRef<"vehicles", 'DateTime'>
     readonly color: FieldRef<"vehicles", 'String'>
@@ -7503,6 +7517,7 @@ export namespace Prisma {
     id: 'id',
     brand: 'brand',
     model: 'model',
+    license_plate: 'license_plate',
     category_id: 'category_id',
     manufacture_year: 'manufacture_year',
     color: 'color',
@@ -7912,6 +7927,7 @@ export namespace Prisma {
     id?: IntFilter<"vehicles"> | number
     brand?: EnumBrandFilter<"vehicles"> | $Enums.Brand
     model?: EnumModelFilter<"vehicles"> | $Enums.Model
+    license_plate?: StringFilter<"vehicles"> | string
     category_id?: IntFilter<"vehicles"> | number
     manufacture_year?: DateTimeFilter<"vehicles"> | Date | string
     color?: StringFilter<"vehicles"> | string
@@ -7928,6 +7944,7 @@ export namespace Prisma {
     id?: SortOrder
     brand?: SortOrder
     model?: SortOrder
+    license_plate?: SortOrder
     category_id?: SortOrder
     manufacture_year?: SortOrder
     color?: SortOrder
@@ -7942,6 +7959,7 @@ export namespace Prisma {
 
   export type vehiclesWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    license_plate?: string
     AND?: vehiclesWhereInput | vehiclesWhereInput[]
     OR?: vehiclesWhereInput[]
     NOT?: vehiclesWhereInput | vehiclesWhereInput[]
@@ -7957,12 +7975,13 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"vehicles"> | Date | string
     rentals?: RentalsListRelationFilter
     category?: XOR<CategoriesScalarRelationFilter, categoriesWhereInput>
-  }, "id">
+  }, "id" | "license_plate">
 
   export type vehiclesOrderByWithAggregationInput = {
     id?: SortOrder
     brand?: SortOrder
     model?: SortOrder
+    license_plate?: SortOrder
     category_id?: SortOrder
     manufacture_year?: SortOrder
     color?: SortOrder
@@ -7985,6 +8004,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"vehicles"> | number
     brand?: EnumBrandWithAggregatesFilter<"vehicles"> | $Enums.Brand
     model?: EnumModelWithAggregatesFilter<"vehicles"> | $Enums.Model
+    license_plate?: StringWithAggregatesFilter<"vehicles"> | string
     category_id?: IntWithAggregatesFilter<"vehicles"> | number
     manufacture_year?: DateTimeWithAggregatesFilter<"vehicles"> | Date | string
     color?: StringWithAggregatesFilter<"vehicles"> | string
@@ -8350,6 +8370,7 @@ export namespace Prisma {
   export type vehiclesCreateInput = {
     brand: $Enums.Brand
     model: $Enums.Model
+    license_plate: string
     manufacture_year: Date | string
     color: string
     diary_value: Decimal | DecimalJsLike | number | string
@@ -8365,6 +8386,7 @@ export namespace Prisma {
     id?: number
     brand: $Enums.Brand
     model: $Enums.Model
+    license_plate: string
     category_id: number
     manufacture_year: Date | string
     color: string
@@ -8379,6 +8401,7 @@ export namespace Prisma {
   export type vehiclesUpdateInput = {
     brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: EnumModelFieldUpdateOperationsInput | $Enums.Model
+    license_plate?: StringFieldUpdateOperationsInput | string
     manufacture_year?: DateTimeFieldUpdateOperationsInput | Date | string
     color?: StringFieldUpdateOperationsInput | string
     diary_value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -8394,6 +8417,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: EnumModelFieldUpdateOperationsInput | $Enums.Model
+    license_plate?: StringFieldUpdateOperationsInput | string
     category_id?: IntFieldUpdateOperationsInput | number
     manufacture_year?: DateTimeFieldUpdateOperationsInput | Date | string
     color?: StringFieldUpdateOperationsInput | string
@@ -8409,6 +8433,7 @@ export namespace Prisma {
     id?: number
     brand: $Enums.Brand
     model: $Enums.Model
+    license_plate: string
     category_id: number
     manufacture_year: Date | string
     color: string
@@ -8422,6 +8447,7 @@ export namespace Prisma {
   export type vehiclesUpdateManyMutationInput = {
     brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: EnumModelFieldUpdateOperationsInput | $Enums.Model
+    license_plate?: StringFieldUpdateOperationsInput | string
     manufacture_year?: DateTimeFieldUpdateOperationsInput | Date | string
     color?: StringFieldUpdateOperationsInput | string
     diary_value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -8435,6 +8461,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: EnumModelFieldUpdateOperationsInput | $Enums.Model
+    license_plate?: StringFieldUpdateOperationsInput | string
     category_id?: IntFieldUpdateOperationsInput | number
     manufacture_year?: DateTimeFieldUpdateOperationsInput | Date | string
     color?: StringFieldUpdateOperationsInput | string
@@ -8969,6 +8996,7 @@ export namespace Prisma {
     id?: SortOrder
     brand?: SortOrder
     model?: SortOrder
+    license_plate?: SortOrder
     category_id?: SortOrder
     manufacture_year?: SortOrder
     color?: SortOrder
@@ -8990,6 +9018,7 @@ export namespace Prisma {
     id?: SortOrder
     brand?: SortOrder
     model?: SortOrder
+    license_plate?: SortOrder
     category_id?: SortOrder
     manufacture_year?: SortOrder
     color?: SortOrder
@@ -9004,6 +9033,7 @@ export namespace Prisma {
     id?: SortOrder
     brand?: SortOrder
     model?: SortOrder
+    license_plate?: SortOrder
     category_id?: SortOrder
     manufacture_year?: SortOrder
     color?: SortOrder
@@ -10092,6 +10122,7 @@ export namespace Prisma {
   export type vehiclesCreateWithoutCategoryInput = {
     brand: $Enums.Brand
     model: $Enums.Model
+    license_plate: string
     manufacture_year: Date | string
     color: string
     diary_value: Decimal | DecimalJsLike | number | string
@@ -10106,6 +10137,7 @@ export namespace Prisma {
     id?: number
     brand: $Enums.Brand
     model: $Enums.Model
+    license_plate: string
     manufacture_year: Date | string
     color: string
     diary_value: Decimal | DecimalJsLike | number | string
@@ -10149,6 +10181,7 @@ export namespace Prisma {
     id?: IntFilter<"vehicles"> | number
     brand?: EnumBrandFilter<"vehicles"> | $Enums.Brand
     model?: EnumModelFilter<"vehicles"> | $Enums.Model
+    license_plate?: StringFilter<"vehicles"> | string
     category_id?: IntFilter<"vehicles"> | number
     manufacture_year?: DateTimeFilter<"vehicles"> | Date | string
     color?: StringFilter<"vehicles"> | string
@@ -10394,6 +10427,7 @@ export namespace Prisma {
   export type vehiclesCreateWithoutRentalsInput = {
     brand: $Enums.Brand
     model: $Enums.Model
+    license_plate: string
     manufacture_year: Date | string
     color: string
     diary_value: Decimal | DecimalJsLike | number | string
@@ -10408,6 +10442,7 @@ export namespace Prisma {
     id?: number
     brand: $Enums.Brand
     model: $Enums.Model
+    license_plate: string
     category_id: number
     manufacture_year: Date | string
     color: string
@@ -10501,6 +10536,7 @@ export namespace Prisma {
   export type vehiclesUpdateWithoutRentalsInput = {
     brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: EnumModelFieldUpdateOperationsInput | $Enums.Model
+    license_plate?: StringFieldUpdateOperationsInput | string
     manufacture_year?: DateTimeFieldUpdateOperationsInput | Date | string
     color?: StringFieldUpdateOperationsInput | string
     diary_value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -10515,6 +10551,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: EnumModelFieldUpdateOperationsInput | $Enums.Model
+    license_plate?: StringFieldUpdateOperationsInput | string
     category_id?: IntFieldUpdateOperationsInput | number
     manufacture_year?: DateTimeFieldUpdateOperationsInput | Date | string
     color?: StringFieldUpdateOperationsInput | string
@@ -10636,6 +10673,7 @@ export namespace Prisma {
     id?: number
     brand: $Enums.Brand
     model: $Enums.Model
+    license_plate: string
     manufacture_year: Date | string
     color: string
     diary_value: Decimal | DecimalJsLike | number | string
@@ -10648,6 +10686,7 @@ export namespace Prisma {
   export type vehiclesUpdateWithoutCategoryInput = {
     brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: EnumModelFieldUpdateOperationsInput | $Enums.Model
+    license_plate?: StringFieldUpdateOperationsInput | string
     manufacture_year?: DateTimeFieldUpdateOperationsInput | Date | string
     color?: StringFieldUpdateOperationsInput | string
     diary_value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -10662,6 +10701,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: EnumModelFieldUpdateOperationsInput | $Enums.Model
+    license_plate?: StringFieldUpdateOperationsInput | string
     manufacture_year?: DateTimeFieldUpdateOperationsInput | Date | string
     color?: StringFieldUpdateOperationsInput | string
     diary_value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -10676,6 +10716,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: EnumModelFieldUpdateOperationsInput | $Enums.Model
+    license_plate?: StringFieldUpdateOperationsInput | string
     manufacture_year?: DateTimeFieldUpdateOperationsInput | Date | string
     color?: StringFieldUpdateOperationsInput | string
     diary_value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
