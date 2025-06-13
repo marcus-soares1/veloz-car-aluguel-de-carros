@@ -1,6 +1,6 @@
 import { PrismaPaymentsRepository as paymentsRepository } from "../PrismaPaymentsRepository";
 import { prisma } from "../../database/prismaDatabase";
-import { ICreatePayment, IPayment, IPaymentRepository } from "../interfaces/IPaymentsRepository";
+import { ICreatePayment, IPayment, IPaymentsRepository } from "../interfaces/IPaymentsRepository";
 import Decimal from "decimal.js";
 
 jest.mock("../../database/prismaDatabase", () => ({
@@ -40,7 +40,7 @@ const mockCreatePayment: ICreatePayment = {
 }
 
 describe("paymentsRepository", () => {
-    let repository: IPaymentRepository;
+    let repository: IPaymentsRepository;
 
     beforeEach(() => {
         repository = new paymentsRepository();

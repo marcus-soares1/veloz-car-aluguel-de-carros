@@ -39,6 +39,9 @@
   enum PaymentStatus {
     paid
     pending
+    refunded
+    partialy_refunded
+    canceled
   }
 
   enum PaymentMethod {
@@ -190,6 +193,7 @@ enum Model {
     model Model
     license_plate String @db.VarChar(7) @unique
     category_id Int
+    license_plate String @db.VarChar(7)
     manufacture_year DateTime
     color String @db.VarChar(255)
     diary_value Decimal

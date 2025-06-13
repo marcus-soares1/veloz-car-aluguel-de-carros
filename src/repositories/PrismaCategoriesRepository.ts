@@ -1,29 +1,34 @@
-import { prisma } from "../database/prismaDatabase"
+import { Prisma } from "../../generated/prisma";
+import { prisma, runInTransaction } from "../database/prismaDatabase"
 import { ICategoriesRepository, ICategory, ICreateCategory } from "./interfaces/ICategoriesRepository";
 
 export class PrismaCategoriesRepository implements ICategoriesRepository {
-    async getAll(): Promise<ICategory[]> {
-        const categories: ICategory[] = await prisma.categories.findMany()
+    async getAll(tx?: unknown): Promise<ICategory[]> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const categories: ICategory[] = await db.categories.findMany()
         return categories
     }
 
-    async getById(categoryId: number): Promise<ICategory | null> {
-        const category: ICategory | null = await prisma.categories.findUnique({
+    async getById(categoryId: number, tx?: unknown): Promise<ICategory | null> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const category: ICategory | null = await db.categories.findUnique({
             where: { id: categoryId }
         })
         return category
     }
 
-    async create(categoryAttributes: ICreateCategory): Promise<ICategory> {
-        const createdCategory: ICategory = await prisma.categories.create({
+    async create(categoryAttributes: ICreateCategory, tx?: unknown): Promise<ICategory> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const createdCategory: ICategory = await db.categories.create({
             data: categoryAttributes
         })
 
         return createdCategory        
     }
 
-    async update(categoryId: number, categoryAttributes: Partial<ICreateCategory>): Promise<ICategory | null> {
-        const updatedCategory: ICategory | null =  await prisma.categories.update({
+    async update(categoryId: number, categoryAttributes: Partial<ICreateCategory>, tx?: unknown): Promise<ICategory | null> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const updatedCategory: ICategory | null =  await db.categories.update({
             where: { id: categoryId },
             data: categoryAttributes
         })
@@ -31,11 +36,14 @@ export class PrismaCategoriesRepository implements ICategoriesRepository {
         return updatedCategory
     }
 
-    async delete(categoryId: number): Promise<ICategory | null> {
-        const deletedCategory: ICategory | null = await prisma.categories.delete({
+    async delete(categoryId: number, tx?: unknown): Promise<ICategory | null> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const deletedCategory: ICategory | null = await db.categories.delete({
             where: { id: categoryId }
         })
 
         return deletedCategory
     }
+
+    withTransaction = runInTransaction
 }

@@ -2,6 +2,7 @@ import Decimal from "decimal.js"
 import { IPayment } from "./IPaymentsRepository"
 import { IVehicle } from "./IVehiclesRepository"
 import { IUser } from "./IUsersRepository"
+import { IDatabaseTransaction } from "../../database/interface/IDatabaseTransaction"
 
 export type RentalStatus = "reserved" | "rented" | "canceled" | "finalized" | "ended" | "no_show"
 
@@ -27,30 +28,17 @@ export interface IRental {
     payments?: IPayment[]
 }
 
-export interface ICreateRental {
-    vehicle_id: number
-    user_id: string    
-    check_out_date: Date
-    expected_check_in_date: Date
-    start_mileage: Decimal
-    daily_rate: Decimal
+export interface ICreateRental extends Pick<IRental, 'vehicle_id' | 'user_id' | 'check_out_date' | 'expected_check_in_date' | 'start_mileage' | 'daily_rate'> {
     notes?: string
 }
 
-export interface IUpdateRental {
-    check_in_date: Date | null
-    end_mileage: Decimal | null
-    status: RentalStatus
-    daily_rate: Decimal
-    additional_charges: Decimal
-    penalties: Decimal
-    notes: string | null
-}
+export interface IUpdateRental extends Partial<Pick<IRental, 'check_in_date' | 'end_mileage' | 'status' | 'daily_rate' | 'additional_charges' | 'penalties' | 'notes'>> { }
 
-export interface IRentalRepository {
-    getAll(): Promise<IRental[]>
-    getById(rentalId: string): Promise<IRental | null>
-    create(rentalAttributes: ICreateRental): Promise<IRental>
-    update(rentalId: string, rentalAttributes: Partial<IUpdateRental>): Promise<IRental | null>
-    delete(rentalId: string): Promise<IRental | null>
+export interface IRentalsRepository {
+    getAll(tx?: unknown): Promise<IRental[]>
+    getById(rentalId: string, tx?: unknown): Promise<IRental | null>
+    create(rentalAttributes: ICreateRental, tx?: unknown): Promise<IRental>
+    update(rentalId: string, rentalAttributes: IUpdateRental, tx?: unknown): Promise<IRental | null>
+    delete(rentalId: string, tx?: unknown): Promise<IRental | null>
+    withTransaction: IDatabaseTransaction
 }

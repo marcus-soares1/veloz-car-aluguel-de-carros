@@ -1,30 +1,36 @@
-import { prisma } from "../database/prismaDatabase"
-import { ICreatePayment, IPayment, IPaymentRepository } from "./interfaces/IPaymentsRepository";
+import { Prisma } from "../../generated/prisma";
+import { prisma, runInTransaction } from "../database/prismaDatabase"
+import { ICreatePayment, IPayment, IPaymentsRepository, IWherePayments } from "./interfaces/IPaymentsRepository";
 
-export class PrismaPaymentsRepository implements IPaymentRepository {
-    async getAll(): Promise<IPayment[]> {
-        const payments: IPayment[] = await prisma.payments.findMany()
+export class PrismaPaymentsRepository implements IPaymentsRepository {
+
+    async getAll(where: IWherePayments, tx?: unknown): Promise<IPayment[]> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const payments: IPayment[] = await db.payments.findMany({where})
         return payments
     }
 
-    async getById(paymentId: string): Promise<IPayment | null> {
-        const payment: IPayment | null = await prisma.payments.findUnique({
+    async getById(paymentId: string, tx?: unknown): Promise<IPayment | null> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const payment: IPayment | null = await db.payments.findUnique({
             where: { id: paymentId }
         })
 
         return payment
     }
 
-    async create(paymentAttributes: ICreatePayment): Promise<IPayment> {
-        const createdPayment: IPayment = await prisma.payments.create({
+    async create(paymentAttributes: ICreatePayment, tx?: unknown): Promise<IPayment> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const createdPayment: IPayment = await db.payments.create({
             data: paymentAttributes
         })
 
         return createdPayment
     }
 
-    async update(paymentId: string, paymentAttributes: Partial<ICreatePayment>): Promise<IPayment | null> {
-        const updatedPayment: IPayment | null = await prisma.payments.update({
+    async update(paymentId: string, paymentAttributes: Partial<ICreatePayment>, tx?: unknown): Promise<IPayment | null> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const updatedPayment: IPayment | null = await db.payments.update({
             where: { id: paymentId },
             data: paymentAttributes
         })
@@ -32,11 +38,14 @@ export class PrismaPaymentsRepository implements IPaymentRepository {
         return updatedPayment
     }
 
-    async delete(paymentId: string): Promise<IPayment | null> {
-        const deletedPayment: IPayment | null = await prisma.payments.delete({
+    async delete(paymentId: string, tx?: unknown): Promise<IPayment | null> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const deletedPayment: IPayment | null = await db.payments.delete({
             where: { id: paymentId }
         })
 
         return deletedPayment
     }
+
+    withTransaction = runInTransaction
 }

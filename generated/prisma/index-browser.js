@@ -147,6 +147,7 @@ exports.Prisma.VehiclesScalarFieldEnum = {
   model: 'model',
   license_plate: 'license_plate',
   category_id: 'category_id',
+  license_plate: 'license_plate',
   manufacture_year: 'manufacture_year',
   color: 'color',
   diary_value: 'diary_value',
@@ -324,7 +325,10 @@ exports.PaymentMethod = exports.$Enums.PaymentMethod = {
 
 exports.PaymentStatus = exports.$Enums.PaymentStatus = {
   paid: 'paid',
-  pending: 'pending'
+  pending: 'pending',
+  refunded: 'refunded',
+  partialy_refunded: 'partialy_refunded',
+  canceled: 'canceled'
 };
 
 exports.PaymentType = exports.$Enums.PaymentType = {

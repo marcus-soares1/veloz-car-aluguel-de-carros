@@ -1,3 +1,5 @@
+import { IDatabaseTransaction } from "../../database/interface/IDatabaseTransaction"
+
 export interface ICategory {
     id: number
     name: string
@@ -12,9 +14,10 @@ export interface ICreateCategory {
 }
 
 export interface ICategoriesRepository {
-    getAll(): Promise<ICategory[]>
-    getById(categoryId: number): Promise<ICategory | null>
-    create(categoryAttributes: ICreateCategory): Promise<ICategory>
-    update(categoryId: number, categoryAttributes: Partial<ICreateCategory>): Promise<ICategory | null>
-    delete(categoryId: number): Promise<ICategory | null>
+    getAll(tx?: unknown): Promise<ICategory[]>
+    getById(categoryId: number, tx?: unknown): Promise<ICategory | null>
+    create(categoryAttributes: ICreateCategory, tx?: unknown): Promise<ICategory>
+    update(categoryId: number, categoryAttributes: Partial<ICreateCategory>, tx?: unknown): Promise<ICategory | null>
+    delete(categoryId: number, tx?: unknown): Promise<ICategory | null>
+    withTransaction: IDatabaseTransaction
 }

@@ -1,7 +1,8 @@
 import Decimal from "decimal.js"
 import { IRental } from "./IRentalsRepository"
+import { IDatabaseTransaction } from "../../database/interface/IDatabaseTransaction";
 
-export type PaymentStatus = "paid" | "pending";
+export type PaymentStatus = "paid" | "pending" | "refunded" | "partialy_refunded" | "canceled";
 
 export type PaymentMethod = "pix" | "credit" | "debit";
 
@@ -10,11 +11,15 @@ export type PaymentType = "prepayment" | "final" | "security_deposit" | "adjust"
 export interface ICreatePayment {
     rental_id: string
     amount: Decimal
-    payment_date: Date
+    payment_date?: Date
     method_type: PaymentMethod
     status: PaymentStatus
     payment_type: PaymentType
-    proof_of_payment_url: string
+    proof_of_payment_url?: string
+}
+
+export interface IPaymentCalculation extends Pick<IPayment, 'payment_type' | 'amount'> {
+    method_type: PaymentMethod
 }
 
 export interface IPayment {
@@ -32,10 +37,18 @@ export interface IPayment {
     created_at: Date
 }
 
-export interface IPaymentRepository {
-    getAll(): Promise<IPayment[]>
-    getById(paymentId: string): Promise<IPayment | null>
-    create(paymentAttributes: ICreatePayment): Promise<IPayment>
-    update(paymentId: string, categoryAttributes: Partial<ICreatePayment>): Promise<IPayment | null>
-    delete(paymentId: string): Promise<IPayment | null>
+export interface IWherePayments {
+    id?: string,
+    rental_id?: string
+    method_type?: PaymentMethod
+    status?: PaymentStatus
+}
+
+export interface IPaymentsRepository {
+    getAll(where?: IWherePayments, tx?: unknown): Promise<IPayment[]>
+    getById(paymentId: string, tx?: unknown): Promise<IPayment | null>
+    create(paymentAttributes: ICreatePayment, tx?: unknown): Promise<IPayment>
+    update(paymentId: string, categoryAttributes: Partial<ICreatePayment>, tx?: unknown): Promise<IPayment | null>
+    delete(paymentId: string, tx?: unknown): Promise<IPayment | null>
+    withTransaction: IDatabaseTransaction
 }

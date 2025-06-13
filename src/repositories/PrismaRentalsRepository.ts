@@ -1,38 +1,45 @@
-import { prisma } from "../database/prismaDatabase"
-import { ICreateRental, IRental, IRentalRepository, IUpdateRental } from "./interfaces/IRentalsRepository";
+import { Prisma } from "../../generated/prisma";
+import { prisma, runInTransaction } from "../database/prismaDatabase"
+import { ICreateRental, IRental, IRentalsRepository, IUpdateRental } from "./interfaces/IRentalsRepository";
 
-export class PrismaRentalRepository implements IRentalRepository {
-    async getAll(): Promise<IRental[]> {
+export class PrismaRentalRepository implements IRentalsRepository {
+    async getAll(tx?: unknown): Promise<IRental[]> {
         const rentals: IRental[] = await prisma.rentals.findMany()
         return rentals
     }
 
-    async getById(rentalId: string): Promise<IRental | null> {
-        const rental: IRental | null = await prisma.rentals.findUnique({
+    async getById(rentalId: string, tx?: unknown): Promise<IRental | null> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const rental: IRental | null = await db.rentals.findUnique({
             where: { id: rentalId }
         })
         return rental
     }
 
-    async create(rentalAttributes: ICreateRental): Promise<IRental> {
-        const createdRental: IRental = await prisma.rentals.create({
+    async create(rentalAttributes: ICreateRental, tx?: unknown): Promise<IRental> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const createdRental: IRental = await db.rentals.create({
             data: {...rentalAttributes, status: 'reserved'}
         })
         return createdRental
     }
 
-    async update(rentalId: string, rentalAttributes: Partial<IUpdateRental>): Promise<IRental | null> {
-        const updatedRental: IRental | null = await prisma.rentals.update({
+    async update(rentalId: string, rentalAttributes: IUpdateRental, tx?: unknown): Promise<IRental | null> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const updatedRental: IRental | null = await db.rentals.update({
             where: { id: rentalId },
             data: rentalAttributes
         })
         return updatedRental
     }
 
-    async delete(rentalId: string): Promise<IRental | null> {
-        const deletedRental: IRental | null = await prisma.rentals.delete({
+    async delete(rentalId: string, tx?: unknown): Promise<IRental | null> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const deletedRental: IRental | null = await db.rentals.delete({
             where: { id: rentalId }
         })
         return deletedRental
     }
+
+    withTransaction = runInTransaction
 }

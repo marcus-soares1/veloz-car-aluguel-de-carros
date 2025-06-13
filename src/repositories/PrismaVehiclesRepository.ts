@@ -1,14 +1,17 @@
-import { prisma } from "../database/prismaDatabase"
-import { ICreateVehicle, IVehicle, IVehicleRepository } from "./interfaces/IVehiclesRepository";
+import { Prisma } from "../../generated/prisma";
+import { prisma, runInTransaction } from "../database/prismaDatabase"
+import { ICreateVehicle, IUpdateVehicle, IVehicle, IVehiclesRepository, IVehiclesWhere } from "./interfaces/IVehiclesRepository";
 
-export class PrismaVehiclesRepository implements IVehicleRepository {
-    async getAll(): Promise<IVehicle[]> {
-        const vehicles: IVehicle[] = await prisma.vehicles.findMany({include: {category: true}})
+export class PrismaVehiclesRepository implements IVehiclesRepository {
+    async getAll(where?: IVehiclesWhere, tx?: unknown): Promise<IVehicle[]> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const vehicles: IVehicle[] = await db.vehicles.findMany({where, include: {category: true}})
         return vehicles
     }
 
-    async getById(vehicleId: number): Promise<IVehicle | null> {
-        const vehicle: IVehicle | null = await prisma.vehicles.findUnique({
+    async getById(vehicleId: number, tx?: unknown): Promise<IVehicle | null> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const vehicle: IVehicle | null = await db.vehicles.findUnique({
             where: { id: vehicleId },
             include: {
                 category: true
@@ -17,10 +20,12 @@ export class PrismaVehiclesRepository implements IVehicleRepository {
         return vehicle
     }
 
-    async create(vehicleAttributes: ICreateVehicle): Promise<IVehicle> {
-        const createdVehicle: IVehicle = await prisma.vehicles.create({
+    async create(vehicleAttributes: ICreateVehicle, tx?: unknown): Promise<IVehicle> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const createdVehicle: IVehicle = await db.vehicles.create({
             data: {
                 ...vehicleAttributes,
+                status: 'avaliable'
             },
             include: {
                 category: true
@@ -29,18 +34,22 @@ export class PrismaVehiclesRepository implements IVehicleRepository {
         return createdVehicle
     }
 
-    async update(vehicleId: number, vehicleAttributes: Partial<ICreateVehicle>): Promise<IVehicle | null> {
-        const updatedVehicle: IVehicle | null = await prisma.vehicles.update({
+    async update(vehicleId: number, vehicleAttributes: IUpdateVehicle, tx?: unknown): Promise<IVehicle | null> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const updatedVehicle: IVehicle | null = await db.vehicles.update({
             where: { id: vehicleId },
             data: vehicleAttributes
         })
         return updatedVehicle
     }
 
-    async delete(vehicleId: number): Promise<IVehicle | null> {
-        const deletedVehicle: IVehicle | null = await prisma.vehicles.delete({
+    async delete(vehicleId: number, tx?: unknown): Promise<IVehicle | null> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const deletedVehicle: IVehicle | null = await db.vehicles.delete({
             where: { id: vehicleId }
         })
         return deletedVehicle
     }
+
+    withTransaction = runInTransaction
 }
