@@ -4,23 +4,23 @@ export class CategoriesService {
 
     constructor(private readonly categoriesRepository: ICategoriesRepository) { }
 
-    async getAll() {
-        return this.categoriesRepository.getAll();
+    async getAll(tx?: unknown) {
+        return this.categoriesRepository.getAll(tx);
     }
 
-    async getById(id: number) {
-        return this.categoriesRepository.getById(id);
+    async getById(id: number, tx?: unknown) {
+        return this.categoriesRepository.getById(id, tx);
     }
 
-    async create(category: ICategory) {
-        return this.categoriesRepository.create(category);
+    async create(category: ICategory, tx?: unknown) {
+        return this.categoriesRepository.create(category, tx);
     }
 
-    async update(id: number, categoryData: Partial<ICategory>) {
-        return this.categoriesRepository.update(id, categoryData);
+    async update(id: number, categoryData: Partial<ICategory>, tx?: unknown) {
+        return this.categoriesRepository.update(id, categoryData, tx);
     }
 
-    async delete(id: number) {
-        return this.categoriesRepository.delete(id)
+    async delete(id: number, tx?: unknown) {
+        return this.categoriesRepository.delete(id, tx)
     }
 }
