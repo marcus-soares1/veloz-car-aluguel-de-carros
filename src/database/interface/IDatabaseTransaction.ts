@@ -1,0 +1,1 @@
+export type IDatabaseTransaction = <T>(fn: (transactionContext: unknown) => Promise<T>) => Promise<T>
