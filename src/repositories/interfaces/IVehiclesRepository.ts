@@ -1,5 +1,6 @@
 import { Decimal } from 'decimal.js'
 import { ICategory } from './ICategoriesRepository'
+import { IDatabaseTransaction } from '../../database/interface/IDatabaseTransaction';
 
 export type VehicleStatus = "avaliable" | "rented" | "reserved" | "under_maintenance"
 export type Brand = "FIAT" | "VOLKSWAGEN" | "CHEVROLET" | "FORD" | "RENAULT" | "HYUNDAI" | "TOYOTA" | "HONDA" | "NISSAN" | "PEUGEOT" | "CITROEN" | "KIA" | "MITSUBISHI" | "JEEP" | "BMW" | "MERCEDES_BENZ" | "AUDI" | "VOLVO" | "CHERY" | "BYD" | "TESLA" | "LAND_ROVER" | "PORSCHE" | "FERRARI" | "LAMBORGHINI" | "ALFA_ROMEO" | "JAGUAR" | "RAM" | "GWM" | "JAC" | "TROLLER";
@@ -34,9 +35,10 @@ export interface IVehiclesWhere {
 }
 
 export interface IVehiclesRepository {
-    getAll(where?: IVehiclesWhere): Promise<IVehicle[]>
-    getById(vehicleId: number): Promise<IVehicle | null>
-    create(categoryAttributes: ICreateVehicle): Promise<IVehicle>
-    update(vehicleId: number, categoryAttributes: IUpdateVehicle): Promise<IVehicle | null>
-    delete(vehicleId: number): Promise<IVehicle | null>
+    getAll(where?: IVehiclesWhere, tx?: unknown): Promise<IVehicle[]>
+    getById(vehicleId: number, tx?: unknown): Promise<IVehicle | null>
+    create(categoryAttributes: ICreateVehicle, tx?: unknown): Promise<IVehicle>
+    update(vehicleId: number, categoryAttributes: IUpdateVehicle, tx?: unknown): Promise<IVehicle | null>
+    delete(vehicleId: number, tx?: unknown): Promise<IVehicle | null>
+    withTransaction: IDatabaseTransaction
 }

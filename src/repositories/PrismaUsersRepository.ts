@@ -1,48 +1,56 @@
-import { prisma } from "../database/prismaDatabase"
+import { Prisma } from "../../generated/prisma"
+import { prisma, runInTransaction } from "../database/prismaDatabase"
 import { ICreateUser, IUser, IUsersRepository, Role } from "./interfaces/IUsersRepository"
 
 
 export class PrismaUsersRepository implements IUsersRepository{
-    async getAll(): Promise<IUser[]> {
-        const users: IUser[] = await prisma.users.findMany()
+    async getAll(tx?: unknown): Promise<IUser[]> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const users: IUser[] = await db.users.findMany()
         return users
     }
-    async getById(userId: string): Promise<IUser | null> {
-        const user: IUser | null = await prisma.users.findUnique({
+    async getById(userId: string, tx?: unknown): Promise<IUser | null> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const user: IUser | null = await db.users.findUnique({
             where: { id: userId }
         })
 
         return user
     }
-    async searchUserId({id, email, cpf, role}: {id?: string, email?: string, cpf?: string, role?: Role}): Promise<string | null> {
+    async searchUserId({id, email, cpf, role}: {id?: string, email?: string, cpf?: string, role?: Role}, tx?: unknown): Promise<string | null> {
         const where = { id, email, cpf, role }
-        const user: { id: string } | null = await prisma.users.findUnique({
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const user: { id: string } | null = await db.users.findUnique({
             where,
             select: { id: true }
         })
         return user? user.id : null
     }
-    async create(userAttributes: ICreateUser): Promise<IUser> {
-        const newUser: IUser = await prisma.users.create({
+    async create(userAttributes: ICreateUser, tx?: unknown): Promise<IUser> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const newUser: IUser = await db.users.create({
             data: userAttributes
         })
 
         return newUser
     }
-    async update(userId: string, userAttributes: Partial<ICreateUser>): Promise<IUser | null> {
-        const updatedUser: IUser | null = await prisma.users.update({
+    async update(userId: string, userAttributes: Partial<ICreateUser>, tx?: unknown): Promise<IUser | null> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const updatedUser: IUser | null = await db.users.update({
             where: { id: userId },
             data: userAttributes
         })
 
         return updatedUser
     }
-    async delete(userId: string): Promise<IUser | null> {
-        const deletedUser: IUser | null = await prisma.users.delete({
+    async delete(userId: string, tx?: unknown): Promise<IUser | null> {
+        const db = (tx ?? prisma) as Prisma.TransactionClient
+        const deletedUser: IUser | null = await db.users.delete({
             where: { id: userId }
         })
 
         return deletedUser
     }
 
+    withTransaction = runInTransaction
 }
