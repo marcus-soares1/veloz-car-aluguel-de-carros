@@ -29,7 +29,6 @@ export interface IRental {
 }
 
 export interface ICreateRental extends Pick<IRental, 'vehicle_id' | 'user_id' | 'check_out_date' | 'expected_check_in_date' | 'start_mileage' | 'daily_rate'> {
-export interface ICreateRental extends Pick<IRental, 'vehicle_id' | 'user_id' | 'check_out_date' | 'expected_check_in_date' | 'start_mileage' | 'daily_rate'> {
     notes?: string
 }
 
