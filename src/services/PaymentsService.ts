@@ -1,4 +1,4 @@
-import { IPaymentGateway } from "../repositories/gateway/interface/IPaymentGateway";
+import { IPaymentGateway } from "../gateways/interface/IPaymentGateway";
 import { ICreatePayment, IPayment, IPaymentCalculation, IPaymentsRepository, IWherePayments, PaymentStatus } from "../repositories/interfaces/IPaymentsRepository";
 import { RentalService } from "./RentalsService";
 

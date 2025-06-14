@@ -191,6 +191,7 @@ model vehicles {
   id               Int           @id @default(autoincrement())
   brand            Brand
   model            Model
+  license_plate    String        @unique @db.VarChar(7)
   category_id      Int
   license_plate    String        @db.VarChar(7)
   manufacture_year DateTime

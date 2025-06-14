@@ -33,6 +33,7 @@ export interface ICreateRental extends Pick<IRental, 'vehicle_id' | 'user_id' | 
 }
 
 export interface IUpdateRental extends Partial<Pick<IRental, 'check_in_date' | 'end_mileage' | 'status' | 'daily_rate' | 'additional_charges' | 'penalties' | 'notes'>> { }
+export interface IUpdateRental extends Partial<Pick<IRental, 'check_in_date' | 'end_mileage' | 'status' | 'daily_rate' | 'additional_charges' | 'penalties' | 'notes'>> { }
 
 export interface IRentalsRepository {
     getAll(tx?: unknown): Promise<IRental[]>

@@ -145,6 +145,7 @@ exports.Prisma.VehiclesScalarFieldEnum = {
   id: 'id',
   brand: 'brand',
   model: 'model',
+  license_plate: 'license_plate',
   category_id: 'category_id',
   license_plate: 'license_plate',
   manufacture_year: 'manufacture_year',

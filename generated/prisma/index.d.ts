@@ -3830,6 +3830,7 @@ export namespace Prisma {
     id: number | null
     brand: $Enums.Brand | null
     model: $Enums.Model | null
+    license_plate: string | null
     category_id: number | null
     license_plate: string | null
     manufacture_year: Date | null
@@ -3845,6 +3846,7 @@ export namespace Prisma {
     id: number | null
     brand: $Enums.Brand | null
     model: $Enums.Model | null
+    license_plate: string | null
     category_id: number | null
     license_plate: string | null
     manufacture_year: Date | null
@@ -3860,6 +3862,7 @@ export namespace Prisma {
     id: number
     brand: number
     model: number
+    license_plate: number
     category_id: number
     license_plate: number
     manufacture_year: number
@@ -3891,6 +3894,7 @@ export namespace Prisma {
     id?: true
     brand?: true
     model?: true
+    license_plate?: true
     category_id?: true
     license_plate?: true
     manufacture_year?: true
@@ -3906,6 +3910,7 @@ export namespace Prisma {
     id?: true
     brand?: true
     model?: true
+    license_plate?: true
     category_id?: true
     license_plate?: true
     manufacture_year?: true
@@ -3921,6 +3926,7 @@ export namespace Prisma {
     id?: true
     brand?: true
     model?: true
+    license_plate?: true
     category_id?: true
     license_plate?: true
     manufacture_year?: true
@@ -4023,6 +4029,7 @@ export namespace Prisma {
     id: number
     brand: $Enums.Brand
     model: $Enums.Model
+    license_plate: string
     category_id: number
     license_plate: string
     manufacture_year: Date
@@ -4057,6 +4064,7 @@ export namespace Prisma {
     id?: boolean
     brand?: boolean
     model?: boolean
+    license_plate?: boolean
     category_id?: boolean
     license_plate?: boolean
     manufacture_year?: boolean
@@ -4075,6 +4083,7 @@ export namespace Prisma {
     id?: boolean
     brand?: boolean
     model?: boolean
+    license_plate?: boolean
     category_id?: boolean
     license_plate?: boolean
     manufacture_year?: boolean
@@ -4091,6 +4100,7 @@ export namespace Prisma {
     id?: boolean
     brand?: boolean
     model?: boolean
+    license_plate?: boolean
     category_id?: boolean
     license_plate?: boolean
     manufacture_year?: boolean
@@ -4107,6 +4117,7 @@ export namespace Prisma {
     id?: boolean
     brand?: boolean
     model?: boolean
+    license_plate?: boolean
     category_id?: boolean
     license_plate?: boolean
     manufacture_year?: boolean
@@ -4141,6 +4152,7 @@ export namespace Prisma {
       id: number
       brand: $Enums.Brand
       model: $Enums.Model
+      license_plate: string
       category_id: number
       license_plate: string
       manufacture_year: Date
@@ -4578,6 +4590,7 @@ export namespace Prisma {
     readonly id: FieldRef<"vehicles", 'Int'>
     readonly brand: FieldRef<"vehicles", 'Brand'>
     readonly model: FieldRef<"vehicles", 'Model'>
+    readonly license_plate: FieldRef<"vehicles", 'String'>
     readonly category_id: FieldRef<"vehicles", 'Int'>
     readonly license_plate: FieldRef<"vehicles", 'String'>
     readonly manufacture_year: FieldRef<"vehicles", 'DateTime'>
@@ -7520,6 +7533,7 @@ export namespace Prisma {
     id: 'id',
     brand: 'brand',
     model: 'model',
+    license_plate: 'license_plate',
     category_id: 'category_id',
     license_plate: 'license_plate',
     manufacture_year: 'manufacture_year',
@@ -7930,6 +7944,7 @@ export namespace Prisma {
     id?: IntFilter<"vehicles"> | number
     brand?: EnumBrandFilter<"vehicles"> | $Enums.Brand
     model?: EnumModelFilter<"vehicles"> | $Enums.Model
+    license_plate?: StringFilter<"vehicles"> | string
     category_id?: IntFilter<"vehicles"> | number
     license_plate?: StringFilter<"vehicles"> | string
     manufacture_year?: DateTimeFilter<"vehicles"> | Date | string
@@ -7947,6 +7962,7 @@ export namespace Prisma {
     id?: SortOrder
     brand?: SortOrder
     model?: SortOrder
+    license_plate?: SortOrder
     category_id?: SortOrder
     license_plate?: SortOrder
     manufacture_year?: SortOrder
@@ -7962,6 +7978,7 @@ export namespace Prisma {
 
   export type vehiclesWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    license_plate?: string
     AND?: vehiclesWhereInput | vehiclesWhereInput[]
     OR?: vehiclesWhereInput[]
     NOT?: vehiclesWhereInput | vehiclesWhereInput[]
@@ -7978,12 +7995,13 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"vehicles"> | Date | string
     rentals?: RentalsListRelationFilter
     category?: XOR<CategoriesScalarRelationFilter, categoriesWhereInput>
-  }, "id">
+  }, "id" | "license_plate">
 
   export type vehiclesOrderByWithAggregationInput = {
     id?: SortOrder
     brand?: SortOrder
     model?: SortOrder
+    license_plate?: SortOrder
     category_id?: SortOrder
     license_plate?: SortOrder
     manufacture_year?: SortOrder
@@ -8007,6 +8025,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"vehicles"> | number
     brand?: EnumBrandWithAggregatesFilter<"vehicles"> | $Enums.Brand
     model?: EnumModelWithAggregatesFilter<"vehicles"> | $Enums.Model
+    license_plate?: StringWithAggregatesFilter<"vehicles"> | string
     category_id?: IntWithAggregatesFilter<"vehicles"> | number
     license_plate?: StringWithAggregatesFilter<"vehicles"> | string
     manufacture_year?: DateTimeWithAggregatesFilter<"vehicles"> | Date | string
@@ -8389,6 +8408,7 @@ export namespace Prisma {
     id?: number
     brand: $Enums.Brand
     model: $Enums.Model
+    license_plate: string
     category_id: number
     license_plate: string
     manufacture_year: Date | string
@@ -8420,6 +8440,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: EnumModelFieldUpdateOperationsInput | $Enums.Model
+    license_plate?: StringFieldUpdateOperationsInput | string
     category_id?: IntFieldUpdateOperationsInput | number
     license_plate?: StringFieldUpdateOperationsInput | string
     manufacture_year?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8436,6 +8457,7 @@ export namespace Prisma {
     id?: number
     brand: $Enums.Brand
     model: $Enums.Model
+    license_plate: string
     category_id: number
     license_plate: string
     manufacture_year: Date | string
@@ -8464,6 +8486,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: EnumModelFieldUpdateOperationsInput | $Enums.Model
+    license_plate?: StringFieldUpdateOperationsInput | string
     category_id?: IntFieldUpdateOperationsInput | number
     license_plate?: StringFieldUpdateOperationsInput | string
     manufacture_year?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8999,6 +9022,7 @@ export namespace Prisma {
     id?: SortOrder
     brand?: SortOrder
     model?: SortOrder
+    license_plate?: SortOrder
     category_id?: SortOrder
     license_plate?: SortOrder
     manufacture_year?: SortOrder
@@ -9021,6 +9045,7 @@ export namespace Prisma {
     id?: SortOrder
     brand?: SortOrder
     model?: SortOrder
+    license_plate?: SortOrder
     category_id?: SortOrder
     license_plate?: SortOrder
     manufacture_year?: SortOrder
@@ -9036,6 +9061,7 @@ export namespace Prisma {
     id?: SortOrder
     brand?: SortOrder
     model?: SortOrder
+    license_plate?: SortOrder
     category_id?: SortOrder
     license_plate?: SortOrder
     manufacture_year?: SortOrder
@@ -10184,6 +10210,7 @@ export namespace Prisma {
     id?: IntFilter<"vehicles"> | number
     brand?: EnumBrandFilter<"vehicles"> | $Enums.Brand
     model?: EnumModelFilter<"vehicles"> | $Enums.Model
+    license_plate?: StringFilter<"vehicles"> | string
     category_id?: IntFilter<"vehicles"> | number
     license_plate?: StringFilter<"vehicles"> | string
     manufacture_year?: DateTimeFilter<"vehicles"> | Date | string
@@ -10445,6 +10472,7 @@ export namespace Prisma {
     id?: number
     brand: $Enums.Brand
     model: $Enums.Model
+    license_plate: string
     category_id: number
     license_plate: string
     manufacture_year: Date | string
@@ -10554,6 +10582,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: EnumModelFieldUpdateOperationsInput | $Enums.Model
+    license_plate?: StringFieldUpdateOperationsInput | string
     category_id?: IntFieldUpdateOperationsInput | number
     license_plate?: StringFieldUpdateOperationsInput | string
     manufacture_year?: DateTimeFieldUpdateOperationsInput | Date | string
