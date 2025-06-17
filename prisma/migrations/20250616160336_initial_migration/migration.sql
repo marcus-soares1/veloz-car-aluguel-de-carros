@@ -2,13 +2,13 @@
 CREATE TYPE "Role" AS ENUM ('client', 'attendant', 'admin');
 
 -- CreateEnum
-CREATE TYPE "VehicleStatus" AS ENUM ('avaliable', 'rented', 'under_maintenance');
+CREATE TYPE "VehicleStatus" AS ENUM ('avaliable', 'rented', 'under_maintenance', 'reserved');
 
 -- CreateEnum
 CREATE TYPE "RentalStatus" AS ENUM ('reserved', 'rented', 'canceled', 'finalized', 'ended', 'no_show');
 
 -- CreateEnum
-CREATE TYPE "PaymentStatus" AS ENUM ('paid', 'pending');
+CREATE TYPE "PaymentStatus" AS ENUM ('paid', 'pending', 'refunded', 'partialy_refunded', 'canceled');
 
 -- CreateEnum
 CREATE TYPE "PaymentMethod" AS ENUM ('pix', 'credit', 'debit');
@@ -73,6 +73,7 @@ CREATE TABLE "payments" (
     "rental_id" UUID NOT NULL,
     "amount" DECIMAL(65,30) NOT NULL,
     "payment_date" TIMESTAMP(3),
+    "refund_amount" DECIMAL(65,30),
     "refund_date" TIMESTAMP(3),
     "method_type" "PaymentMethod" NOT NULL,
     "status" "PaymentStatus" NOT NULL,

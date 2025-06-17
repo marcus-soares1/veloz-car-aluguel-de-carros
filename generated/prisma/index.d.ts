@@ -3832,7 +3832,6 @@ export namespace Prisma {
     model: $Enums.Model | null
     license_plate: string | null
     category_id: number | null
-    license_plate: string | null
     manufacture_year: Date | null
     color: string | null
     diary_value: Decimal | null
@@ -3848,7 +3847,6 @@ export namespace Prisma {
     model: $Enums.Model | null
     license_plate: string | null
     category_id: number | null
-    license_plate: string | null
     manufacture_year: Date | null
     color: string | null
     diary_value: Decimal | null
@@ -3864,7 +3862,6 @@ export namespace Prisma {
     model: number
     license_plate: number
     category_id: number
-    license_plate: number
     manufacture_year: number
     color: number
     diary_value: number
@@ -3896,7 +3893,6 @@ export namespace Prisma {
     model?: true
     license_plate?: true
     category_id?: true
-    license_plate?: true
     manufacture_year?: true
     color?: true
     diary_value?: true
@@ -3912,7 +3908,6 @@ export namespace Prisma {
     model?: true
     license_plate?: true
     category_id?: true
-    license_plate?: true
     manufacture_year?: true
     color?: true
     diary_value?: true
@@ -3928,7 +3923,6 @@ export namespace Prisma {
     model?: true
     license_plate?: true
     category_id?: true
-    license_plate?: true
     manufacture_year?: true
     color?: true
     diary_value?: true
@@ -4031,7 +4025,6 @@ export namespace Prisma {
     model: $Enums.Model
     license_plate: string
     category_id: number
-    license_plate: string
     manufacture_year: Date
     color: string
     diary_value: Decimal
@@ -4066,7 +4059,6 @@ export namespace Prisma {
     model?: boolean
     license_plate?: boolean
     category_id?: boolean
-    license_plate?: boolean
     manufacture_year?: boolean
     color?: boolean
     diary_value?: boolean
@@ -4085,7 +4077,6 @@ export namespace Prisma {
     model?: boolean
     license_plate?: boolean
     category_id?: boolean
-    license_plate?: boolean
     manufacture_year?: boolean
     color?: boolean
     diary_value?: boolean
@@ -4102,7 +4093,6 @@ export namespace Prisma {
     model?: boolean
     license_plate?: boolean
     category_id?: boolean
-    license_plate?: boolean
     manufacture_year?: boolean
     color?: boolean
     diary_value?: boolean
@@ -4119,7 +4109,6 @@ export namespace Prisma {
     model?: boolean
     license_plate?: boolean
     category_id?: boolean
-    license_plate?: boolean
     manufacture_year?: boolean
     color?: boolean
     diary_value?: boolean
@@ -4129,7 +4118,7 @@ export namespace Prisma {
     created_at?: boolean
   }
 
-  export type vehiclesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "brand" | "model" | "category_id" | "license_plate" | "manufacture_year" | "color" | "diary_value" | "status" | "kilometers" | "updated_at" | "created_at", ExtArgs["result"]["vehicles"]>
+  export type vehiclesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "brand" | "model" | "license_plate" | "category_id" | "manufacture_year" | "color" | "diary_value" | "status" | "kilometers" | "updated_at" | "created_at", ExtArgs["result"]["vehicles"]>
   export type vehiclesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     rentals?: boolean | vehicles$rentalsArgs<ExtArgs>
     category?: boolean | categoriesDefaultArgs<ExtArgs>
@@ -4154,7 +4143,6 @@ export namespace Prisma {
       model: $Enums.Model
       license_plate: string
       category_id: number
-      license_plate: string
       manufacture_year: Date
       color: string
       diary_value: Prisma.Decimal
@@ -4592,7 +4580,6 @@ export namespace Prisma {
     readonly model: FieldRef<"vehicles", 'Model'>
     readonly license_plate: FieldRef<"vehicles", 'String'>
     readonly category_id: FieldRef<"vehicles", 'Int'>
-    readonly license_plate: FieldRef<"vehicles", 'String'>
     readonly manufacture_year: FieldRef<"vehicles", 'DateTime'>
     readonly color: FieldRef<"vehicles", 'String'>
     readonly diary_value: FieldRef<"vehicles", 'Decimal'>
@@ -5052,10 +5039,12 @@ export namespace Prisma {
 
   export type PaymentsAvgAggregateOutputType = {
     amount: Decimal | null
+    refund_amount: Decimal | null
   }
 
   export type PaymentsSumAggregateOutputType = {
     amount: Decimal | null
+    refund_amount: Decimal | null
   }
 
   export type PaymentsMinAggregateOutputType = {
@@ -5063,6 +5052,7 @@ export namespace Prisma {
     rental_id: string | null
     amount: Decimal | null
     payment_date: Date | null
+    refund_amount: Decimal | null
     refund_date: Date | null
     method_type: $Enums.PaymentMethod | null
     status: $Enums.PaymentStatus | null
@@ -5077,6 +5067,7 @@ export namespace Prisma {
     rental_id: string | null
     amount: Decimal | null
     payment_date: Date | null
+    refund_amount: Decimal | null
     refund_date: Date | null
     method_type: $Enums.PaymentMethod | null
     status: $Enums.PaymentStatus | null
@@ -5091,6 +5082,7 @@ export namespace Prisma {
     rental_id: number
     amount: number
     payment_date: number
+    refund_amount: number
     refund_date: number
     method_type: number
     status: number
@@ -5104,10 +5096,12 @@ export namespace Prisma {
 
   export type PaymentsAvgAggregateInputType = {
     amount?: true
+    refund_amount?: true
   }
 
   export type PaymentsSumAggregateInputType = {
     amount?: true
+    refund_amount?: true
   }
 
   export type PaymentsMinAggregateInputType = {
@@ -5115,6 +5109,7 @@ export namespace Prisma {
     rental_id?: true
     amount?: true
     payment_date?: true
+    refund_amount?: true
     refund_date?: true
     method_type?: true
     status?: true
@@ -5129,6 +5124,7 @@ export namespace Prisma {
     rental_id?: true
     amount?: true
     payment_date?: true
+    refund_amount?: true
     refund_date?: true
     method_type?: true
     status?: true
@@ -5143,6 +5139,7 @@ export namespace Prisma {
     rental_id?: true
     amount?: true
     payment_date?: true
+    refund_amount?: true
     refund_date?: true
     method_type?: true
     status?: true
@@ -5244,6 +5241,7 @@ export namespace Prisma {
     rental_id: string
     amount: Decimal
     payment_date: Date | null
+    refund_amount: Decimal | null
     refund_date: Date | null
     method_type: $Enums.PaymentMethod
     status: $Enums.PaymentStatus
@@ -5277,6 +5275,7 @@ export namespace Prisma {
     rental_id?: boolean
     amount?: boolean
     payment_date?: boolean
+    refund_amount?: boolean
     refund_date?: boolean
     method_type?: boolean
     status?: boolean
@@ -5292,6 +5291,7 @@ export namespace Prisma {
     rental_id?: boolean
     amount?: boolean
     payment_date?: boolean
+    refund_amount?: boolean
     refund_date?: boolean
     method_type?: boolean
     status?: boolean
@@ -5307,6 +5307,7 @@ export namespace Prisma {
     rental_id?: boolean
     amount?: boolean
     payment_date?: boolean
+    refund_amount?: boolean
     refund_date?: boolean
     method_type?: boolean
     status?: boolean
@@ -5322,6 +5323,7 @@ export namespace Prisma {
     rental_id?: boolean
     amount?: boolean
     payment_date?: boolean
+    refund_amount?: boolean
     refund_date?: boolean
     method_type?: boolean
     status?: boolean
@@ -5331,7 +5333,7 @@ export namespace Prisma {
     created_at?: boolean
   }
 
-  export type paymentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "rental_id" | "amount" | "payment_date" | "refund_date" | "method_type" | "status" | "payment_type" | "proof_of_payment_url" | "updated_at" | "created_at", ExtArgs["result"]["payments"]>
+  export type paymentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "rental_id" | "amount" | "payment_date" | "refund_amount" | "refund_date" | "method_type" | "status" | "payment_type" | "proof_of_payment_url" | "updated_at" | "created_at", ExtArgs["result"]["payments"]>
   export type paymentsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     rental?: boolean | rentalsDefaultArgs<ExtArgs>
   }
@@ -5352,6 +5354,7 @@ export namespace Prisma {
       rental_id: string
       amount: Prisma.Decimal
       payment_date: Date | null
+      refund_amount: Prisma.Decimal | null
       refund_date: Date | null
       method_type: $Enums.PaymentMethod
       status: $Enums.PaymentStatus
@@ -5787,6 +5790,7 @@ export namespace Prisma {
     readonly rental_id: FieldRef<"payments", 'String'>
     readonly amount: FieldRef<"payments", 'Decimal'>
     readonly payment_date: FieldRef<"payments", 'DateTime'>
+    readonly refund_amount: FieldRef<"payments", 'Decimal'>
     readonly refund_date: FieldRef<"payments", 'DateTime'>
     readonly method_type: FieldRef<"payments", 'PaymentMethod'>
     readonly status: FieldRef<"payments", 'PaymentStatus'>
@@ -7535,7 +7539,6 @@ export namespace Prisma {
     model: 'model',
     license_plate: 'license_plate',
     category_id: 'category_id',
-    license_plate: 'license_plate',
     manufacture_year: 'manufacture_year',
     color: 'color',
     diary_value: 'diary_value',
@@ -7553,6 +7556,7 @@ export namespace Prisma {
     rental_id: 'rental_id',
     amount: 'amount',
     payment_date: 'payment_date',
+    refund_amount: 'refund_amount',
     refund_date: 'refund_date',
     method_type: 'method_type',
     status: 'status',
@@ -7946,7 +7950,6 @@ export namespace Prisma {
     model?: EnumModelFilter<"vehicles"> | $Enums.Model
     license_plate?: StringFilter<"vehicles"> | string
     category_id?: IntFilter<"vehicles"> | number
-    license_plate?: StringFilter<"vehicles"> | string
     manufacture_year?: DateTimeFilter<"vehicles"> | Date | string
     color?: StringFilter<"vehicles"> | string
     diary_value?: DecimalFilter<"vehicles"> | Decimal | DecimalJsLike | number | string
@@ -7964,7 +7967,6 @@ export namespace Prisma {
     model?: SortOrder
     license_plate?: SortOrder
     category_id?: SortOrder
-    license_plate?: SortOrder
     manufacture_year?: SortOrder
     color?: SortOrder
     diary_value?: SortOrder
@@ -7985,7 +7987,6 @@ export namespace Prisma {
     brand?: EnumBrandFilter<"vehicles"> | $Enums.Brand
     model?: EnumModelFilter<"vehicles"> | $Enums.Model
     category_id?: IntFilter<"vehicles"> | number
-    license_plate?: StringFilter<"vehicles"> | string
     manufacture_year?: DateTimeFilter<"vehicles"> | Date | string
     color?: StringFilter<"vehicles"> | string
     diary_value?: DecimalFilter<"vehicles"> | Decimal | DecimalJsLike | number | string
@@ -8003,7 +8004,6 @@ export namespace Prisma {
     model?: SortOrder
     license_plate?: SortOrder
     category_id?: SortOrder
-    license_plate?: SortOrder
     manufacture_year?: SortOrder
     color?: SortOrder
     diary_value?: SortOrder
@@ -8027,7 +8027,6 @@ export namespace Prisma {
     model?: EnumModelWithAggregatesFilter<"vehicles"> | $Enums.Model
     license_plate?: StringWithAggregatesFilter<"vehicles"> | string
     category_id?: IntWithAggregatesFilter<"vehicles"> | number
-    license_plate?: StringWithAggregatesFilter<"vehicles"> | string
     manufacture_year?: DateTimeWithAggregatesFilter<"vehicles"> | Date | string
     color?: StringWithAggregatesFilter<"vehicles"> | string
     diary_value?: DecimalWithAggregatesFilter<"vehicles"> | Decimal | DecimalJsLike | number | string
@@ -8045,6 +8044,7 @@ export namespace Prisma {
     rental_id?: UuidFilter<"payments"> | string
     amount?: DecimalFilter<"payments"> | Decimal | DecimalJsLike | number | string
     payment_date?: DateTimeNullableFilter<"payments"> | Date | string | null
+    refund_amount?: DecimalNullableFilter<"payments"> | Decimal | DecimalJsLike | number | string | null
     refund_date?: DateTimeNullableFilter<"payments"> | Date | string | null
     method_type?: EnumPaymentMethodFilter<"payments"> | $Enums.PaymentMethod
     status?: EnumPaymentStatusFilter<"payments"> | $Enums.PaymentStatus
@@ -8060,6 +8060,7 @@ export namespace Prisma {
     rental_id?: SortOrder
     amount?: SortOrder
     payment_date?: SortOrderInput | SortOrder
+    refund_amount?: SortOrderInput | SortOrder
     refund_date?: SortOrderInput | SortOrder
     method_type?: SortOrder
     status?: SortOrder
@@ -8078,6 +8079,7 @@ export namespace Prisma {
     rental_id?: UuidFilter<"payments"> | string
     amount?: DecimalFilter<"payments"> | Decimal | DecimalJsLike | number | string
     payment_date?: DateTimeNullableFilter<"payments"> | Date | string | null
+    refund_amount?: DecimalNullableFilter<"payments"> | Decimal | DecimalJsLike | number | string | null
     refund_date?: DateTimeNullableFilter<"payments"> | Date | string | null
     method_type?: EnumPaymentMethodFilter<"payments"> | $Enums.PaymentMethod
     status?: EnumPaymentStatusFilter<"payments"> | $Enums.PaymentStatus
@@ -8093,6 +8095,7 @@ export namespace Prisma {
     rental_id?: SortOrder
     amount?: SortOrder
     payment_date?: SortOrderInput | SortOrder
+    refund_amount?: SortOrderInput | SortOrder
     refund_date?: SortOrderInput | SortOrder
     method_type?: SortOrder
     status?: SortOrder
@@ -8115,6 +8118,7 @@ export namespace Prisma {
     rental_id?: UuidWithAggregatesFilter<"payments"> | string
     amount?: DecimalWithAggregatesFilter<"payments"> | Decimal | DecimalJsLike | number | string
     payment_date?: DateTimeNullableWithAggregatesFilter<"payments"> | Date | string | null
+    refund_amount?: DecimalNullableWithAggregatesFilter<"payments"> | Decimal | DecimalJsLike | number | string | null
     refund_date?: DateTimeNullableWithAggregatesFilter<"payments"> | Date | string | null
     method_type?: EnumPaymentMethodWithAggregatesFilter<"payments"> | $Enums.PaymentMethod
     status?: EnumPaymentStatusWithAggregatesFilter<"payments"> | $Enums.PaymentStatus
@@ -8410,7 +8414,6 @@ export namespace Prisma {
     model: $Enums.Model
     license_plate: string
     category_id: number
-    license_plate: string
     manufacture_year: Date | string
     color: string
     diary_value: Decimal | DecimalJsLike | number | string
@@ -8442,7 +8445,6 @@ export namespace Prisma {
     model?: EnumModelFieldUpdateOperationsInput | $Enums.Model
     license_plate?: StringFieldUpdateOperationsInput | string
     category_id?: IntFieldUpdateOperationsInput | number
-    license_plate?: StringFieldUpdateOperationsInput | string
     manufacture_year?: DateTimeFieldUpdateOperationsInput | Date | string
     color?: StringFieldUpdateOperationsInput | string
     diary_value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -8459,7 +8461,6 @@ export namespace Prisma {
     model: $Enums.Model
     license_plate: string
     category_id: number
-    license_plate: string
     manufacture_year: Date | string
     color: string
     diary_value: Decimal | DecimalJsLike | number | string
@@ -8488,7 +8489,6 @@ export namespace Prisma {
     model?: EnumModelFieldUpdateOperationsInput | $Enums.Model
     license_plate?: StringFieldUpdateOperationsInput | string
     category_id?: IntFieldUpdateOperationsInput | number
-    license_plate?: StringFieldUpdateOperationsInput | string
     manufacture_year?: DateTimeFieldUpdateOperationsInput | Date | string
     color?: StringFieldUpdateOperationsInput | string
     diary_value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -8502,6 +8502,7 @@ export namespace Prisma {
     id?: string
     amount: Decimal | DecimalJsLike | number | string
     payment_date?: Date | string | null
+    refund_amount?: Decimal | DecimalJsLike | number | string | null
     refund_date?: Date | string | null
     method_type: $Enums.PaymentMethod
     status: $Enums.PaymentStatus
@@ -8517,6 +8518,7 @@ export namespace Prisma {
     rental_id: string
     amount: Decimal | DecimalJsLike | number | string
     payment_date?: Date | string | null
+    refund_amount?: Decimal | DecimalJsLike | number | string | null
     refund_date?: Date | string | null
     method_type: $Enums.PaymentMethod
     status: $Enums.PaymentStatus
@@ -8530,6 +8532,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refund_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     refund_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     method_type?: EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
@@ -8545,6 +8548,7 @@ export namespace Prisma {
     rental_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refund_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     refund_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     method_type?: EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
@@ -8559,6 +8563,7 @@ export namespace Prisma {
     rental_id: string
     amount: Decimal | DecimalJsLike | number | string
     payment_date?: Date | string | null
+    refund_amount?: Decimal | DecimalJsLike | number | string | null
     refund_date?: Date | string | null
     method_type: $Enums.PaymentMethod
     status: $Enums.PaymentStatus
@@ -8572,6 +8577,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refund_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     refund_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     method_type?: EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
@@ -8586,6 +8592,7 @@ export namespace Prisma {
     rental_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refund_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     refund_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     method_type?: EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
@@ -9024,7 +9031,6 @@ export namespace Prisma {
     model?: SortOrder
     license_plate?: SortOrder
     category_id?: SortOrder
-    license_plate?: SortOrder
     manufacture_year?: SortOrder
     color?: SortOrder
     diary_value?: SortOrder
@@ -9047,7 +9053,6 @@ export namespace Prisma {
     model?: SortOrder
     license_plate?: SortOrder
     category_id?: SortOrder
-    license_plate?: SortOrder
     manufacture_year?: SortOrder
     color?: SortOrder
     diary_value?: SortOrder
@@ -9063,7 +9068,6 @@ export namespace Prisma {
     model?: SortOrder
     license_plate?: SortOrder
     category_id?: SortOrder
-    license_plate?: SortOrder
     manufacture_year?: SortOrder
     color?: SortOrder
     diary_value?: SortOrder
@@ -9137,6 +9141,17 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type DecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
   export type EnumPaymentMethodFilter<$PrismaModel = never> = {
     equals?: $Enums.PaymentMethod | EnumPaymentMethodFieldRefInput<$PrismaModel>
     in?: $Enums.PaymentMethod[] | ListEnumPaymentMethodFieldRefInput<$PrismaModel>
@@ -9168,6 +9183,7 @@ export namespace Prisma {
     rental_id?: SortOrder
     amount?: SortOrder
     payment_date?: SortOrder
+    refund_amount?: SortOrder
     refund_date?: SortOrder
     method_type?: SortOrder
     status?: SortOrder
@@ -9179,6 +9195,7 @@ export namespace Prisma {
 
   export type paymentsAvgOrderByAggregateInput = {
     amount?: SortOrder
+    refund_amount?: SortOrder
   }
 
   export type paymentsMaxOrderByAggregateInput = {
@@ -9186,6 +9203,7 @@ export namespace Prisma {
     rental_id?: SortOrder
     amount?: SortOrder
     payment_date?: SortOrder
+    refund_amount?: SortOrder
     refund_date?: SortOrder
     method_type?: SortOrder
     status?: SortOrder
@@ -9200,6 +9218,7 @@ export namespace Prisma {
     rental_id?: SortOrder
     amount?: SortOrder
     payment_date?: SortOrder
+    refund_amount?: SortOrder
     refund_date?: SortOrder
     method_type?: SortOrder
     status?: SortOrder
@@ -9211,6 +9230,7 @@ export namespace Prisma {
 
   export type paymentsSumOrderByAggregateInput = {
     amount?: SortOrder
+    refund_amount?: SortOrder
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -9225,6 +9245,22 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
   export type EnumPaymentMethodWithAggregatesFilter<$PrismaModel = never> = {
@@ -9255,17 +9291,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPaymentTypeFilter<$PrismaModel>
     _max?: NestedEnumPaymentTypeFilter<$PrismaModel>
-  }
-
-  export type DecimalNullableFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
   }
 
   export type EnumRentalStatusFilter<$PrismaModel = never> = {
@@ -9365,22 +9390,6 @@ export namespace Prisma {
     daily_rate?: SortOrder
     additional_charges?: SortOrder
     penalties?: SortOrder
-  }
-
-  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedDecimalNullableFilter<$PrismaModel>
-    _sum?: NestedDecimalNullableFilter<$PrismaModel>
-    _min?: NestedDecimalNullableFilter<$PrismaModel>
-    _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
   export type EnumRentalStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -9587,6 +9596,14 @@ export namespace Prisma {
     set?: Date | string | null
   }
 
+  export type NullableDecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string | null
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
   export type EnumPaymentMethodFieldUpdateOperationsInput = {
     set?: $Enums.PaymentMethod
   }
@@ -9631,14 +9648,6 @@ export namespace Prisma {
     connectOrCreate?: paymentsCreateOrConnectWithoutRentalInput | paymentsCreateOrConnectWithoutRentalInput[]
     createMany?: paymentsCreateManyRentalInputEnvelope
     connect?: paymentsWhereUniqueInput | paymentsWhereUniqueInput[]
-  }
-
-  export type NullableDecimalFieldUpdateOperationsInput = {
-    set?: Decimal | DecimalJsLike | number | string | null
-    increment?: Decimal | DecimalJsLike | number | string
-    decrement?: Decimal | DecimalJsLike | number | string
-    multiply?: Decimal | DecimalJsLike | number | string
-    divide?: Decimal | DecimalJsLike | number | string
   }
 
   export type EnumRentalStatusFieldUpdateOperationsInput = {
@@ -9956,6 +9965,17 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
   export type NestedEnumPaymentMethodFilter<$PrismaModel = never> = {
     equals?: $Enums.PaymentMethod | EnumPaymentMethodFieldRefInput<$PrismaModel>
     in?: $Enums.PaymentMethod[] | ListEnumPaymentMethodFieldRefInput<$PrismaModel>
@@ -9991,6 +10011,22 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
   export type NestedEnumPaymentMethodWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.PaymentMethod | EnumPaymentMethodFieldRefInput<$PrismaModel>
     in?: $Enums.PaymentMethod[] | ListEnumPaymentMethodFieldRefInput<$PrismaModel>
@@ -10021,38 +10057,11 @@ export namespace Prisma {
     _max?: NestedEnumPaymentTypeFilter<$PrismaModel>
   }
 
-  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-  }
-
   export type NestedEnumRentalStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.RentalStatus | EnumRentalStatusFieldRefInput<$PrismaModel>
     in?: $Enums.RentalStatus[] | ListEnumRentalStatusFieldRefInput<$PrismaModel>
     notIn?: $Enums.RentalStatus[] | ListEnumRentalStatusFieldRefInput<$PrismaModel>
     not?: NestedEnumRentalStatusFilter<$PrismaModel> | $Enums.RentalStatus
-  }
-
-  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedDecimalNullableFilter<$PrismaModel>
-    _sum?: NestedDecimalNullableFilter<$PrismaModel>
-    _min?: NestedDecimalNullableFilter<$PrismaModel>
-    _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumRentalStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -10212,7 +10221,6 @@ export namespace Prisma {
     model?: EnumModelFilter<"vehicles"> | $Enums.Model
     license_plate?: StringFilter<"vehicles"> | string
     category_id?: IntFilter<"vehicles"> | number
-    license_plate?: StringFilter<"vehicles"> | string
     manufacture_year?: DateTimeFilter<"vehicles"> | Date | string
     color?: StringFilter<"vehicles"> | string
     diary_value?: DecimalFilter<"vehicles"> | Decimal | DecimalJsLike | number | string
@@ -10422,6 +10430,7 @@ export namespace Prisma {
     id?: string
     amount: Decimal | DecimalJsLike | number | string
     payment_date?: Date | string | null
+    refund_amount?: Decimal | DecimalJsLike | number | string | null
     refund_date?: Date | string | null
     method_type: $Enums.PaymentMethod
     status: $Enums.PaymentStatus
@@ -10435,6 +10444,7 @@ export namespace Prisma {
     id?: string
     amount: Decimal | DecimalJsLike | number | string
     payment_date?: Date | string | null
+    refund_amount?: Decimal | DecimalJsLike | number | string | null
     refund_date?: Date | string | null
     method_type: $Enums.PaymentMethod
     status: $Enums.PaymentStatus
@@ -10474,7 +10484,6 @@ export namespace Prisma {
     model: $Enums.Model
     license_plate: string
     category_id: number
-    license_plate: string
     manufacture_year: Date | string
     color: string
     diary_value: Decimal | DecimalJsLike | number | string
@@ -10544,6 +10553,7 @@ export namespace Prisma {
     rental_id?: UuidFilter<"payments"> | string
     amount?: DecimalFilter<"payments"> | Decimal | DecimalJsLike | number | string
     payment_date?: DateTimeNullableFilter<"payments"> | Date | string | null
+    refund_amount?: DecimalNullableFilter<"payments"> | Decimal | DecimalJsLike | number | string | null
     refund_date?: DateTimeNullableFilter<"payments"> | Date | string | null
     method_type?: EnumPaymentMethodFilter<"payments"> | $Enums.PaymentMethod
     status?: EnumPaymentStatusFilter<"payments"> | $Enums.PaymentStatus
@@ -10584,7 +10594,6 @@ export namespace Prisma {
     model?: EnumModelFieldUpdateOperationsInput | $Enums.Model
     license_plate?: StringFieldUpdateOperationsInput | string
     category_id?: IntFieldUpdateOperationsInput | number
-    license_plate?: StringFieldUpdateOperationsInput | string
     manufacture_year?: DateTimeFieldUpdateOperationsInput | Date | string
     color?: StringFieldUpdateOperationsInput | string
     diary_value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -10832,6 +10841,7 @@ export namespace Prisma {
     id?: string
     amount: Decimal | DecimalJsLike | number | string
     payment_date?: Date | string | null
+    refund_amount?: Decimal | DecimalJsLike | number | string | null
     refund_date?: Date | string | null
     method_type: $Enums.PaymentMethod
     status: $Enums.PaymentStatus
@@ -10845,6 +10855,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refund_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     refund_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     method_type?: EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
@@ -10858,6 +10869,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refund_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     refund_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     method_type?: EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
@@ -10871,6 +10883,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     payment_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refund_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     refund_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     method_type?: EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
     status?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
