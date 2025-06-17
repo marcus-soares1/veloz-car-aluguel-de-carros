@@ -9,7 +9,7 @@ export const differenceInDays = (start: Date, end: Date, absolute: boolean = fal
     }
 
     const difference = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24))
-    return Math.abs(difference)
+    return difference
 }
 
 export const differenceInHours = (start: Date, end: Date): number => {
