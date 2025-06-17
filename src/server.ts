@@ -25,7 +25,7 @@ app.use(rentalsRouter)
 app.use(usersRouter)
 app.use(vehiclesRouter)
 
-app.use(errorHandler)
 
+app.use(errorHandler)
 
 app.listen(PORT, ()=>console.log(`${PROTOCOL}://${BASE_URL}:${PORT}/`))
