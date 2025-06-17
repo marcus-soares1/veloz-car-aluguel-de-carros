@@ -3,6 +3,7 @@ import { ICreateUser, IUsersRepository, Role } from "../repositories/interfaces/
 
 export class UserService {
     constructor(private readonly userRepository: IUsersRepository){ }
+
     private async getUserId ({ id, email, cpf, role}: { id?: string, email?: string, cpf?: string, role?: Role}) {
         if(!email && !cpf)
             return null
@@ -10,6 +11,9 @@ export class UserService {
         return userId
     }
 
+    // GET /users
+
+    // GET /users/:id
     async getUserById (id: string)
     {
         const user = await this.userRepository.getById(id)
@@ -18,6 +22,7 @@ export class UserService {
         return user
     }
     
+    // POST /users
     async createUser (userAttributes: ICreateUser) {
         const { email, cpf, role} = userAttributes
         
@@ -31,6 +36,7 @@ export class UserService {
         return user
     }
 
+    // PUT /users/:id
     async updateUser(id: string, userAttributes: Partial<ICreateUser>) {
         const { email, cpf, role } = userAttributes
 
@@ -47,6 +53,7 @@ export class UserService {
         return user
     }
 
+    // DELETE /users/:id
     async deleteUser (userId: string) {
         const deletedUser = await this.userRepository.delete(userId) 
         if(!deletedUser) throw new HttpError('User not found', 404)
