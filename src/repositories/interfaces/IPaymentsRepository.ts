@@ -22,11 +22,14 @@ export interface IPaymentCalculation extends Pick<IPayment, 'payment_type' | 'am
     method_type: PaymentMethod
 }
 
+export interface IUpdatePayment extends Partial<Pick<IPayment, 'refund_date' | 'amount' | 'refund_amount' | 'refund_date' | 'payment_date' | 'method_type' | 'status' | 'proof_of_payment_url'>> { }
+
 export interface IPayment {
     id: string
     rental_id: string
     amount: Decimal
     payment_date: Date | null
+    refund_amount: Decimal | null
     refund_date: Date | null
     method_type: PaymentMethod
     status: PaymentStatus
@@ -48,7 +51,7 @@ export interface IPaymentsRepository {
     getAll(where?: IWherePayments, tx?: unknown): Promise<IPayment[]>
     getById(paymentId: string, tx?: unknown): Promise<IPayment | null>
     create(paymentAttributes: ICreatePayment, tx?: unknown): Promise<IPayment>
-    update(paymentId: string, categoryAttributes: Partial<ICreatePayment>, tx?: unknown): Promise<IPayment | null>
+    update(paymentId: string, categoryAttributes: IUpdatePayment, tx?: unknown): Promise<IPayment | null>
     delete(paymentId: string, tx?: unknown): Promise<IPayment | null>
     withTransaction: IDatabaseTransaction
 }

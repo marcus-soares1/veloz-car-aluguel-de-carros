@@ -1,6 +1,6 @@
 import { Prisma } from "../../generated/prisma";
 import { prisma, runInTransaction } from "../database/prismaDatabase"
-import { ICreatePayment, IPayment, IPaymentsRepository, IWherePayments } from "./interfaces/IPaymentsRepository";
+import { ICreatePayment, IPayment, IPaymentsRepository, IUpdatePayment, IWherePayments } from "./interfaces/IPaymentsRepository";
 
 export class PrismaPaymentsRepository implements IPaymentsRepository {
 
@@ -28,7 +28,7 @@ export class PrismaPaymentsRepository implements IPaymentsRepository {
         return createdPayment
     }
 
-    async update(paymentId: string, paymentAttributes: Partial<ICreatePayment>, tx?: unknown): Promise<IPayment | null> {
+    async update(paymentId: string, paymentAttributes: IUpdatePayment, tx?: unknown): Promise<IPayment | null> {
         const db = (tx ?? prisma) as Prisma.TransactionClient
         const updatedPayment: IPayment | null = await db.payments.update({
             where: { id: paymentId },

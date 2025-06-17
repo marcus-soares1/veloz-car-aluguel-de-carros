@@ -22,6 +22,7 @@ const mockPayment: IPayment = {
     method_type: "credit",
     status: "paid",
     payment_date: new Date(),
+    refund_amount: new Decimal(0),
     refund_date: null,
     payment_type: "final",
     proof_of_payment_url: "http://example.com/proof.jpg",
