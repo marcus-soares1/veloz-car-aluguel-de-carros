@@ -1,17 +1,17 @@
 import Decimal from "decimal.js";
 import { HttpError } from "../errors/HttpError";
 import { IRental, IRentalsRepository, RentalStatus } from "../repositories/interfaces/IRentalsRepository";
-import { VehicleService } from "./VehiclesService";
+import { VehiclesService } from "./VehiclesService";
 import { PaymentsService } from "./PaymentsService";
 import { IPaymentCalculation, PaymentMethod } from "../repositories/interfaces/IPaymentsRepository";
 import { differenceInDays, differenceInHours } from "../utils/dateFunctions";
 
-export class RentalService {
+export class RentalsService {
     private static prepaymentTax = 0.5 
     private static securityDepositTax = 0.5
     private static penaltyTax = 1.2
 
-    constructor(private readonly rentalRepository: IRentalsRepository, private readonly vehicleService: VehicleService, private readonly paymentsService: PaymentsService) {}
+    constructor(private readonly rentalRepository: IRentalsRepository, private readonly vehicleService: VehiclesService, private readonly paymentsService: PaymentsService) {}
 
     // GET /rentals/:id
     async getRentalById(id: string, tx?: unknown): Promise<IRental> {
@@ -62,7 +62,7 @@ export class RentalService {
 
     private calculatePrepayment(totalRentValue: Decimal, method_type: PaymentMethod): IPaymentCalculation {
          return {
-            amount: totalRentValue.mul(RentalService.prepaymentTax),
+            amount: totalRentValue.mul(RentalsService.prepaymentTax),
             payment_type: 'prepayment',
             method_type
         }
@@ -70,7 +70,7 @@ export class RentalService {
 
     private calculateFinalPayment(totalRentValue: Decimal, method_type: PaymentMethod): IPaymentCalculation {
         return {
-            amount: totalRentValue.minus(totalRentValue.mul(RentalService.prepaymentTax)),
+            amount: totalRentValue.minus(totalRentValue.mul(RentalsService.prepaymentTax)),
             payment_type: 'final',
             method_type
         }
@@ -78,14 +78,14 @@ export class RentalService {
 
     private calculateSecurityDeposit(totalRentValue: Decimal, method_type: PaymentMethod): IPaymentCalculation {
         return {
-            amount: totalRentValue.mul(RentalService.securityDepositTax),
+            amount: totalRentValue.mul(RentalsService.securityDepositTax),
             payment_type: 'security_deposit',
             method_type
         }
     }
 
     private calculatePenalty (diary_value: Decimal, daysLate: number): Decimal {
-        const penaltyDiaryValue = diary_value.mul(RentalService.penaltyTax)
+        const penaltyDiaryValue = diary_value.mul(RentalsService.penaltyTax)
         return penaltyDiaryValue.mul(daysLate)
     }
 

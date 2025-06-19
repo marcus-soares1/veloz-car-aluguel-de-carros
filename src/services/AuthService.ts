@@ -1,4 +1,3 @@
-import { Token } from "typescript";
 import { IUsersRepository } from "../repositories/interfaces/IUsersRepository";
 
 export class AuthService {
@@ -15,7 +14,7 @@ export class AuthService {
     }
 
     // POAT /auth/logout
-    async logout(): Promise<void> {
+    async logout(token: string): Promise<void> {
         
     }
 }

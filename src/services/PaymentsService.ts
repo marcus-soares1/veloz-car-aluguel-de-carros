@@ -1,7 +1,6 @@
 import Decimal from "decimal.js";
 import { IPaymentGateway } from "../gateways/interface/IPaymentGateway";
 import { ICreatePayment, IPayment, IPaymentCalculation, IPaymentsRepository, IWherePayments, PaymentStatus } from "../repositories/interfaces/IPaymentsRepository";
-import { RentalService } from "./RentalsService";
 
 export class PaymentsService {
 

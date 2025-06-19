@@ -1,7 +1,7 @@
 import { HttpError } from "../errors/HttpError";
 import { ICreateVehicle, IUpdateVehicle, IVehicle, IVehiclesRepository, IVehiclesWhere, VehicleStatus } from "../repositories/interfaces/IVehiclesRepository";
 
-export class VehicleService {
+export class VehiclesService {
     constructor(private readonly vehiclesRepository: IVehiclesRepository) { }
 
     // GET /vehicles/avaliablle
@@ -10,7 +10,7 @@ export class VehicleService {
     }
 
     // GET /vehicles
-    async getAllVehicles(where: IVehiclesWhere, tx?: unknown): Promise<IVehicle[]> {
+    async getAllVehicles(where?: IVehiclesWhere, tx?: unknown): Promise<IVehicle[]> {
         return this.vehiclesRepository.getAll(where, tx);
     }
 

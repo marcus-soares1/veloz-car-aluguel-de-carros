@@ -1,7 +1,7 @@
 import { HttpError } from "../errors/HttpError";
 import { ICreateUser, IUsersRepository, Role } from "../repositories/interfaces/IUsersRepository";
 
-export class UserService {
+export class UsersService {
     constructor(private readonly userRepository: IUsersRepository){ }
 
     private async getUserId ({ id, email, cpf, role}: { id?: string, email?: string, cpf?: string, role?: Role}) {
@@ -12,6 +12,10 @@ export class UserService {
     }
 
     // GET /users
+    async getAllUsers(id: string) {
+        const users = await this.userRepository.getAll()
+        return users
+    }
 
     // GET /users/:id
     async getUserById (id: string)
