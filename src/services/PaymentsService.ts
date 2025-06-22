@@ -1,13 +1,10 @@
-import Decimal from "decimal.js";
-import { IPaymentGateway } from "../gateways/interface/IPaymentGateway";
+import Decimal from "decimal.js"
 import { ICreatePayment, IPayment, IPaymentCalculation, IPaymentsRepository, IWherePayments, PaymentStatus } from "../repositories/interfaces/IPaymentsRepository";
+import { HttpError } from "../errors/HttpError";
 
 export class PaymentsService {
 
-    constructor (
-        private readonly paymentsRepository: IPaymentsRepository, 
-        private readonly paymentGateway: IPaymentGateway
-    ) { }
+    constructor ( private readonly paymentsRepository: IPaymentsRepository) { }
 
     // GET /payments
     async getAllPayments (where: IWherePayments, tx?: unknown): Promise<IPayment[]> {
@@ -15,13 +12,16 @@ export class PaymentsService {
         return payments
     }
     
-    processPayment(amount: number, method: string, tx?: unknown): boolean {
+    // PUT /payments/:id//process
+    async processPayment(paymentId: string, method: string, tx?: unknown): Promise<IPayment | null> {
         
-        console.log(`Processing payment of ${amount} using ${method}`);
+        const payment = await this.paymentsRepository.update(paymentId, {status: 'paid'}) 
+        if(!payment) throw new HttpError('Payment not found', 404)
 
-        return true
+        return payment
     }
 
+    // PUT /payments/:id/refund
     async refundPayment(transactionId: string, paymentId: string, tx?: unknown) {
         return await this.paymentsRepository.withTransaction(async (tx) => {
             console.log(`Refunding payment with transaction ID: ${transactionId}`);
@@ -31,6 +31,7 @@ export class PaymentsService {
         })
     }
 
+    // PUT /payments/:id/partial
     async refundPartialy (transactionId: string, paymentId: string, refundAmount: Decimal, tx?: unknown) {
         return await this.paymentsRepository.withTransaction(async (tx) => {
             console.log(`Refunding payment with transaction ID: ${transactionId}`);
@@ -41,6 +42,7 @@ export class PaymentsService {
         
     }
     
+    // POST /payments
     async createPayments(payments: IPaymentCalculation[], rental_id: string, tx?: unknown): Promise<IPayment[]> {
         return await this.paymentsRepository.withTransaction(async (tx)=> {
             const paymentsArray = await Promise.all(
@@ -51,6 +53,7 @@ export class PaymentsService {
             return paymentsArray
         })
     }
+
 
     async changingPaymentsStatusByRentalId(rental_id: string, status: PaymentStatus, refundPrepayment: boolean, tx?: unknown): Promise<(IPayment | {message: string})[]> {
         return await this.paymentsRepository.withTransaction(async (tx) => {
@@ -65,7 +68,6 @@ export class PaymentsService {
             const updatedPayments: Array<IPayment | {message: string}> = await Promise.all(
                 payments.map(async (payment) =>{
                     if(payment.status === 'paid') {
-                        await this.paymentGateway.refundClient()
                         const response = await this.paymentsRepository.update(payment.id, {status: status}, tx)
                         if(!response) return {message: `Payment of ${payment.payment_type} type was not found.`}
                         return response
@@ -81,14 +83,12 @@ export class PaymentsService {
         })
     }
 
+    // GET /payments/:id 
     async getPaymentById(id: string, tx?: unknown) {
         return await this.paymentsRepository.getById(id, tx)
     }
 
-    async updatePayment(id: string, paymentAttributes: Partial<ICreatePayment>, tx?: unknown) {
-        return await this.paymentsRepository.update(id, paymentAttributes, tx);
-    }
-
+    // DELETE /payments/:id
     async deletePayment(id: string, tx?: unknown) {
         return await this.paymentsRepository.delete(id, tx)
     }

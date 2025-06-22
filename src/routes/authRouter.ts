@@ -2,10 +2,10 @@ import { Router } from "express";
 import { authService } from "../conteiner";
 
 
-const rentalsRouter = Router()
+const authRouter = Router()
 
-rentalsRouter.post('/', )
-rentalsRouter.post('/', )
-rentalsRouter.post('/', )
+authRouter.post('/register', )
+authRouter.post('/login', )
+authRouter.post('/logout', )
 
-export { rentalsRouter }
+export { authRouter }

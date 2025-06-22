@@ -9,8 +9,7 @@ export class UsersController {
   // GET /users
   index: Handler = async (req, res, next) => {
     try {
-      // caso precise passar um ID de usuário autenticado (ex: req.user.id)
-      const users = await this.usersService.getAllUsers("");
+      const users = await this.usersService.getAllUsers()
       res.json(users);
     } catch (error) {
       next(error);

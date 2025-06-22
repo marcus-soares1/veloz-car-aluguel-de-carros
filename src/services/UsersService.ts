@@ -12,7 +12,7 @@ export class UsersService {
     }
 
     // GET /users
-    async getAllUsers(id: string) {
+    async getAllUsers() {
         const users = await this.userRepository.getAll()
         return users
     }

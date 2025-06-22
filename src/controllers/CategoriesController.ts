@@ -1,16 +1,16 @@
 import { Handler } from "express";
-import { ICategoriesRepository } from "../repositories/interfaces/ICategoriesRepository";
-import { CreateCategoryRequestSchema, UpdateCategoryRequestSchema } from "./schema/CategoryRequestSchema";
+import { CategoriesService } from "../services/CategoriesService";
 import { QueryIdNumberRequestSchema } from "./schema/QueriesRequestSchema";
+import { CreateCategoryRequestSchema, UpdateCategoryRequestSchema, } from "./schema/CategoryRequestSchema";
 import { HttpError } from "../errors/HttpError";
 
 export class CategoriesController {
-  constructor(private readonly categoriesRepository: ICategoriesRepository) {}
+  constructor(private readonly categoriesService: CategoriesService) {}
 
   // GET /categories
   index: Handler = async (req, res, next) => {
     try {
-      const categories = await this.categoriesRepository.getAll();
+      const categories = await this.categoriesService.getAll();
       res.json(categories);
     } catch (error) {
       next(error);
@@ -21,9 +21,9 @@ export class CategoriesController {
   show: Handler = async (req, res, next) => {
     try {
       const { id } = QueryIdNumberRequestSchema.parse(req.params);
-      const category = await this.categoriesRepository.getById(id);
-      if (!category) throw new HttpError("Category not found", 404);
+      const category = await this.categoriesService.getById(id);
 
+      if (!category) throw new HttpError("Category not found", 404);
       res.json(category);
     } catch (error) {
       next(error);
@@ -33,9 +33,9 @@ export class CategoriesController {
   // POST /categories
   create: Handler = async (req, res, next) => {
     try {
-      const categoryAttributes = CreateCategoryRequestSchema.parse(req.body);
-      const createdCategory = await this.categoriesRepository.create(categoryAttributes);
-      res.status(201).json(createdCategory);
+      const category = CreateCategoryRequestSchema.parse(req.body);
+      const created = await this.categoriesService.create(category);
+      res.status(201).json(created);
     } catch (error) {
       next(error);
     }
@@ -45,11 +45,11 @@ export class CategoriesController {
   update: Handler = async (req, res, next) => {
     try {
       const { id } = QueryIdNumberRequestSchema.parse(req.params);
-      const categoryAttributes = UpdateCategoryRequestSchema.parse(req.body);
-      const updatedCategory = await this.categoriesRepository.update(id, categoryAttributes);
+      const categoryData = UpdateCategoryRequestSchema.parse(req.body);
+      const updated = await this.categoriesService.update(id, categoryData);
 
-      if (!updatedCategory) throw new HttpError("Category not found", 404);
-      res.json(updatedCategory);
+      if (!updated) throw new HttpError("Category not found", 404);
+      res.json(updated);
     } catch (error) {
       next(error);
     }
@@ -59,10 +59,10 @@ export class CategoriesController {
   delete: Handler = async (req, res, next) => {
     try {
       const { id } = QueryIdNumberRequestSchema.parse(req.params);
-      const deletedCategory = await this.categoriesRepository.delete(id);
-      if (!deletedCategory) throw new HttpError("Category not found", 404);
+      const deleted = await this.categoriesService.delete(id);
 
-      res.json(deletedCategory);
+      if (!deleted) throw new HttpError("Category not found", 404);
+      res.json(deleted);
     } catch (error) {
       next(error);
     }

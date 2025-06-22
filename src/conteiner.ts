@@ -1,4 +1,7 @@
-import { StriperGateway } from "./gateways/StriperGateway";
+import { CategoriesController } from "./controllers/CategoriesController";
+import { RentalsController } from "./controllers/RentalsController";
+import { UsersController } from "./controllers/UsersController";
+import { VehiclesController } from "./controllers/VehiclesController";
 import { PrismaCategoriesRepository } from "./repositories/PrismaCategoriesRepository";
 import { PrismaPaymentsRepository } from "./repositories/PrismaPaymentsRepository";
 import { PrismaRentalRepository } from "./repositories/PrismaRentalsRepository";
@@ -7,9 +10,9 @@ import { PrismaVehiclesRepository } from "./repositories/PrismaVehiclesRepositor
 import { AuthService } from "./services/AuthService";
 import { CategoriesService } from "./services/CategoriesService";
 import { PaymentsService } from "./services/PaymentsService";
-import { RentalService } from "./services/RentalsService";
-import { UserService } from "./services/UsersService";
-import { VehicleService } from "./services/VehiclesService";
+import { RentalsService } from "./services/RentalsService";
+import { UsersService } from "./services/UsersService";
+import { VehiclesService } from "./services/VehiclesService";
 
 // Repositories instances
 export const userRepository = new PrismaUsersRepository()
@@ -18,13 +21,16 @@ export const categoriesRepository = new PrismaCategoriesRepository()
 export const paymentsRepository = new PrismaPaymentsRepository()
 export const rentalRepository = new PrismaRentalRepository()
 
-// Gateways instaces
-export const striperGateway = new StriperGateway()
-
 // Services instances
 export const authService = new AuthService(userRepository)
-export const usersService = new UserService(userRepository)
-export const vehiclesService = new VehicleService(vehiclesRepository)
+export const usersService = new UsersService(userRepository)
+export const vehiclesService = new VehiclesService(vehiclesRepository)
 export const categoriesService = new CategoriesService(categoriesRepository)
-export const paymentsService = new PaymentsService(paymentsRepository, striperGateway)
-export const rentalService = new RentalService(rentalRepository, vehiclesService, paymentsService)
+export const paymentsService = new PaymentsService(paymentsRepository)
+export const rentalsService = new RentalsService(rentalRepository, vehiclesService, paymentsService)
+
+// Controllers instances
+export const usersController = new UsersController(usersService)
+export const vehiclesController = new VehiclesController(vehiclesService)
+export const categoriesController = new CategoriesController(categoriesService)
+export const rentalsController = new RentalsController(rentalsService)

@@ -1,4 +1,4 @@
-import { ICategoriesRepository, ICategory } from '../repositories/interfaces/ICategoriesRepository'
+import { ICategoriesRepository, ICategory, ICreateCategory } from '../repositories/interfaces/ICategoriesRepository'
 
 export class CategoriesService {
 
@@ -15,7 +15,7 @@ export class CategoriesService {
     }
 
     // POST /categories
-    async create(category: ICategory, tx?: unknown) {
+    async create(category: ICreateCategory, tx?: unknown) {
         return this.categoriesRepository.create(category, tx);
     }
 

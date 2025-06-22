@@ -17,13 +17,13 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.get('/', (req, res) => {
-  res.send('Servidor da simulação de aluguel de carros rodando!');
-})
-app.use('api/categories', categoriesRouter)
-app.use('api/rentals', rentalsRouter)
-app.use('api/users', usersRouter)
-app.use('api/vehicles', vehiclesRouter)
+// Test
+app.get('/', (req, res) => { res.send('Servidor da simulação de aluguel de carros rodando!') })
+
+app.use('/api/categories', categoriesRouter)
+app.use('/api/rentals', rentalsRouter)
+app.use('/api/users', usersRouter)
+app.use('/api/vehicles', vehiclesRouter)
 
 
 app.use(errorHandler)

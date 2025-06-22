@@ -15,7 +15,7 @@ export class RentalsController {
     } catch (error) {
       next(error);
     }
-  };
+  }
 
   // POST /rentals
   reserve: Handler = async (req, res, next) => {
@@ -35,7 +35,7 @@ export class RentalsController {
     } catch (error) {
       next(error);
     }
-  };
+  }
 
   // PUT /rentals/:id/status/:status
   updateStatus: Handler = async (req, res, next) => {
@@ -48,7 +48,7 @@ export class RentalsController {
     } catch (error) {
       next(error);
     }
-  };
+  }
 
   // PUT /rentals/:id/cancel
   cancel: Handler = async (req, res, next) => {
@@ -61,7 +61,7 @@ export class RentalsController {
     } catch (error) {
       next(error);
     }
-  };
+  }
 
   // PUT /rentals/:id/noShow
   noShow: Handler = async (req, res, next) => {
@@ -74,7 +74,7 @@ export class RentalsController {
     } catch (error) {
       next(error);
     }
-  };
+  }
 
   // PUT /rentals/:id/checkout
   checkOut: Handler = async (req, res, next) => {
@@ -87,7 +87,7 @@ export class RentalsController {
     } catch (error) {
       next(error);
     }
-  };
+  }
 
   // PUT /rentals/:id/checkin
   checkIn: Handler = async (req, res, next) => {
@@ -100,5 +100,5 @@ export class RentalsController {
     } catch (error) {
       next(error);
     }
-  };
+  }
 }
