@@ -13,4 +13,4 @@ export const DecimalSchema = z
   }, {
     message: "Valor inválido para Decimal",
   })
-  .transform((val) => new Decimal(val));
+  .transform((val) => new Decimal(val))
