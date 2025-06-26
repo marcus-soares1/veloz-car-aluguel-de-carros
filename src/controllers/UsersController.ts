@@ -3,6 +3,8 @@ import { UsersService } from "../services/UsersService";
 import { CreateUserRequestSchema, UpdateUserRequestSchema } from "./schema/UserRequestSchema";
 import { QueryIdRequestSchema } from "./schema/QueriesRequestSchema";
 
+export type Role = "client" | "attendant" | "admin"
+
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -20,8 +22,9 @@ export class UsersController {
   show: Handler = async (req, res, next) => {
     try {
       const { id } = QueryIdRequestSchema.parse(req.params);
-      const user = await this.usersService.getUserById(id);
-      res.json(user);
+      const user = await this.usersService.getUserById(id)
+      const userDtos = {...user, password_hash: undefined} 
+      res.json(userDtos);
     } catch (error) {
       next(error);
     }
@@ -31,12 +34,36 @@ export class UsersController {
   create: Handler = async (req, res, next) => {
     try {
       const userAttributes = CreateUserRequestSchema.parse(req.body);
-      const user = await this.usersService.createUser(userAttributes);
+      const user = await this.usersService.createUser({...userAttributes, role: 'client'});
       res.status(201).json(user);
     } catch (error) {
       next(error);
     }
-  };
+  }
+
+  // POST /users/attendant
+  createAttendant: Handler = async (req, res, next) => {
+    try {
+      const userAttributes = CreateUserRequestSchema.parse(req.body)
+      const createdUser = await this.usersService.createUser({...userAttributes, role: 'attendant'})
+
+      res.status(201).json(createdUser);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  // POST /users/admin
+  createAdmin: Handler = async (req, res, next) => {
+    try {
+      const userAttributes = CreateUserRequestSchema.parse(req.body)
+      const createdUser = await this.usersService.createUser({...userAttributes, role: 'admin'})
+
+      res.status(201).json(createdUser);
+    } catch (error) {
+      next(error);
+    }
+  }
 
   // PUT /users/:id
   update: Handler = async (req, res, next) => {
