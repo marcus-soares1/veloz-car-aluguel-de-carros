@@ -1,4 +1,6 @@
+import { AuthController } from "./controllers/AuthController";
 import { CategoriesController } from "./controllers/CategoriesController";
+import { PaymentsController } from "./controllers/PaymentsController";
 import { RentalsController } from "./controllers/RentalsController";
 import { UsersController } from "./controllers/UsersController";
 import { VehiclesController } from "./controllers/VehiclesController";
@@ -22,8 +24,8 @@ export const paymentsRepository = new PrismaPaymentsRepository()
 export const rentalRepository = new PrismaRentalRepository()
 
 // Services instances
-export const authService = new AuthService(userRepository)
 export const usersService = new UsersService(userRepository)
+export const authService = new AuthService(usersService)
 export const vehiclesService = new VehiclesService(vehiclesRepository)
 export const categoriesService = new CategoriesService(categoriesRepository)
 export const paymentsService = new PaymentsService(paymentsRepository)
@@ -31,6 +33,8 @@ export const rentalsService = new RentalsService(rentalRepository, vehiclesServi
 
 // Controllers instances
 export const usersController = new UsersController(usersService)
+export const authController = new AuthController(authService)
 export const vehiclesController = new VehiclesController(vehiclesService)
 export const categoriesController = new CategoriesController(categoriesService)
 export const rentalsController = new RentalsController(rentalsService)
+export const paymentsController = new PaymentsController(paymentsService)
