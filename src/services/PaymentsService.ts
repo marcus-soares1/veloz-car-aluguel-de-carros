@@ -4,18 +4,23 @@ import { HttpError } from "../errors/HttpError";
 
 export class PaymentsService {
 
-    constructor ( private readonly paymentsRepository: IPaymentsRepository) { }
+    constructor (private readonly paymentsRepository: IPaymentsRepository) { }
 
     // GET /payments
-    async getAllPayments (where: IWherePayments, tx?: unknown): Promise<IPayment[]> {
+    async getAllPayments (where?: IWherePayments, tx?: unknown): Promise<IPayment[]> {
         const payments = await this.paymentsRepository.getAll(where, tx)
         return payments
     }
+
+    // GET /payments/:id 
+    async getPaymentById(id: string, tx?: unknown) {
+        return await this.paymentsRepository.getById(id, tx)
+    }
     
-    // PUT /payments/:id//process
-    async processPayment(paymentId: string, method: string, tx?: unknown): Promise<IPayment | null> {
+    // PUT /payments/:id/process
+    async processPayment(paymentId: string, tx?: unknown): Promise<IPayment | null> {
         
-        const payment = await this.paymentsRepository.update(paymentId, {status: 'paid'}) 
+        const payment = await this.paymentsRepository.update(paymentId, {status: 'paid'}, tx) 
         if(!payment) throw new HttpError('Payment not found', 404)
 
         return payment
@@ -81,11 +86,6 @@ export class PaymentsService {
             )
             return updatedPayments
         })
-    }
-
-    // GET /payments/:id 
-    async getPaymentById(id: string, tx?: unknown) {
-        return await this.paymentsRepository.getById(id, tx)
     }
 
     // DELETE /payments/:id
