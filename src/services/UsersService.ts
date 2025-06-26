@@ -1,5 +1,6 @@
 import { HttpError } from "../errors/HttpError";
-import { ICreateUser, IUsersRepository, Role } from "../repositories/interfaces/IUsersRepository";
+import { ICreateUser, IUserDtos, IUsersRepository, Role } from "../repositories/interfaces/IUsersRepository";
+import { createHash } from "../utils/createHash";
 
 export class UsersService {
     constructor(private readonly userRepository: IUsersRepository){ }
@@ -11,9 +12,23 @@ export class UsersService {
         return userId
     }
 
+    async getUserByEmail(email: string) {
+        const user = await this.userRepository.getUserByEmail(email)
+        if(!user) throw new HttpError('User not found', 404)
+
+        return user
+    }
+
     // GET /users
-    async getAllUsers() {
-        const users = await this.userRepository.getAll()
+    async getAllUsers(): Promise<IUserDtos[]> {
+        const users = await this.userRepository.getAll({select:{
+            id: true,
+            name: true,
+            email: true,
+            role: true,
+            updated_at: true,
+            created_at: true
+        }})
         return users
     }
 
@@ -28,7 +43,7 @@ export class UsersService {
     
     // POST /users
     async createUser (userAttributes: ICreateUser) {
-        const { email, cpf, role} = userAttributes
+        const { name, email, cpf, role, phone, birthdate, password } = userAttributes
         
         // Not allow user to create more than one record with same CPF
         if (await this.getUserId({email})) throw new HttpError('Email is already registered')
@@ -36,13 +51,15 @@ export class UsersService {
         // Not allow user to have mutiple record in same role
         if (await this.getUserId({cpf, role})) throw new HttpError('User with this CPF already has this role')
 
-        const user = await this.userRepository.create(userAttributes)
+        const password_hash = createHash(password)
+
+        const user = await this.userRepository.create({ name, email, cpf, phone, password_hash, birthdate, role })
         return user
     }
 
     // PUT /users/:id
     async updateUser(id: string, userAttributes: Partial<ICreateUser>) {
-        const { email, cpf, role } = userAttributes
+        const { name, email, cpf, birthdate, role, phone, password } = userAttributes
 
         // Not allow multiple
         const existingUserId = await this.getUserId({email})
@@ -52,9 +69,23 @@ export class UsersService {
         const userIdWithSameCpfRole = await this.getUserId({cpf, role})
         if (userIdWithSameCpfRole && userIdWithSameCpfRole !== id) throw new HttpError('User with this CPF already has this role')
 
-        const user = await this.userRepository.update(id, userAttributes)
-        if(!user) throw new HttpError('User not found', 404)
-        return user
+        let password_hash = undefined 
+        if(password) password_hash = createHash(password)
+        
+        const user  = {
+            name,
+            email,
+            cpf,
+            birthdate,
+            role,
+            phone,
+            password_hash
+        }
+
+        
+        const updatedUser = await this.userRepository.update(id, user)
+        if(!updatedUser) throw new HttpError('User not found', 404)
+        return updatedUser
     }
 
     // DELETE /users/:id
