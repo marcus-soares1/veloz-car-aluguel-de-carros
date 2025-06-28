@@ -6,13 +6,12 @@ import { IDatabaseTransaction } from "../../database/interface/IDatabaseTransact
 
 export type RentalStatus = "reserved" | "rented" | "canceled" | "finalized" | "ended" | "no_show"
 
-export interface IRentalParams{
+export interface IRentalParams {
     where?: {
-        id?: string,
+        id?: string
         user_id?: string
     }
 }
-
 
 export interface IRental {
     id: string
