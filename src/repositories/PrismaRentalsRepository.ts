@@ -1,10 +1,10 @@
 import { Prisma } from "../../generated/prisma";
 import { prisma, runInTransaction } from "../database/prismaDatabase"
-import { ICreateRental, IRental, IRentalsRepository, IUpdateRental } from "./interfaces/IRentalsRepository";
+import { ICreateRental, IRental, IRentalParams, IRentalsRepository, IUpdateRental } from "./interfaces/IRentalsRepository";
 
 export class PrismaRentalRepository implements IRentalsRepository {
-    async getAll(tx?: unknown): Promise<IRental[]> {
-        const rentals: IRental[] = await prisma.rentals.findMany()
+    async getAll(params?: IRentalParams, tx?: unknown): Promise<IRental[]> {
+        const rentals: IRental[] = await prisma.rentals.findMany(params)
         return rentals
     }
 
