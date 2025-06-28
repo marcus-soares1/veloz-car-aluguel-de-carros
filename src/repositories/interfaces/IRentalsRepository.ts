@@ -9,7 +9,11 @@ export type RentalStatus = "reserved" | "rented" | "canceled" | "finalized" | "e
 export interface IRentalParams{
     where?: {
         id?: string,
+<<<<<<< HEAD
         user_id?: string
+=======
+        client_id?: string
+>>>>>>> 8efca37caa6007276fc4d78b697df3b70a4ddc6e
     }
 }
 
