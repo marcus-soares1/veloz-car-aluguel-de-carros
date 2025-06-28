@@ -21,6 +21,8 @@ Uma API RESTful completa para gerenciamento de um sistema de aluguel de veículo
 ## Documentação: Postman
 A documentação completa dos enpoints, proteção de cada endpoint e modo de teste.
 
+👉🏽[Documentação do Postman](https://documenter.getpostman.com/view/44512604/2sB2xFfnih)
+
 ## 📁 Estrutura do Projeto
 
 ```
