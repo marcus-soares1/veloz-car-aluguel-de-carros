@@ -6,6 +6,18 @@ import { ReserveRentalSchema, UpdateRentalStatusSchema, CheckInSchema } from "./
 export class RentalsController {
   constructor(private readonly rentalService: RentalsService) {}
 
+  // GET /rentals/client/:id
+  clientRentals: Handler = async (req, res, next) => {
+    try {
+      const { id } = QueryIdRequestSchema.parse(req.params)
+      const rentals = await this.rentalService.getRentals({where: {user_id: id}})
+      
+      res.json(rentals)
+    } catch (error) {
+      next(error)
+    }
+  }
+
   // GET /rentals/:id
   show: Handler = async (req, res, next) => {
     try {
