@@ -1,6 +1,6 @@
 import Decimal from "decimal.js";
 import { HttpError } from "../errors/HttpError";
-import { IRental, IRentalsRepository, RentalStatus } from "../repositories/interfaces/IRentalsRepository";
+import { IRental, IRentalParams, IRentalsRepository, RentalStatus } from "../repositories/interfaces/IRentalsRepository";
 import { VehiclesService } from "./VehiclesService";
 import { PaymentsService } from "./PaymentsService";
 import { IPaymentCalculation, PaymentMethod } from "../repositories/interfaces/IPaymentsRepository";
@@ -12,6 +12,11 @@ export class RentalsService {
     private static penaltyTax = 1.2
 
     constructor(private readonly rentalRepository: IRentalsRepository, private readonly vehicleService: VehiclesService, private readonly paymentsService: PaymentsService) {}
+
+    async getRentals(params?: IRentalParams, tx? :unknown): Promise<IRental[]> {
+        const rentals = await this.rentalRepository.getAll(params, tx)
+        return rentals
+    }
 
     // GET /rentals/:id
     async getRentalById(id: string, tx?: unknown): Promise<IRental> {

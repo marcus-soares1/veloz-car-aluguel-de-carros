@@ -6,6 +6,13 @@ import { IDatabaseTransaction } from "../../database/interface/IDatabaseTransact
 
 export type RentalStatus = "reserved" | "rented" | "canceled" | "finalized" | "ended" | "no_show"
 
+export interface IRentalParams{
+    where?: {
+        id?: string,
+        user_id?: string
+    }
+}
+
 
 export interface IRental {
     id: string
@@ -36,7 +43,7 @@ export interface IUpdateRental extends Partial<Pick<IRental, 'check_in_date' | '
 export interface IUpdateRental extends Partial<Pick<IRental, 'check_in_date' | 'end_mileage' | 'status' | 'daily_rate' | 'additional_charges' | 'penalties' | 'notes'>> { }
 
 export interface IRentalsRepository {
-    getAll(tx?: unknown): Promise<IRental[]>
+    getAll(params?: IRentalParams, tx?: unknown): Promise<IRental[]>
     getById(rentalId: string, tx?: unknown): Promise<IRental | null>
     create(rentalAttributes: ICreateRental, tx?: unknown): Promise<IRental>
     update(rentalId: string, rentalAttributes: IUpdateRental, tx?: unknown): Promise<IRental | null>

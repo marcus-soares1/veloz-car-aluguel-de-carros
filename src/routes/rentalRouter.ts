@@ -4,6 +4,7 @@ import { ensureAttendant, ensureClient } from "../middlewares/authMiddlewares";
 
 const rentalsRouter = Router()
 
+rentalsRouter.get('/client/:id', ensureClient, rentalsController.clientRentals)
 rentalsRouter.get('/:id', ensureClient, rentalsController.show)
 rentalsRouter.post('/', ensureClient, rentalsController.reserve)
 rentalsRouter.put('/:id/status/:status', ensureClient, rentalsController.updateStatus)
