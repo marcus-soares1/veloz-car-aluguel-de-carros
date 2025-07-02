@@ -104,6 +104,7 @@ export class RentalsService {
             const refundPrepayment = differenceInHours(new Date(), rental.expected_check_in_date) > 24
             const payments = await this.paymentsService.changingPaymentsStatusByRentalId(rentalId, 'canceled', refundPrepayment, tx)
 
+            const vehicle = await this.vehicleService.changeVehicleStatus(rental.vehicle_id, 'avaliable')
             const canceledRental = await this.updateRentalStatus(rentalId, 'canceled', notes, tx)
             return {
                 message: 'Rental canceled',
@@ -120,6 +121,7 @@ export class RentalsService {
 
             const payments = await this.paymentsService.changingPaymentsStatusByRentalId(rentalId, 'refunded', false, tx)
 
+            const vehicle = await this.vehicleService.changeVehicleStatus(rental.vehicle_id, 'avaliable')
             const canceledRental = await this.updateRentalStatus(rentalId, 'no_show', notes, tx)
             return {
                 message: 'Rental canceled (no show)',
@@ -136,7 +138,8 @@ export class RentalsService {
             if(rental.status !== 'reserved') throw new HttpError('Cannot checkout this rent, as it is not reserved')
 
             const payments = await this.paymentsService.getAllPayments({rental_id: rentalId}, tx)
-            const pendingPayments = payments.filter((payment)=>{ payment.status === 'pending' })
+            const pendingPayments = payments.filter((payment)=>{ return payment.status === 'pending' }).filter((payment)=> { return payment.payment_type !== 'final' })
+
             if(pendingPayments) {
                 let pendingPaymentsString: string = ''
                 pendingPayments.forEach((payment)=>{
