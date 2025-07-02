@@ -30,6 +30,19 @@ export class PaymentsController {
     }
   }
 
+  // GET /payments/rental/:id
+  getPaymentsByRentalId: Handler = async (req, res, next) => {
+    try {
+      const { id } = QueryIdRequestSchema.parse(req.params)
+
+      const payments = await this.paymentsService.getAllPayments({rental_id: id})
+      
+      res.json(payments)
+    } catch (error) {
+     next(error) 
+    }
+  }
+
   // PUT /payments/:id/process
   processPayment: Handler = async (req, res, next) => {
     try {
