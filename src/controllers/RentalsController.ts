@@ -22,7 +22,7 @@ export class RentalsController {
   show: Handler = async (req, res, next) => {
     try {
       const { id } = QueryIdRequestSchema.parse(req.params);
-      const rental = await this.rentalService.getRentalById(id);
+      const rental = await this.rentalService.getRentalById(id, {include: { user: true, vehicle: true }});
       res.json(rental);
     } catch (error) {
       next(error);

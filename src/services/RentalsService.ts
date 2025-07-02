@@ -19,8 +19,8 @@ export class RentalsService {
     }
 
     // GET /rentals/:id
-    async getRentalById(id: string, tx?: unknown): Promise<IRental> {
-        const rental = await this.rentalRepository.getById(id, tx)
+    async getRentalById(id: string, params?: IRentalParams, tx?: unknown): Promise<IRental> {
+        const rental = await this.rentalRepository.getById(id, params, tx)
         if(!rental) throw new HttpError('Rental not found', 404)
         return rental
     }
@@ -45,7 +45,7 @@ export class RentalsService {
             const rental = await this.rentalRepository.create({user_id, vehicle_id, check_out_date, expected_check_in_date, start_mileage: vehicle.kilometers, daily_rate: vehicle.diary_value, notes}, tx)
 
             // Calcular o valor do aluguel e o caução
-            const totalDays = differenceInDays(check_out_date, expected_check_in_date)
+            const totalDays = differenceInDays(check_out_date, expected_check_in_date) + 1
             const totalRent = vehicle.diary_value.mul(totalDays)
             const payments = this.calculatePayments(totalRent, payment_method)
             await this.paymentsService.createPayments(payments, rental.id, tx)
@@ -97,7 +97,7 @@ export class RentalsService {
     // PUT /rentals/:id/cancel
     async cancelRental(rentalId: string, notes?: string, tx?: unknown) {
         return await this.rentalRepository.withTransaction(async (tx)=> {
-            const rental = await this.getRentalById(rentalId, tx)
+            const rental = await this.getRentalById(rentalId, {},tx)
             if(rental.status !== 'reserved') throw new HttpError('This rental cannot be cancelled.')
             
 
@@ -115,7 +115,7 @@ export class RentalsService {
     // PUT /rentals/:id/noShow
     async noShow(rentalId: string, notes?: string, tx?: unknown) {
         return await this.rentalRepository.withTransaction(async (tx)=> {
-            const rental = await this.getRentalById(rentalId, tx)
+            const rental = await this.getRentalById(rentalId, {},tx)
             if(rental.status !== 'reserved') throw new HttpError('This rental cannot be updated as no show, as it is ongoing.')
 
             const payments = await this.paymentsService.changingPaymentsStatusByRentalId(rentalId, 'refunded', false, tx)
@@ -132,7 +132,7 @@ export class RentalsService {
     // Atendant intiate rental
     async checkOut(rentalId: string, notes: string, tx?: unknown) {
         return await this.rentalRepository.withTransaction(async (tx)=> {
-            const rental = await this.getRentalById(rentalId, tx)
+            const rental = await this.getRentalById(rentalId, {}, tx)
             if(rental.status !== 'reserved') throw new HttpError('Cannot checkout this rent, as it is not reserved')
 
             const payments = await this.paymentsService.getAllPayments({rental_id: rentalId}, tx)
@@ -158,7 +158,7 @@ export class RentalsService {
     // Atendant finish rental
     async checkIn(rentalId: string, end_mileage: number, damageValue: number = 0, notes?: string, tx?: unknown) {
         return await this.rentalRepository.withTransaction(async (tx) => {
-            const rental = await this.getRentalById(rentalId, tx)
+            const rental = await this.getRentalById(rentalId, {}, tx)
             if(rental.status !== 'rented') throw new HttpError('Cannot checkIn before checkout.')
 
             const payments = await this.paymentsService.getAllPayments({rental_id: rentalId})
@@ -182,15 +182,14 @@ export class RentalsService {
             }   // Se o deposito for maior que o ajuste, faz o reembolso parcial
             else if (securityDeposit.amount > totalAdjust && totalAdjust > new Decimal(0)) {
                 const finalRefundValue = securityDeposit.amount.minus(totalAdjust)
-                // Rever
-                const updatedSecurityDeposityPayment = await this.paymentsService.refundPartialy('mock', securityDeposit.id, finalRefundValue, tx)
+                const updatedSecurityDeposityPayment = await this.paymentsService.refundPartialy(securityDeposit.id, finalRefundValue, tx)
             }
             else{
                 const refundPayment = await this.paymentsService.refundPayment('s', securityDeposit.id,tx)
             }
 
-            const vehicle = await this.rentalRepository.update(rentalId, {end_mileage: new Decimal(end_mileage), notes, check_in_date: new Date(), status: 'finalized'}, tx)
-            return await this.getRentalById(rentalId, tx)
+            const vehicle = await this.rentalRepository.update(rentalId, {end_mileage: new Decimal(end_mileage), penalties: penaltyValue, additional_charges: new Decimal(damageValue), notes, check_in_date: new Date(), status: 'finalized'}, tx)
+            return await this.getRentalById(rentalId, {}, tx)
         })
 
     }

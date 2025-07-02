@@ -37,26 +37,22 @@ export class PaymentsService {
     }
 
     // PUT /payments/:id/partial
-    async refundPartialy (transactionId: string, paymentId: string, refundAmount: Decimal, tx?: unknown) {
-        return await this.paymentsRepository.withTransaction(async (tx) => {
-            console.log(`Refunding payment with transaction ID: ${transactionId}`);
-            const partialyRefundedPayment = await this.paymentsRepository.update(paymentId, {refund_date: new Date() , status: 'partialy_refunded'}, tx)
-            
-            return partialyRefundedPayment
-        })
-        
+    async refundPartialy (paymentId: string, refundAmount: Decimal, tx?: unknown) {
+        const partialyRefundedPayment = await this.paymentsRepository.update(paymentId, {refund_date: new Date(), refund_amount: refundAmount, status: 'partialy_refunded'}, tx)
+                
+        return partialyRefundedPayment 
     }
     
     // POST /payments
     async createPayments(payments: IPaymentCalculation[], rental_id: string, tx?: unknown): Promise<IPayment[]> {
-        return await this.paymentsRepository.withTransaction(async (tx)=> {
-            const paymentsArray = await Promise.all(
-                payments.map(async (payment) => {
-                    return await this.paymentsRepository.create({ ...payment, rental_id, status: 'pending' }, tx)
-                })
-            )
-            return paymentsArray
-        })
+        const paymentsArray = await Promise.all(
+            payments.map(async (payment) => {
+                const result = await this.paymentsRepository.create({ ...payment, rental_id, status: 'pending' }, tx)
+                console.log(result)
+                return result
+            })
+        )
+        return paymentsArray
     }
 
 

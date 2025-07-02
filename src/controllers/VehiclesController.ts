@@ -30,7 +30,7 @@ export class VehiclesController {
     show: Handler = async (req, res, next) => {
         try {
             const { id } = QueryIdNumberRequestSchema.parse(req.params);
-            const vehicle = await this.vehiclesService.getVehicleById(id);
+            const vehicle = await this.vehiclesService.getVehicleById(id)
             res.json(vehicle);
         } catch (error) {
             next(error);

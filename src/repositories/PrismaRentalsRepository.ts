@@ -8,11 +8,9 @@ export class PrismaRentalRepository implements IRentalsRepository {
         return rentals
     }
 
-    async getById(rentalId: string, tx?: unknown): Promise<IRental | null> {
+    async getById(rentalId: string, params?: IRentalParams, tx?: unknown): Promise<IRental | null> {
         const db = (tx ?? prisma) as Prisma.TransactionClient
-        const rental: IRental | null = await db.rentals.findUnique({
-            where: { id: rentalId }
-        })
+        const rental: IRental | null = await db.rentals.findUnique({...params, where: {id: rentalId}})
         return rental
     }
 

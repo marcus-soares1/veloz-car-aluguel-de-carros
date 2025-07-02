@@ -13,9 +13,7 @@ export class PrismaVehiclesRepository implements IVehiclesRepository {
         const db = (tx ?? prisma) as Prisma.TransactionClient
         const vehicle: IVehicle | null = await db.vehicles.findUnique({
             where: { id: vehicleId },
-            include: {
-                category: true
-            }
+            include: { category: true }
         })
         return vehicle
     }

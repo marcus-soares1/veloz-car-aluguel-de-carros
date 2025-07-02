@@ -10,6 +10,10 @@ export interface IRentalParams {
     where?: {
         id?: string
         user_id?: string
+    }, 
+    include?: {
+        user?: boolean,
+        vehicle?: boolean
     }
 }
 
@@ -43,7 +47,7 @@ export interface IUpdateRental extends Partial<Pick<IRental, 'check_in_date' | '
 
 export interface IRentalsRepository {
     getAll(params?: IRentalParams, tx?: unknown): Promise<IRental[]>
-    getById(rentalId: string, tx?: unknown): Promise<IRental | null>
+    getById(rentalId: string, params?: IRentalParams, tx?: unknown): Promise<IRental | null>
     create(rentalAttributes: ICreateRental, tx?: unknown): Promise<IRental>
     update(rentalId: string, rentalAttributes: IUpdateRental, tx?: unknown): Promise<IRental | null>
     delete(rentalId: string, tx?: unknown): Promise<IRental | null>
