@@ -66,7 +66,7 @@ export class RentalsController {
   cancel: Handler = async (req, res, next) => {
     try {
       const { id } = QueryIdRequestSchema.parse(req.params);
-      const { notes } = req.body;
+      const notes = req.body?.notes
 
       const result = await this.rentalService.cancelRental(id, notes);
       res.json(result);
@@ -79,7 +79,7 @@ export class RentalsController {
   noShow: Handler = async (req, res, next) => {
     try {
       const { id } = QueryIdRequestSchema.parse(req.params);
-      const { notes } = req.body;
+      const notes = req.body?.notes
 
       const result = await this.rentalService.noShow(id, notes);
       res.json(result);
@@ -92,7 +92,7 @@ export class RentalsController {
   checkOut: Handler = async (req, res, next) => {
     try {
       const { id } = QueryIdRequestSchema.parse(req.params);
-      const { notes } = req.body;
+      const notes = req.body?.notes
 
       const rental = await this.rentalService.checkOut(id, notes);
       res.json(rental);

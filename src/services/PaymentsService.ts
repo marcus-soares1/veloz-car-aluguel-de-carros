@@ -48,7 +48,7 @@ export class PaymentsService {
         const paymentsArray = await Promise.all(
             payments.map(async (payment) => {
                 const result = await this.paymentsRepository.create({ ...payment, rental_id, status: 'pending' }, tx)
-                console.log(result)
+                
                 return result
             })
         )

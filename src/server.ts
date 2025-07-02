@@ -8,6 +8,7 @@ import { rentalsRouter } from './routes/rentalRouter'
 import { usersRouter } from './routes/usersRouter'
 import { vehiclesRouter } from './routes/vehiclesRouter'
 import { authRouter } from './routes/authRouter'
+import { paymentsRouter } from './routes/paymentsRouter'
 
 const PORT = process.env.PORT ?? 3000
 const PROTOCOL = process.env.PROTOCOL ?? 'http'
@@ -21,11 +22,12 @@ app.use(express.json())
 // Test
 app.get('/', (req, res) => { res.send('Servidor da simulação de aluguel de carros rodando!') })
 
-app.use('/api/auth', authRouter)
-app.use('/api/categories', categoriesRouter)
 app.use('/api/rentals', rentalsRouter)
-app.use('/api/users', usersRouter)
+app.use('/api/payments', paymentsRouter)
 app.use('/api/vehicles', vehiclesRouter)
+app.use('/api/users', usersRouter)
+app.use('/api/categories', categoriesRouter)
+app.use('/api/auth', authRouter)
 
 
 app.use(errorHandler)

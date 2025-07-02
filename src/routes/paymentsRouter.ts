@@ -4,8 +4,9 @@ import { ensureAdmin, ensureClient } from "../middlewares/authMiddlewares"
 
 const paymentsRouter = Router()
 
-paymentsRouter.get('/', paymentsController.getAllPayments)
+paymentsRouter.get('/rental/:id', paymentsController.getPaymentsByRentalId)
 paymentsRouter.get('/:id', ensureClient, paymentsController.getPaymentById)
+paymentsRouter.get('/', ensureAdmin, paymentsController.getAllPayments)
 paymentsRouter.put('/:id/process', ensureAdmin, paymentsController.processPayment)
 paymentsRouter.delete('/:id', ensureAdmin, paymentsController.deletePayment)
 
