@@ -1,6 +1,6 @@
 import { prisma } from '../src/database/prismaDatabase';
 import * as bcrypt from 'bcrypt';
-import { PaymentMethod, PaymentStatus, PaymentType, Role, VehicleStatus, RentalStatus, Brand, Model } from '../generated/prisma';
+import { PaymentMethod, PaymentStatus, PaymentType, Role, VehicleStatus, RentalStatus, Brand, Model } from '@prisma/client';
 import { faker } from '@faker-js/faker';
 
 function randomPlate(): string {

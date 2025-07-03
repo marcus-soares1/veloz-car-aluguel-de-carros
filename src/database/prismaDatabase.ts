@@ -1,4 +1,4 @@
-import { PrismaClient } from "../../generated/prisma";
+import { PrismaClient } from "@prisma/client";
 import { IDatabaseTransaction } from "./interface/IDatabaseTransaction";
 
 export const prisma = new PrismaClient()

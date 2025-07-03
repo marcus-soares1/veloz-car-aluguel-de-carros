@@ -1,7 +1,7 @@
 import { ErrorRequestHandler } from "express";
 import { HttpError } from "../errors/HttpError";
 import { z } from "zod";
-import { Prisma } from "../../generated/prisma";
+import { Prisma } from "@prisma/client";
 
 const NODE_ENV = process.env.NODE_ENV ?? "production"
 
