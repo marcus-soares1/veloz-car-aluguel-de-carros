@@ -1,4 +1,4 @@
-import { Prisma } from "../../generated/prisma";
+import { Prisma } from "@prisma/client";
 import { prisma, runInTransaction } from "../database/prismaDatabase"
 import { ICreatePayment, IPayment, IPaymentsRepository, IUpdatePayment, IWherePayments } from "./interfaces/IPaymentsRepository";
 

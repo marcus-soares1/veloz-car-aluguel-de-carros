@@ -4,7 +4,6 @@ import { VehiclesService } from "./VehiclesService";
 import { PaymentsService } from "./PaymentsService";
 import { IPaymentCalculation, PaymentMethod } from "../repositories/interfaces/IPaymentsRepository";
 import { differenceInDays, differenceInHours } from "../utils/dateFunctions";
-import { IVehicle } from "../repositories/interfaces/IVehiclesRepository";
 import { convertToDecimal } from "../utils/convertToDecimal";
 import Decimal from "decimal.js";
 
