@@ -1,10 +1,12 @@
-import Decimal from "decimal.js";
 import { HttpError } from "../errors/HttpError";
 import { IRental, IRentalParams, IRentalsRepository, RentalStatus } from "../repositories/interfaces/IRentalsRepository";
 import { VehiclesService } from "./VehiclesService";
 import { PaymentsService } from "./PaymentsService";
 import { IPaymentCalculation, PaymentMethod } from "../repositories/interfaces/IPaymentsRepository";
 import { differenceInDays, differenceInHours } from "../utils/dateFunctions";
+import { IVehicle } from "../repositories/interfaces/IVehiclesRepository";
+import { convertToDecimal } from "../utils/convertToDecimal";
+import Decimal from "decimal.js";
 
 export class RentalsService {
     private static prepaymentTax = 0.5 
@@ -139,8 +141,7 @@ export class RentalsService {
 
             const payments = await this.paymentsService.getAllPayments({rental_id: rentalId}, tx)
             const pendingPayments = payments.filter((payment)=>{ return payment.status === 'pending' }).filter((payment)=> { return payment.payment_type !== 'final' })
-
-            if(pendingPayments) {
+            if(pendingPayments.length > 0) {
                 let pendingPaymentsString: string = ''
                 pendingPayments.forEach((payment)=>{
                     pendingPaymentsString = pendingPaymentsString.concat(payment.payment_type, ', ')
@@ -163,14 +164,17 @@ export class RentalsService {
         return await this.rentalRepository.withTransaction(async (tx) => {
             const rental = await this.getRentalById(rentalId, {}, tx)
             if(rental.status !== 'rented') throw new HttpError('Cannot checkIn before checkout.')
-
+            
+            const vehicle = await this.vehicleService.getVehicleById(rental.vehicle_id, tx)
+            if(vehicle.kilometers >= convertToDecimal(end_mileage)) { throw new HttpError('end_mileage cannot be less or equal than before', 400) }
+                
             const payments = await this.paymentsService.getAllPayments({rental_id: rentalId})
             const securityDeposit = payments.find((payment) => payment.payment_type === 'security_deposit')
             if(!securityDeposit) throw new HttpError('Prepayment for for calculations was not found', 404)
 
             // Calcular as multas
             const difference = differenceInDays(new Date(), rental.expected_check_in_date)
-            let penaltyValue: Decimal = new Decimal(0)
+            let penaltyValue: Decimal = convertToDecimal(0)
             if(difference > 0) {
                 penaltyValue = this.calculatePenalty(rental.daily_rate, difference)
             }
@@ -183,15 +187,17 @@ export class RentalsService {
 
 
             }   // Se o deposito for maior que o ajuste, faz o reembolso parcial
-            else if (securityDeposit.amount > totalAdjust && totalAdjust > new Decimal(0)) {
+            else if (securityDeposit.amount > totalAdjust && totalAdjust > convertToDecimal(0)) {
                 const finalRefundValue = securityDeposit.amount.minus(totalAdjust)
                 const updatedSecurityDeposityPayment = await this.paymentsService.refundPartialy(securityDeposit.id, finalRefundValue, tx)
             }
             else{
-                const refundPayment = await this.paymentsService.refundPayment('s', securityDeposit.id,tx)
+                const refundPayment = await this.paymentsService.refundPayment('s', securityDeposit.id, tx)
             }
 
-            const vehicle = await this.rentalRepository.update(rentalId, {end_mileage: new Decimal(end_mileage), penalties: penaltyValue, additional_charges: new Decimal(damageValue), notes, check_in_date: new Date(), status: 'finalized'}, tx)
+            const rentUpdated = await this.rentalRepository.update(rentalId, {end_mileage: convertToDecimal(end_mileage), penalties: penaltyValue, additional_charges: convertToDecimal(damageValue), notes, check_in_date: new Date(), status: 'finalized'}, tx)
+            await this.vehicleService.changeVehicleStatus(vehicle.id, 'avaliable', tx)
+
             return await this.getRentalById(rentalId, {}, tx)
         })
 

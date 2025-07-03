@@ -15,8 +15,11 @@ export class VehiclesService {
     }
 
     // GET /vehicles/:id
-    async getVehicleById(id: number, tx?: unknown): Promise<IVehicle | null> {
-        return this.vehiclesRepository.getById(id, tx);
+    async getVehicleById(id: number, tx?: unknown): Promise<IVehicle> {
+        const vehicle = await this.vehiclesRepository.getById(id, tx)
+        if(!vehicle) throw new HttpError('Vehicle not found', 404)
+
+        return vehicle
     }
 
     // PUT /vehicles/:id/maintence
