@@ -1,8 +1,8 @@
 
 # 🚗 VelozCar: API de Aluguel de Carros
 
-**Status**: Estágios finais de desevolvimento 🚀
-
+**Status**: Estágios finais do desevolvimento de documentação 🚀
+URL: [Link](https://veloz-car-aluguel-de-carros.onrender.com)
 Uma API RESTful completa para gerenciamento de um sistema de aluguel de veículos, construída com **TypeScript**, **Node.js**, **Express** e **Prisma ORM**. Este projeto suporta autenticação, CRUD completo, regras de negócio, validações e testes unitários.
 
 ---
